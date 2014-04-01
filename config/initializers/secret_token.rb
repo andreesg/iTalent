@@ -9,4 +9,20 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
-Italentapp::Application.config.secret_key_base = '13d262afbfaeed256ed75def2b38ea0d13ffd694457eaee9b709d70e9baec5579f81a066e2025ef81ce6f14ff1747fc45feb87df3c8031aa054ad0d4ac0b0ede'
+
+require 'securerandom'
+
+def secure_token
+  token_file = Rails.root.join('.secret')
+  if File.exist?(token_file)
+    # Use the existing token.
+    File.read(token_file).chomp
+  else
+    # Generate a new token and store it in token_file.
+    token = SecureRandom.hex(64)
+    File.write(token_file, token)
+    token
+  end
+end
+
+Italentapp::Application.config.secret_key_base = secure_token

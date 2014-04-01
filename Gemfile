@@ -46,3 +46,19 @@ gem 'devise', '~> 3.2.4'
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
+
+group :development, :test do
+  gem 'rspec-rails', '~> 2.14.2'
+  # easy creation of the models. for testing purposes
+  gem 'factory_girl_rails', '~> 4.4.1'
+end
+
+group :test do
+	# user interface simulation driver, needed by capybara
+	gem 'selenium-webdriver', '~> 2.41.0'
+	# simulates real user interactions with the app
+	gem 'capybara', '~> 2.2.1'
+end
+
+
+
