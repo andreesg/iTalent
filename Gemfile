@@ -51,3 +51,24 @@ gem 'devise', '~> 3.2.4'
 gem 'bootstrap-sass', '~> 3.1.1.0'
 gem 'sprockets', '~> 2.11.0'
 
+group :development, :test do
+  gem 'rspec-rails', '~> 2.14.2'
+  # easy creation of the models. for testing purposes
+  gem 'factory_girl_rails', '~> 4.4.1'
+  # test automation
+  gem 'guard-rspec', '~> 4.2.8'
+  # spork
+  gem 'spork-rails', '~> 4.0.0'
+  gem 'guard-spork', '~> 1.5.1'
+  gem 'childprocess', '~> 0.5.2'
+end
+
+group :test do
+	# user interface simulation driver, needed by capybara
+	gem 'selenium-webdriver', '~> 2.41.0'
+	# simulates real user interactions with the app
+	gem 'capybara', '~> 2.2.1'
+
+end
+
+

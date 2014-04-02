@@ -15,9 +15,14 @@
 /log/*.log
 /tmp
 
+
 # MacOSX finder files
 .DS_Store
 
 # RVM/RBENV ruby@gemset configuration files
 .ruby-gemset
 .ruby-version
+
+# secret token file. used to verify the integrity of the signed coockies.
+.secret
+
