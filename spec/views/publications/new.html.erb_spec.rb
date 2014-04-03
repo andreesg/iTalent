@@ -1,5 +1,12 @@
 require 'spec_helper'
 
-describe "publications/new.html.erb" do
-  pending "add some examples to (or delete) #{__FILE__}"
+describe "publications/new" do
+	it "should display a form to create a new publication"
+=begin
+  it "something" do
+  	assign(:publication, Publication.new)
+  	render
+  	expect(rendered).to be("")
+  end
+=end
 end

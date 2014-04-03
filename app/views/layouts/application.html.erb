@@ -7,11 +7,15 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-<!-- Default flash messages -->
-<p class="notice"><%= notice %></p>
-<p class="alert"><%= alert %></p>
-
-<%= yield %>
-
+	<!-- Default flash messages -->
+	<p class="notice"><%= notice %></p>
+	<p class="alert"><%= alert %></p>
+	<div class="container">
+		<% flash.each do |key, value| %>
+        	<%= content_tag(:div, value, class: "alert alert-#{key}") %>
+      	<% end %>
+		<%= yield %>
+		<%= debug(params) if Rails.env.development? %>
+	</div>
 </body>
 </html>

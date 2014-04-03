@@ -1,2 +1,7 @@
-<h1>Publications#new</h1>
-<p>Find me in app/views/publications/new.html.erb</p>
+
+<div class="row">
+    <%= form_for(@publication) do |f| %>
+    	<%= render 'fields', f: f %>
+      	<%= f.submit "Create" %>
+    <% end %>
+</div>
