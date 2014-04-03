@@ -1,0 +1,7 @@
+
+<div class="row">
+    <%= form_for(@publication) do |f| %>
+    	<%= render 'fields', f: f %>
+      	<%= f.submit "Create" %>
+    <% end %>
+</div>

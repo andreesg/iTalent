@@ -52,6 +52,9 @@ Spork.prefork do
     config.order = "random"
 
     config.include Capybara::DSL
+
+    # it allows to ommit the "FactoryGirl" to call factory methods
+    config.include FactoryGirl::Syntax::Methods
   end
 end
 
