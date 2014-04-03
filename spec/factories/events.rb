@@ -11,4 +11,16 @@ FactoryGirl.define do
     created_at "2014-04-02 23:16:43"
     updated_at "2014-04-02 23:16:43"
   end
+
+  factory :invalid_event, parent: :event do
+    title "T"*300
+    description "D"*300
+    location "MyString"
+    date_limit "2014-04-02 23:16:43"
+    num_attendings 1
+    num_invitations 1
+    created_at "2014-04-02 23:16:43"
+    updated_at "2014-04-02 23:16:43"
+  end
+
 end
