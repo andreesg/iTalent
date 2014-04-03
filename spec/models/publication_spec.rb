@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Publication do
 	
 	before do
-		@publication = FactoryGirl.build_stubbed(:publication)
+		@publication = build_stubbed(:publication)
 	end
 
 	subject { @publication }
