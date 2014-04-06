@@ -9,6 +9,7 @@ describe Publication do
 	subject { @publication }
 
 	it { should respond_to(:text) }
+	it { should respond_to(:creator) }
 
 	it { should be_valid }
 
