@@ -31,7 +31,7 @@ class PublicationsController < ApplicationController
 
   def destroy
     @publication = Publication.find(params[:id])
-    @publication.destroy
+    @publication.destroy unless @publication.nil?
     redirect_to '/'
   end
 

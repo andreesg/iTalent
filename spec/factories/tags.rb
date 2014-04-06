@@ -5,4 +5,9 @@ FactoryGirl.define do
     name "MyTag"
     num_subscribers 0
   end
+
+  factory :invalid_tag, parent: :tag do
+  	name "A"*31
+  	num_subscribers -1
+  end
 end
