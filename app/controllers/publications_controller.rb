@@ -9,6 +9,9 @@ class PublicationsController < ApplicationController
 
   def create
     @publication = Publication.new(publication_params)
+    # TODO: replace with the current_user.id when sessions get implemented
+    @publication.creator = User.first
+    @publication.creator = User.new if @publication.creator.nil?
     if @publication.save
       redirect_to @publication
     else
