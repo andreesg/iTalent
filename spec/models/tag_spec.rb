@@ -9,6 +9,7 @@ describe Tag do
 
 	it { should respond_to(:name) }
 	it { should respond_to(:num_subscribers)}
+	it { should respond_to(:publications) }
 
 	it { should be_valid }
 

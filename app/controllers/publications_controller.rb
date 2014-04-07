@@ -9,6 +9,9 @@ class PublicationsController < ApplicationController
 
   def create
     @publication = Publication.new(publication_params)
+    tag = Tag.first
+    tag = Tag.create(name: "Tag", num_subscribers: 0) if tag.nil?
+    @publication.tags = [tag]
     if @publication.save
       redirect_to @publication
     else

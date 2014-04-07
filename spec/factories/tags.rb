@@ -2,7 +2,7 @@
 
 FactoryGirl.define do
   factory :tag do
-    name "MyTag"
+    sequence(:name) { |n| "Tag#{n}" }
     num_subscribers 0
   end
 

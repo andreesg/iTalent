@@ -3,6 +3,7 @@
 FactoryGirl.define do
   factory :publication do
     text "My new publication"
+    tags {[create(:tag)]}
   end
 
   factory :invalid_publication, parent: :publication do
