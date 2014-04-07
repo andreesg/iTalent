@@ -5,6 +5,7 @@
       
       <%= e.label :description %>
       <%= e.text_field :description %>
-      
+      <%= e.label :date_limit %>
+      <%= e.datetime_local_field :date_limit %>
       <%= e.submit "Create event", class: "btn btn-large btn-primary" %>
 <% end %>
