@@ -1,4 +1,5 @@
 Italentapp::Application.routes.draw do
+  resources :tags, except: :index
   resources :publications, except: :index
   devise_for :users
   # The priority is based upon order of creation: first created -> highest priority.
