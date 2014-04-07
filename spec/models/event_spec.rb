@@ -12,6 +12,7 @@ describe Event do
 	it { should respond_to :description }
 	it { should respond_to :location }
 	it { should respond_to :date_limit }
+	it { should respond_to :date_start }
 	it { should respond_to :num_attendings }
 	it { should respond_to :num_invitations }
 	it { should respond_to :created_at }
@@ -19,6 +20,10 @@ describe Event do
 
 	it { should be_valid }
 
+	describe "start date should not be empty" do
+		before { @event.date_start = nil }
+		it { should_not be_valid }
+	end
 	describe "title should not be empty" do
 		before { @event.title = "" }
         it { should_not be_valid }

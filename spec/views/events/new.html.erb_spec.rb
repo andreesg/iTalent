@@ -15,6 +15,8 @@ describe "Create new event" do
       before do
         fill_in "Title",         with: "TTTTT"
         fill_in "Description",        with: "DDDD"
+        fill_in "Date limit", with: "2014-04-07T13:01"
+        fill_in "Date start", with: "2014-04-07T14:01"
       end
 
       it "should create a event" do

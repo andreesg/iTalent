@@ -5,6 +5,7 @@ FactoryGirl.define do
     title "MyString"
     description "MyString"
     location "MyString"
+    date_start DateTime.now
     date_limit "2014-04-02 23:16:43"
     num_attendings 1
     num_invitations 1
