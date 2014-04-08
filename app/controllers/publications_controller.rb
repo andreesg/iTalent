@@ -12,6 +12,9 @@ class PublicationsController < ApplicationController
     tag = Tag.first
     tag = Tag.create(name: "Tag", num_subscribers: 0) if tag.nil?
     @publication.tags = [tag]
+    # TODO: replace with the current_user.id when sessions get implemented
+    @publication.creator = User.first
+    @publication.creator = User.new if @publication.creator.nil?
     if @publication.save
       redirect_to @publication
     else
