@@ -24,9 +24,26 @@ describe Event do
 		before { @event.date_start = nil }
 		it { should_not be_valid }
 	end
+	describe "attending limit should be before the time of event" do
+		before{
+			@event.date_limit=DateTime.now+1
+			@event.date_start=DateTime.now-1
+		}
+		it { should_not be_valid }
+	end
 	describe "title should not be empty" do
 		before { @event.title = "" }
         it { should_not be_valid }
+	end
+
+	describe "number of attendings must be equal or more than zero" do
+		before { @event.num_attendings = -1 }
+		it { should_not be_valid}
+	end
+
+	describe "number of invitations must be equal or more than zero" do
+		before { @event.num_invitations = -1 }
+		it { should_not be_valid}
 	end
 	
 	describe "title should be short" do
