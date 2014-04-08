@@ -7,8 +7,6 @@ FactoryGirl.define do
     location "MyString"
     date_start DateTime.now
     date_limit "2014-04-02 23:16:43"
-    num_attendings 1
-    num_invitations 1
     created_at "2014-04-02 23:16:43"
     updated_at "2014-04-02 23:16:43"
   end
@@ -18,8 +16,6 @@ FactoryGirl.define do
     description "D"*300
     location "MyString"
     date_limit "2014-04-02 23:16:43"
-    num_attendings 1
-    num_invitations 1
     created_at "2014-04-02 23:16:43"
     updated_at "2014-04-02 23:16:43"
   end

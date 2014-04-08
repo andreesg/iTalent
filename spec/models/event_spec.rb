@@ -20,6 +20,10 @@ describe Event do
 
 	it { should be_valid }
 
+	describe "default value for number of invitations and attendings should be zero" do
+		its(:num_attendings) { should eq 0 }
+		its(:num_invitations) { should eq 0 }
+	end
 	describe "start date should not be empty" do
 		before { @event.date_start = nil }
 		it { should_not be_valid }
