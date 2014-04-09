@@ -17,4 +17,8 @@ class User < ActiveRecord::Base
 		subscriptions.find_by(tag_id: tag.id)
 	end
 
+	def unsubscribe(tag)
+		subscriptions.find_by_tag_id(tag).destroy
+	end
+
 end
