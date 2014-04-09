@@ -6,4 +6,15 @@ class User < ActiveRecord::Base
 
 	has_many :publications
 
+	has_many :subscriptions, dependent: :destroy
+	has_many :subscribed_tags, through: :subscriptions, source: :tag
+
+	def subscribe(tag)
+		subscriptions.create(tag_id: tag.id)
+	end
+
+	def subscribing?(tag)
+		subscriptions.find_by(tag_id: tag.id)
+	end
+
 end
