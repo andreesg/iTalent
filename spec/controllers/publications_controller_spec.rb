@@ -2,6 +2,36 @@ require 'spec_helper'
 
 describe PublicationsController do
 
+  describe "GET #index" do
+    before :each do
+      create(:publication)
+      @tag = create(:tag)
+      @publications = create_list(:publication, 5, :tags => [@tag])
+    end
+
+    describe "when valid tag ids are passed" do
+      it "assigns the resquested Publications to @publications" do
+        get :index, :tags_ids => [@tag.id]
+        assigns(:publications).should eq(@publications)
+      end
+    end
+
+    describe "when invalid tag ids are passed" do
+      it "assigns the resquested Publications to @publications" do
+        get :index, :tags_ids => [@tag.id+10]
+        assigns(:publications).should eq([])
+      end
+    end
+
+    describe "when no argument is passed" do
+      it "assigns the resquested Publications to @publications" do
+        get :index
+        assigns(:publications).should eq(Publication.all)
+      end
+    end
+
+  end
+
   describe "GET #show" do
     it "assigns the requested Publication to @publication" do
       publication = create(:publication)

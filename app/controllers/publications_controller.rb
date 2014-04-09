@@ -1,4 +1,13 @@
 class PublicationsController < ApplicationController
+  def index
+    @publications = nil
+    unless params[:tags_ids].nil?
+      @publications = Publication.includes(:tags).where({'tags.id' => params[:tags_ids]})
+    else
+      @publications = Publication.all
+    end
+  end
+
   def show
     @publication = Publication.find(params[:id])
   end
