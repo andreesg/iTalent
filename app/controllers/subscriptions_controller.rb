@@ -11,7 +11,7 @@ class SubscriptionsController < ApplicationController
 	def destroy
 		@current_user=User.find_by_email("user@italent.com")
 
-		@tag = @current_user.subscriptions.find_by_id(params[:id]).tag
+		@tag = @current_user.subscriptions.find_by_id(params[:id]).subscribed_tag
 		@current_user.unsubscribe(@tag)
 		render 'show'
 	end
