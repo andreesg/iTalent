@@ -3,6 +3,7 @@ Italentapp::Application.routes.draw do
   resources :publications, except: :index
   resources :subscriptions, only: [:create, :destroy]
   devise_for :users
+  resources :events
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
