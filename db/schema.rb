@@ -11,10 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140407103114) do
+ActiveRecord::Schema.define(version: 20140409152123) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "events", force: true do |t|
+    t.string   "title"
+    t.string   "description"
+    t.string   "location"
+    t.datetime "date_limit"
+    t.integer  "num_attendings"
+    t.integer  "num_invitations"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.datetime "date_start"
+  end
 
   create_table "publications", force: true do |t|
     t.text     "text"
@@ -32,6 +44,18 @@ ActiveRecord::Schema.define(version: 20140407103114) do
 
   add_index "publications_tags", ["publication_id"], name: "index_publications_tags_on_publication_id", using: :btree
   add_index "publications_tags", ["tag_id"], name: "index_publications_tags_on_tag_id", using: :btree
+
+  create_table "subscriptions", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "user_id"
+    t.integer  "tag_id"
+    t.integer  "status"
+  end
+
+  add_index "subscriptions", ["tag_id"], name: "index_subscriptions_on_tag_id", using: :btree
+  add_index "subscriptions", ["user_id", "tag_id"], name: "index_subscriptions_on_user_id_and_tag_id", unique: true, using: :btree
+  add_index "subscriptions", ["user_id"], name: "index_subscriptions_on_user_id", using: :btree
 
   create_table "tags", force: true do |t|
     t.string   "name",            limit: 30

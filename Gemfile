@@ -49,6 +49,8 @@ gem 'devise', '~> 3.2.4'
 # gem 'debugger', group: [:development, :test]
 
 gem 'bootstrap-sass', '~> 3.1.1.0'
+gem 'smalot-bootstrap-datetimepicker-rails'
+gem 'date_validator', '~> 0.7.0'
 gem 'sprockets', '~> 2.11.0'
 
 group :development, :test do

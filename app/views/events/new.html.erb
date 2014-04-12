@@ -1,0 +1,14 @@
+
+<%= form_for(@event) do |e| %>
+      <%= e.label :title %>
+      <%= e.text_field :title %>
+      
+      <%= e.label :description %>
+      <%= e.text_field :description %>
+      <%= e.label :date_start %>
+      <%= e.text_field :date_start, class:"datetimepicker" %>
+      <%= e.label :date_limit %>
+	  <%= e.text_field :date_limit, class:"datetimepicker" %>
+
+      <%= e.submit "Create event", class: "btn btn-large btn-primary" %>
+<% end %>
