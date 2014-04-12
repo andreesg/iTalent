@@ -28,6 +28,32 @@ ActiveRecord::Schema.define(version: 20140407174359) do
     t.datetime "date_start"
   end
 
+  create_table "publications", force: true do |t|
+    t.text     "text"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "creator_id"
+  end
+
+  add_index "publications", ["creator_id"], name: "index_publications_on_creator_id", using: :btree
+
+  create_table "publications_tags", id: false, force: true do |t|
+    t.integer "publication_id"
+    t.integer "tag_id"
+  end
+
+  add_index "publications_tags", ["publication_id"], name: "index_publications_tags_on_publication_id", using: :btree
+  add_index "publications_tags", ["tag_id"], name: "index_publications_tags_on_tag_id", using: :btree
+
+  create_table "tags", force: true do |t|
+    t.string   "name",            limit: 30
+    t.integer  "num_subscribers"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "tags", ["name"], name: "index_tags_on_name", unique: true, using: :btree
+
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false

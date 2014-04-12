@@ -20,10 +20,36 @@ describe Event do
 
 	it { should be_valid }
 
-	describe "default value for number of invitations and attendings should be zero" do
-		its(:num_attendings) { should eq 0 }
-		its(:num_invitations) { should eq 0 }
+	describe "num_attendings should never be nil" do
+		before { @event.num_attendings = nil }
+		it { should be_valid }
 	end
+
+	describe "num_invitations should never be nil" do
+		before { @event.num_invitations = nil }
+		it { should be_valid }
+	end
+
+	describe "num_attendings should not be negative" do
+		before { @event.num_attendings = -1 }
+		it { should_not be_valid }
+	end
+
+	describe "num_invitations should never be negative" do
+		before { @event.num_invitations = -1 }
+		it { should_not be_valid }
+	end
+
+	describe "num_attendings should never be non integer" do
+		before { @event.num_attendings = 1.5 }
+		it { should_not be_valid }
+	end
+
+	describe "num_invitations should never be non integer" do
+		before { @event.num_invitations = 1.5 }
+		it { should_not be_valid }
+	end
+
 	describe "start date should not be empty" do
 		before { @event.date_start = nil }
 		it { should_not be_valid }
