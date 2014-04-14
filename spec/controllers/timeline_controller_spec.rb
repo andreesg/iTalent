@@ -11,13 +11,13 @@ describe TimelineController do
 	end
 
 	describe "GET #index" do
-		
+
 		describe "when user is not authenticated" do
 
 			it "redirects to the sign_in page" do
-        get :index
-        response.should redirect_to new_user_session_path
-      end
+				get :index
+				response.should redirect_to new_user_session_path
+			end
 
 		end
 
@@ -30,10 +30,10 @@ describe TimelineController do
 			it "assigns the requested Publications to @publications"
 			it "assigns the requested Events to @events"
 
-	    it "renders the :index template" do
-	      get :index
-	      response.should render_template :index
-	    end
+			it "renders the :index template" do
+				get :index
+				response.should render_template :index
+			end
 
 		end
 
