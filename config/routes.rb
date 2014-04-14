@@ -4,7 +4,8 @@ Italentapp::Application.routes.draw do
   resources :publications
   resources :subscriptions, only: [:create, :destroy]
   resources :events
-  
+  resources :timeline, only: [:index]
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
