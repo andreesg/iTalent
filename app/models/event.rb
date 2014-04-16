@@ -8,6 +8,17 @@ class Event < ActiveRecord::Base
 	validates :date_limit, presence:true, date:true
 	validates :date_start, presence:true, date:{after_or_equal_to: :date_limit}
 
+	has_many :event_invitations, dependent: :destroy, foreign_key: "event_id"
+	has_many :invitees, through: :event_invitation, source: :invitee
+
+	def invite(user)
+		self.event_invitations.create(invitee: user)
+	end
+
+	def invited?(user)
+		self.event_invitations.find_by(invitee: user)
+	end
+
 	private
 		def default_values
 			self.num_attendings = 0 if self.num_attendings.nil?

@@ -11,10 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140409152123) do
+ActiveRecord::Schema.define(version: 20140415143533) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "event_invitations", force: true do |t|
+    t.integer  "invitee_id"
+    t.integer  "event_id"
+    t.integer  "status",     limit: 2
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "event_invitations", ["event_id"], name: "index_event_invitations_on_event_id", using: :btree
+  add_index "event_invitations", ["invitee_id", "event_id"], name: "index_event_invitations_on_invitee_id_and_event_id", unique: true, using: :btree
+  add_index "event_invitations", ["invitee_id"], name: "index_event_invitations_on_invitee_id", using: :btree
 
   create_table "events", force: true do |t|
     t.string   "title"
