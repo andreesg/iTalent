@@ -2,13 +2,6 @@ require 'spec_helper'
 
 describe TimelineController do
 
-	before :all do
-		@user = create(:user)
-	end
-
-	after :all do
-		@user.destroy
-	end
 
 	describe "GET #index" do
 
@@ -22,12 +15,20 @@ describe TimelineController do
 		end
 
 		describe "when user is authenticated" do
+			before :all do
+				@user = create(:user)
+			end
+
+			after :all do
+				@user.destroy
+			end
+
 
 			before :each do
 				sign_in @user
 				@tag = create(:tag)
-				@events=create_list(:event,5)
-      			@publications = create_list(:publication, 5, :tags => [@tag])
+				@events=create_list(:event,5,:tags => [@tag])
+      			@publications = create_list(:publication, 5, :tags => [@tag], creator: @user)
 			end
 
 			it "assigns the requested Publications to @publications" do

@@ -1,9 +1,17 @@
 class EventsController < ApplicationController
   def index
+    @events = nil
+    unless params[:tags_ids].nil?
+      @events=Event.includes(:tags).where({'tags.id' => params[:tags_ids]})
+    else
+      @events=Event.all
+    end
   end
 
   def create
     @event = Event.new(event_params)
+    @event.creator = current_user
+    @event.tags=Tag.find(params[:event][:tags])
     if @event.save
       redirect_to @event
     else
@@ -39,7 +47,7 @@ class EventsController < ApplicationController
   end
   private 
     def event_params
-      params.require(:event).permit(:title,:description,:date_start,:date_limit)
+      params.require(:event).permit(:title,:description,:date_start,:date_limit,:tags)
     end
 end
 

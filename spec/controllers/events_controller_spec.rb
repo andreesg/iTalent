@@ -1,7 +1,42 @@
 require 'spec_helper'
 
 describe EventsController do
- describe "GET #show" do
+
+before :all do
+    @user = User.first
+end
+
+
+describe "GET #index" do
+  before :each do
+    @tag = create(:tag)
+    @events = create_list(:event,5,:tags => [@tag])
+  end
+
+  describe "when valid tags are passed" do
+    it "assigns the requested events (with those tags) to @events" do
+      get :index, :tags_ids => [@tag.id]
+      assigns(:events).should eq(@events)
+    end
+  end
+
+  describe "when invalid tags are passed" do
+    it "@events should be empty" do
+      get :index, :tags_ids => [@tag.id+100]
+      assigns(:events).should eq([])
+    end
+  end
+
+  describe "when no argument is passed" do
+    it "assigns @events with all events" do
+      get :index
+      assigns(:events).should eq(Event.all)
+    end
+  end
+
+end
+
+describe "GET #show" do
     it "assigns the requested Event to @event" do
       event = create(:event)
       get :show, id: event
@@ -27,6 +62,10 @@ describe EventsController do
   end
 
   describe "POST #create" do
+    before :each do
+      sign_in @user
+      @tag = create(:tag)
+    end
     context "with valid attributes" do
       it "saves the new event in the database" do
         expect{
@@ -43,12 +82,12 @@ describe EventsController do
     context "with invalid attributes" do
       it "does not save the new event in the database" do
         expect{
-          post :create, event: FactoryGirl.attributes_for(:invalid_event)
+          post :create, event: attributes_for(:invalid_event)
         }.to_not change(Event, :count)
       end
 
       it "re-renders the :new template" do
-        post :create, event: FactoryGirl.attributes_for(:invalid_event)
+        post :create, event: attributes_for(:invalid_event)
         response.should render_template :new
       end
     end
@@ -69,7 +108,7 @@ describe EventsController do
 
   describe "PUT #update" do
     before :each do
-      @event = create(:event, title: "HEHEHEHE",description: "HEHEHEHE")
+      @event = create(:event, title: "HEHEHEHE",description: "HEHEHEHE", creator: @user)
     end
 
     context "with valid attributes" do
@@ -102,7 +141,7 @@ describe EventsController do
       end
 
       it "re-renders the :edit template" do
-        put :update, id: @event, event: FactoryGirl.attributes_for(:invalid_event)
+        put :update, id: @event, event: attributes_for(:invalid_event)
         response.should render_template :edit
       end
     end

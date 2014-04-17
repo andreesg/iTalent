@@ -10,6 +10,7 @@ describe User do
 
 	it { should respond_to(:email) }
 	it { should respond_to(:publications) }
+	it { should respond_to(:events) }
 	it { should respond_to(:subscriptions) }
 	it { should respond_to(:subscribed_tags) }
 	
