@@ -24,4 +24,8 @@ class User < ActiveRecord::Base
 		subscriptions.find_by_tag_id(tag).destroy
 	end
 
+	def attend(event)
+		event_attendees.create(event: event)
+	end
+
 end
