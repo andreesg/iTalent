@@ -5,6 +5,7 @@ Italentapp::Application.routes.draw do
   resources :subscriptions, only: [:create, :destroy]
   resources :events
   resources :timeline, only: [:index]
+  resources :event_attendees, only: [:create, :destroy]
 
   devise_scope :user do
     authenticated :user do
