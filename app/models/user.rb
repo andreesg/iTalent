@@ -9,6 +9,9 @@ class User < ActiveRecord::Base
 	has_many :subscriptions, dependent: :destroy
 	has_many :subscribed_tags, through: :subscriptions, source: :subscribed_tag
 
+	has_many :event_attendees, dependent: :destroy, foreign_key: "attendee_id"
+	has_many :attending_events, through: :event_attendee, source: :event
+
 	def subscribe(tag)
 		subscriptions.create(tag_id: tag.id)
 	end
