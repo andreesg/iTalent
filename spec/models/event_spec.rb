@@ -17,15 +17,19 @@ describe Event do
 	it { should respond_to :num_invitations }
 	it { should respond_to :created_at }
 	it { should respond_to :updated_at }
+	it { should respond_to :creator }
+	it { should respond_to :tags }
+
+
 
 	it { should be_valid }
 
-	describe "num_attendings should never be nil" do
+	describe "num_attendings should never be nil, so the value should be changed" do
 		before { @event.num_attendings = nil }
 		it { should be_valid }
 	end
 
-	describe "num_invitations should never be nil" do
+	describe "num_invitations should never be nil, so the value should be changed" do
 		before { @event.num_invitations = nil }
 		it { should be_valid }
 	end
@@ -84,6 +88,13 @@ describe Event do
 		before { @event.description = 'a' * 265 }
     	it { should_not be_valid }
 	end
-
+	describe "when it has no tags associated" do
+		before { @event.tags = [] }
+		it { should_not be_valid }
+	end
+	describe "when it has no creator associated" do
+		before { @event.creator = nil }
+		it { should_not be_valid }
+	end
 
 end

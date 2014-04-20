@@ -2,13 +2,15 @@
 
 FactoryGirl.define do
   factory :event do
-    title "MyString"
+    sequence(:title) { |n| "Event#{n}" }
     description "MyString"
     location "MyString"
     date_start DateTime.now
     date_limit "2014-04-02 23:16:43"
     created_at "2014-04-02 23:16:43"
     updated_at "2014-04-02 23:16:43"
+    tags {[create(:tag)]}
+    association :creator
   end
 
   factory :invalid_event, parent: :event do
@@ -19,5 +21,4 @@ FactoryGirl.define do
     created_at "2014-04-02 23:16:43"
     updated_at "2014-04-02 23:16:43"
   end
-
 end
