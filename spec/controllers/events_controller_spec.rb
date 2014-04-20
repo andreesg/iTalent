@@ -3,9 +3,12 @@ require 'spec_helper'
 describe EventsController do
 
 before :all do
-    @user = User.first
+    @user = create(:user)
 end
 
+after :all do
+    @user.destroy
+end
 
 describe "GET #index" do
   before :each do
