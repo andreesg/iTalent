@@ -6,10 +6,12 @@
 	<li><%=publication.text%></li>	
 <% end %>
 </ol>
-
+<%= will_paginate @publications, param_name: 'publications_page' %>
 <h2>Events</h2>
 <ol>
 <% @events.each do |event| %>
 	<li><%=event.title%></li>
 <% end %>	
 </ol>
+<%= will_paginate @events, param_name: 'events_page'  %>
+

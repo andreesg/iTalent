@@ -2,7 +2,7 @@
 
 FactoryGirl.define do
   factory :publication do
-    text "My new publication"
+    sequence(:text) { |n| "Publication #{n}" }
     tags {[create(:tag)]}
     association :creator
   end
