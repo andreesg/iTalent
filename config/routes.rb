@@ -4,8 +4,22 @@ Italentapp::Application.routes.draw do
   resources :publications
   resources :subscriptions, only: [:create, :destroy]
   resources :events
+
   resources :event_invitations, only: :create
   
+  resources :timeline, only: [:index]
+  resources :event_attendees, only: [:create, :destroy]
+
+  devise_scope :user do
+    authenticated :user do
+      root 'timeline#index', as: :authenticated_root
+    end
+
+    unauthenticated do
+      root 'devise/sessions#new', as: :unauthenticated_root
+    end
+  end
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

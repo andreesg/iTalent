@@ -9,9 +9,12 @@ describe User do
 	subject { @user }
 
 	it { should respond_to(:email) }
-	it { should respond_to(:publications) }
+	it { should respond_to(:created_publications) }
+	it { should respond_to(:created_events) }
 	it { should respond_to(:subscriptions) }
 	it { should respond_to(:subscribed_tags) }
+	it { should respond_to(:event_attendees) }
+	it { should respond_to(:attending_events) }
 	
 	it { should be_valid }
 

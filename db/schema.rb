@@ -11,10 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140415143533) do
+ActiveRecord::Schema.define(version: 20140417142114) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "event_attendees", force: true do |t|
+    t.integer  "attendee_id"
+    t.integer  "event_id"
+    t.integer  "status",      limit: 2
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "event_attendees", ["attendee_id", "event_id"], name: "index_event_attendees_on_attendee_id_and_event_id", using: :btree
+  add_index "event_attendees", ["attendee_id"], name: "index_event_attendees_on_attendee_id", using: :btree
+  add_index "event_attendees", ["event_id"], name: "index_event_attendees_on_event_id", using: :btree
 
   create_table "event_invitations", force: true do |t|
     t.integer  "invitee_id"
@@ -38,7 +50,18 @@ ActiveRecord::Schema.define(version: 20140415143533) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.datetime "date_start"
+    t.integer  "creator_id"
   end
+
+  add_index "events", ["creator_id"], name: "index_events_on_creator_id", using: :btree
+
+  create_table "events_tags", id: false, force: true do |t|
+    t.integer "event_id"
+    t.integer "tag_id"
+  end
+
+  add_index "events_tags", ["event_id"], name: "index_events_tags_on_event_id", using: :btree
+  add_index "events_tags", ["tag_id"], name: "index_events_tags_on_tag_id", using: :btree
 
   create_table "publications", force: true do |t|
     t.text     "text"

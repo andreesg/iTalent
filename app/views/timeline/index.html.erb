@@ -1,0 +1,15 @@
+<h1>Welcome to the timeline!</h1>
+
+<h2>Publications</h2>
+<ol>
+<% @publications.each do |publication| %>
+	<li><%=publication.text%></li>	
+<% end %>
+</ol>
+
+<h2>Events</h2>
+<ol>
+<% @events.each do |event| %>
+	<li><%=event.title%></li>
+<% end %>	
+</ol>
