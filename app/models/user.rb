@@ -4,7 +4,8 @@ class User < ActiveRecord::Base
 	devise :database_authenticatable, :registerable,
 		:recoverable, :rememberable, :trackable, :validatable
 
-	has_many :publications
+	has_many :created_publications
+	has_many :created_events
 
 	has_many :subscriptions, dependent: :destroy
 	has_many :subscribed_tags, through: :subscriptions, source: :subscribed_tag

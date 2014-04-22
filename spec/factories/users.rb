@@ -1,9 +1,12 @@
 # Read about factories at https://github.com/thoughtbot/factory_girl
 
 FactoryGirl.define do
+  sequence :email do |n|
+    "user#{n}@italent.com"
+  end
 
   factory :user, aliases: [:creator] do
-  	sequence(:email) { |n| "user#{n}@italent.com" }
+    email
     password "123456789"
 
     #used for authentication in tests
