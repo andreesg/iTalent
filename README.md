@@ -26,6 +26,7 @@ The lists bellow show the most important gems used. For the complete list browse
 * [Capybara](https://github.com/jnicklas/capybara): To mimic the user action on the browser for tests.
 
 ## Configurations
+Codeship
 
 ### Environment
 
