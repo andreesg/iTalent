@@ -7,6 +7,8 @@
 <% end %>
 </ol>
 <%= will_paginate @publications, param_name: 'publications_page' %>
+<%= link_to "Create Publication", new_publication_path %>
+
 <h2>Events</h2>
 <ol>
 <% @events.each do |event| %>
@@ -14,4 +16,4 @@
 <% end %>	
 </ol>
 <%= will_paginate @events, param_name: 'events_page'  %>
-
+<%= link_to "Create Event", new_event_path %>
