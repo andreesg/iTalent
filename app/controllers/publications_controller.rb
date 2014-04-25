@@ -1,4 +1,6 @@
 class PublicationsController < ApplicationController
+  before_filter :authenticate_user!
+  
   def index
     @publications = nil
     unless params[:tags_ids].nil?
@@ -18,12 +20,8 @@ class PublicationsController < ApplicationController
 
   def create
     @publication = Publication.new(publication_params)
-    tag = Tag.first
-    tag = Tag.create(name: "Tag", num_subscribers: 0) if tag.nil?
-    @publication.tags = [tag]
-    # TODO: replace with the current_user.id when sessions get implemented
-    @publication.creator = User.first
-    @publication.creator = User.new if @publication.creator.nil?
+    @publication.tags = Tag.find(params[:publication][:tags])
+    @publication.creator = current_user
     if @publication.save
       redirect_to @publication
     else
