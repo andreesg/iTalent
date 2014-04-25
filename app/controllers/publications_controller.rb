@@ -31,10 +31,12 @@ class PublicationsController < ApplicationController
 
   def edit
     @publication = Publication.find(params[:id])
+    return head :forbidden unless @publication.creator.id == current_user.id
   end
 
   def update
     @publication = Publication.find(params[:id])
+    return head :forbidden unless @publication.creator.id == current_user.id
     if @publication.update_attributes(publication_params)
       redirect_to @publication
     else
@@ -44,6 +46,7 @@ class PublicationsController < ApplicationController
 
   def destroy
     @publication = Publication.find(params[:id])
+    return head :forbidden unless @publication.creator.id == current_user.id
     @publication.destroy unless @publication.nil?
     redirect_to '/'
   end
