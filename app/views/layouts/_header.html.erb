@@ -1,10 +1,27 @@
 
-<div id="user_nav">
-	<% if user_signed_in? %>
-		Signed in as <%= current_user.email %> | 
+<!--header -->
+<header id="top-content" >
+	<div id= "logo" >
+		<img src="/assets/logo2.png" title="iTalent-Logo" >
+	</div>
+	<div id= "avatar" >
+		<img src="/assets/profile.png" title="iTalent-Logo"  width="45px" height="45px">	
+
+	</div>
+	
+		<% if user_signed_in? %>
+		<p><%= current_user.email %></p> 
 		<%= link_to "Sign out", destroy_user_session_path, method: :delete %>
-	<% else %>
-		<%= link_to "Sign up", new_user_registration_path %> or 
-		<%= link_to "Sign in", new_user_session_path %>
-	<% end %>
-</div>
+		<% else %>
+			<%= link_to "Sign up", new_user_registration_path %> or 
+			<%= link_to "Sign in", new_user_session_path %>
+		<% end %>
+	
+	<div id="top-icons" >					
+			<ul>
+				<li><img class="icon" src="/assets/search.png" title="search" width="45px" height="45px" ></li>
+				<li><img class="icon" src="/assets/i.png" title="statistics" width="45px" height="45px"></li>
+				<li><img class="icon" src="/assets/settings.png" title="settings"  width="45px" height="45px"></li>
+			</ul>
+	</div>
+</header>

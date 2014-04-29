@@ -18,7 +18,7 @@ html, body
 	width: 100%;
 	height: 100%;
 	font-family: "Helvetica Neue", Helvetica, sans-serif;
-	color: #f7f7f7;
+	color: #000000;
 	-webkit-font-smoothing: antialiased;
 	/*background: #f0f0f0;*/
 	/*background-color: #9cb58b;e3deb6*/
@@ -40,10 +40,10 @@ label
 	font-size: 14px;
 }
 
-p 
+.registration p 
 {
 	font-size: 11px;
-	color: #f7f7f7;
+	color: #424242;
 	float: right;
 	margin-top: -13px;
 	margin-right: 20px;
@@ -51,7 +51,7 @@ p
 
 p:hover 
 {
-	color: #f7f7f7;
+	color: #424242;
 }
 
 a
@@ -64,7 +64,7 @@ a
 	height: 30px;
 	font-size: 14px;
 	font-weight: bold;
-	color: #f7f7f7;
+	color: #424242;
 	cursor: pointer;
 	line-height: 30px;
 }
@@ -89,7 +89,7 @@ input
 .input-boxes input[type=email],
 .input-boxes input[type=password]
 {
-	color: #f7f7f7;
+	color: #424242;
 	padding-left: 10px;
 	margin: 10px;
 	width: 290px;
@@ -156,6 +156,7 @@ input
 {
    	width: 13px;
 	height: 13px;
+	color: #f7f7f7;
   	padding: 0;
    	margin:0;
    	left: -80px;
