@@ -6,6 +6,8 @@
 	<li><%=publication.text%></li>	
 <% end %>
 </ol>
+<%= will_paginate @publications, param_name: 'publications_page' %>
+<%= link_to "Create Publication", new_publication_path %>
 
 <h2>Events</h2>
 <ol>
@@ -13,7 +15,9 @@
 	<li><%=event.title%></li>
 <% end %>	
 </ol>
- -->
+<%= will_paginate @events, param_name: 'events_page'  %>
+<%= link_to "Create Event", new_event_path %>
+-->
 <!DOCTYPE html>
 <html>
 	<head>
@@ -173,3 +177,4 @@
 
 	</body>
 </html>
+

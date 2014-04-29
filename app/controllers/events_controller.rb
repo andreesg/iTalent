@@ -1,4 +1,6 @@
 class EventsController < ApplicationController
+  before_filter :authenticate_user!
+
   def index
     @events = nil
     unless params[:tags_ids].nil?
@@ -6,6 +8,14 @@ class EventsController < ApplicationController
     else
       @events=Event.all
     end
+  end
+
+  def show
+    @event = Event.find(params[:id])
+  end
+
+  def new
+    @event = Event.new
   end
 
   def create
@@ -19,20 +29,14 @@ class EventsController < ApplicationController
     end
   end
 
-  def new
-    @event = Event.new
-  end
-
   def edit
     @event = Event.find(params[:id])
-  end
-
-  def show
-    @event = Event.find(params[:id])
+    return head :forbidden unless @event.creator.id == current_user.id
   end
 
   def update
     @event = Event.find(params[:id])
+    return head :forbidden unless @event.creator.id == current_user.id
     if @event.update_attributes(event_params)
       redirect_to @event
     else
@@ -42,12 +46,14 @@ class EventsController < ApplicationController
   
   def destroy
     @event = Event.find(params[:id])
+    return head :forbidden unless @event.creator.id == current_user.id
     @event.destroy
     redirect_to '/'
   end
+  
   private 
-    def event_params
-      params.require(:event).permit(:title,:description,:date_start,:date_limit,:tags)
-    end
+  
+  def event_params
+    params.require(:event).permit(:title,:description,:date_start,:date_limit,:tags)
+  end
 end
-

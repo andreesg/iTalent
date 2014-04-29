@@ -1,162 +1,286 @@
 require 'spec_helper'
 
 describe PublicationsController do
+	before :all do
+		@user = create(:user)
+	end
 
-  describe "GET #index" do
-    before :each do
-      create(:publication)
-      @tag = create(:tag)
-      @publications = create_list(:publication, 5, :tags => [@tag])
-    end
+	after :all do
+		@user.destroy
+	end
 
-    describe "when valid tag ids are passed" do
-      it "assigns the resquested Publications to @publications" do
-        get :index, :tags_ids => [@tag.id]
-        assigns(:publications).should eq(@publications)
-      end
-    end
+	describe "GET #index" do
+		describe "when authenticated" do
+			before :each do
+				@tag = create(:tag)
+				@publications = create_list(:publication, 5, :tags => [@tag])
+				sign_in @user
+			end
 
-    describe "when invalid tag ids are passed" do
-      it "assigns the resquested Publications to @publications" do
-        get :index, :tags_ids => [@tag.id+10]
-        assigns(:publications).should eq([])
-      end
-    end
+			describe "when valid tag ids are passed" do
+				it "assigns the requested Publications to @publications" do
+					get :index, :tags_ids => [@tag.id]
+					assigns(:publications).should eq(@publications)
+				end
+			end
 
-    describe "when no argument is passed" do
-      it "assigns the resquested Publications to @publications" do
-        get :index
-        assigns(:publications).should eq(Publication.all)
-      end
-    end
+			describe "when invalid tag ids are passed" do
+				it "assigns the requested Publications to @publications" do
+					get :index, :tags_ids => [@tag.id+10]
+					assigns(:publications).should eq([])
+				end
+			end
 
-  end
+			describe "when no argument is passed" do
+				it "assigns the requested Publications to @publications" do
+					get :index
+					assigns(:publications).should eq(Publication.all)
+				end
+			end
+		end
 
-  describe "GET #show" do
-    it "assigns the requested Publication to @publication" do
-      publication = create(:publication)
-      get :show, id: publication
-      assigns(:publication).should eq(publication)
-    end
+		describe "when not authenticated" do
+			it "it wont allow the operation" do
+				get :index
+				response.should redirect_to new_user_session_path
+			end
+		end
+	end
 
-    it "renders the :show template" do
-      get :show, id: create(:publication)
-      response.should render_template :show
-    end
-  end
+	describe "GET #show" do
+		before :each do
+			@publication = create(:publication)
+		end
 
-  describe "GET #new" do
-    it "assigns a new Publication to @publication" do
-      get :new
-      assigns(:publication).should_not be_nil
-    end
+		describe "when authenticated" do
+			before :each do
+				sign_in @user
+			end
 
-    it "renders the :new template" do
-      get :new
-      response.should render_template :new
-    end
-  end
+			it "assigns the requested Publication to @publication" do
+				get :show, id: @publication
+				assigns(:publication).should eq @publication
+			end
 
-  describe "POST #create" do
-    context "with valid attributes" do
-      it "saves the new publication in the database" do
-        expect{
-          post :create, publication: attributes_for(:publication)
-        }.to change(Publication, :count).by(1)
-      end
+			it "renders the :show template" do
+				get :show, id: @publication
+				response.should render_template :show
+			end
+		end
 
-      it "redirects to the new publication" do
-        post :create, publication: attributes_for(:publication)
-        response.should redirect_to Publication.last
-      end
-    end
+		describe "when not authenticated" do
+			it "it wont allow the operation" do
+				get :show, id: @publication
+				response.should redirect_to new_user_session_path
+			end
+		end
+	end
 
-    context "with invalid attributes" do
-      it "does not save the new publication in the database" do
-        expect{
-          post :create, publication: attributes_for(:invalid_publication)
-        }.to_not change(Publication, :count)
-      end
+	describe "GET #new" do
+		describe "when authenticated" do
+			before :each do
+				sign_in @user
+			end
 
-      it "re-renders the :new template" do
-        post :create, publication: attributes_for(:invalid_publication)
-        response.should render_template :new
-      end
-    end
-  end
+			it "assigns a new Publication to @publication" do
+				get :new
+				assigns(:publication).should_not be_nil
+			end
 
-  describe "GET #edit" do
-    it "assigns the requested publication to @publication" do
-      publication = create(:publication)
-      get :edit, id: publication
-      assigns(:publication).should eq(publication)
-    end
+			it "renders the :new template" do
+				get :new
+				response.should render_template :new
+			end
+		end
 
-    it "renders the :edit template" do
-      get :edit, id: create(:publication)
-      response.should render_template :edit
-    end
-  end
+		describe "when not authenticated" do
+			it "it wont allow the operation" do
+				get :new
+				response.should redirect_to new_user_session_path
+			end
+		end
+	end
 
-  describe "PUT #update" do
-    before :each do
-      @publication = create(:publication, text: "HEHEHEHE")
-    end
+	describe "POST #create" do
+		describe "when authenticated" do
+			before :each do
+				sign_in @user
+			end
 
-    context "with valid attributes" do
-      it "locates the requested publication" do
-        put :update, id: @publication, publication: attributes_for(:publication)
-        assigns(:publication).should eq(@publication)
-      end
+			context "with valid attributes" do
+				it "saves the new publication in the database" do
+					expect{
+						post :create, publication: attributes_for(:publication)
+					}.to change(Publication, :count).by(1)
+				end
 
-      it "changes publication attributes" do
-        put :update, id: @publication, 
-          publication: attributes_for(:publication, text: "Something")
-        @publication.reload
-        @publication.text.should eq("Something")
-      end
+				it "redirects to the new publication" do
+					post :create, publication: attributes_for(:publication)
+					response.should redirect_to Publication.last
+				end
 
-      it "redirects to the updated publication" do
-        put :update, id: @publication, publication: attributes_for(:publication)
-        response.should redirect_to @publication
-      end
-    end
+				it "the signed in user is used as the publication creator" do
+					post :create, publication: attributes_for(:publication)
+					assigns(:publication).creator.should eq @user
+				end
+			end
 
-    context "with invalid attributes" do
-      it "locates the requested publication" do
-        put :update, id: @publication, publication: attributes_for(:publication)
-        assigns(:publication).should eq(@publication)
-      end
+			context "with invalid attributes" do
+				it "does not save the new publication in the database" do
+					expect{
+						post :create, publication: attributes_for(:invalid_publication)
+					}.to_not change(Publication, :count)
+				end
 
-      it "does not change the publication attributes" do
-        put :update, id: @publication, 
-          publication: attributes_for(:publication, text: nil)
-        @publication.reload
-        @publication.text.should_not eq(nil)
-      end
+				it "re-renders the :new template" do
+					post :create, publication: attributes_for(:invalid_publication)
+					response.should render_template :new
+				end
+			end
+		end
 
-      it "re-renders the :edit template" do
-        put :update, id: @publication, publication: attributes_for(:invalid_publication)
-        response.should render_template :edit
-      end
-    end
-  end
+		describe "when not authenticated" do
+			it "it wont allow the operation" do
+				post :create, publication: attributes_for(:publication)
+				response.should redirect_to new_user_session_path
+			end
+		end
+	end
 
-  describe "DELETE #destroy" do
-    before :each do
-      @publication = create(:publication)
-    end
+	describe "GET #edit" do
+		before :each do
+			@publication = create(:publication, creator: @user)
+		end
 
-    it "deletes the requested publication" do
-      expect{
-        delete :destroy, id: @publication
-      }.to change(Publication, :count).by(-1)
-    end
+		describe "when authenticated" do
+			before :each do
+				sign_in @user
+			end
 
-    it "redirects to the '/' page" do
-      delete :destroy, id: @publication
-      response.should redirect_to '/'
-    end
-  end
+			it "assigns the requested publication to @publication" do
+				get :edit, id: @publication
+				assigns(:publication).should eq(@publication)
+			end
 
+			it "renders the :edit template" do
+				get :edit, id: @publication
+				response.should render_template :edit
+			end
+
+			describe "when the publication does not bellong to the user" do
+				it "it wont allow the operation" do
+					get :edit, id: create(:publication)
+					response.status.should be(403)
+				end
+			end
+		end
+
+		describe "when not authenticated" do
+			it "it wont allow the operation" do
+				get :edit, id: @publication
+				response.should redirect_to new_user_session_path
+			end
+		end
+	end
+
+	describe "PUT #update" do
+		before :each do
+			@publication = create(:publication, text: "HEHEHEHE", creator: @user)
+		end
+
+		describe "when authenticated" do
+			before :each do
+				sign_in @user
+			end
+
+			context "with valid attributes" do
+				it "locates the requested publication" do
+					put :update, id: @publication, publication: attributes_for(:publication)
+					assigns(:publication).should eq @publication
+				end
+
+				it "changes publication attributes" do
+					put :update, id: @publication, 
+						publication: attributes_for(:publication, text: "Something")
+					@publication.reload
+					@publication.text.should eq "Something"
+				end
+
+				it "redirects to the updated publication" do
+					put :update, id: @publication, publication: attributes_for(:publication)
+					response.should redirect_to @publication
+				end
+			end
+
+			context "with invalid attributes" do
+				it "locates the requested publication" do
+					put :update, id: @publication, publication: attributes_for(:publication)
+					assigns(:publication).should eq(@publication)
+				end
+
+				it "does not change the publication attributes" do
+					put :update, id: @publication, 
+						publication: attributes_for(:publication, text: nil)
+					@publication.reload
+					@publication.text.should_not eq(nil)
+				end
+
+				it "re-renders the :edit template" do
+					put :update, id: @publication, publication: attributes_for(:invalid_publication)
+					response.should render_template :edit
+				end
+			end
+
+			describe "when the publication does not bellong to the user" do
+				it "it wont allow the operation" do
+					put :update, id: create(:publication), publication: attributes_for(:publication)
+					response.status.should be(403)
+				end
+			end
+		end
+
+		describe "when not authenticated" do
+			it "it wont allow the operation" do
+				put :update, id: @publication, publication: attributes_for(:publication)
+				response.should redirect_to new_user_session_path
+			end
+		end
+	end
+
+	describe "DELETE #destroy" do
+		before :each do
+			@publication = create(:publication, creator: @user)
+		end
+
+		describe "when authenticated" do
+			before :each do
+				sign_in @user
+			end
+
+			it "deletes the requested publication" do
+				expect{
+					delete :destroy, id: @publication
+				}.to change(Publication, :count).by(-1)
+			end
+
+			it "redirects to the '/' page" do
+				delete :destroy, id: @publication
+				response.should redirect_to '/'
+			end
+
+			describe "when the publication does not bellong to the user" do
+				it "it wont allow the operation" do
+					delete :destroy, id: create(:publication)
+					response.status.should be(403)
+				end
+			end
+		end
+
+		describe "when not authenticated" do
+			it "it wont allow the operation" do
+				delete :destroy, id: @publication
+				response.should redirect_to new_user_session_path
+			end
+		end
+	end
 end

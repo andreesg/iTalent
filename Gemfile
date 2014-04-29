@@ -50,6 +50,7 @@ gem 'devise', '~> 3.2.4'
 
 gem 'bootstrap-sass', '~> 3.1.1.0'
 gem 'smalot-bootstrap-datetimepicker-rails'
+gem 'bootstrap-will_paginate', '0.0.9'
 gem 'date_validator', '~> 0.7.0'
 gem 'sprockets', '~> 2.11.0'
 
