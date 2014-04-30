@@ -16,6 +16,9 @@ class User < ActiveRecord::Base
 	has_many :event_attendees, dependent: :destroy, foreign_key: "attendee_id"
 	has_many :attending_events, through: :event_attendee, source: :event
 
+	has_one :user_statistic,:dependent => :destroy
+	before_create :build_default_user_statistic
+
 
 	def subscribe(tag)
 		subscriptions.create(tag_id: tag.id)
@@ -32,5 +35,11 @@ class User < ActiveRecord::Base
 	def attend(event)
 		event_attendees.create(event: event)
 	end
+
+private
+def build_default_user_statistic
+  build_user_statistic
+  user_statistic.valid?
+end
 
 end

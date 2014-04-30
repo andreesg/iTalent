@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140417142114) do
+ActiveRecord::Schema.define(version: 20140430080417) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -100,6 +100,15 @@ ActiveRecord::Schema.define(version: 20140417142114) do
   end
 
   add_index "tags", ["name"], name: "index_tags_on_name", unique: true, using: :btree
+
+  create_table "user_statistics", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "number_events_created",       default: 0
+    t.integer  "number_events_attended",      default: 0
+    t.integer  "number_publications_created", default: 0
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
