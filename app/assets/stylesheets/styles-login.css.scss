@@ -3,6 +3,7 @@
  	color: #fff;
  	text-shadow: none;
  	background: #444;
+ 	
 }
 
 ::-moz-selection 
@@ -23,6 +24,7 @@ html, body
 	/*background: #f0f0f0;*/
 	/*background-color: #9cb58b;e3deb6*/
 	background-color: #f7f7f7;
+	
 }
 
 form 
@@ -97,22 +99,14 @@ input
 	border: 1px solid #c7d0d2;
 	border-radius: 2px;
 	/*box-shadow: inset 0 1.5px 3px rgba(190, 190, 190, .4), 0 0 0 5px #e3deb6;*/
-	box-shadow: inset 0 1.5px 3px rgba(190, 190, 190, .4), 0 0 0 2px #e3deb6;
-}
-
-.input-boxes input[type=email]:hover,
-.input-boxes input[type=password]:hover
-{
-	border: 1px solid #b6bfc0;
-	/*box-shadow: inset 0 1.5px 3px rgba(190, 190, 190, .7), 0 0 0 5px #DED9B6;*/
-	box-shadow: inset 0 1.5px 3px rgba(190, 190, 190, .7), 0 0 0 2px #DED9B6;
+	box-shadow: inset 0 1.5px 3px rgba(190, 190, 190, .4), 0 0 0 1px #e3deb6;
 }
 
 .input-boxes input[type=email]:focus,
 .input-boxes input[type=password]:focus
 {
 	border: 1px solid #a8c9e4;
-	box-shadow: inset 0 1.5px 3px rgba(190, 190, 190, .4), 0 0 0 2px #DED9B6;
+	box-shadow: inset 0 1.5px 3px rgba(190, 190, 190, .4), 0 0 0 1px #DED9B6;
 }
 
 #lower 

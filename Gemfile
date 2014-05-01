@@ -55,6 +55,8 @@ gem 'date_validator', '~> 0.7.0'
 gem 'sprockets', '~> 2.11.0'
 
 group :development, :test do
+  gem "better_errors"
+  gem 'binding_of_caller'
   gem 'rspec-rails', '~> 2.14.2'
   # easy creation of the models. for testing purposes
   gem 'factory_girl_rails', '~> 4.4.1'

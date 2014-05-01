@@ -1,14 +1,49 @@
+<div class="row">
 
-<%= form_for(@event) do |e| %>
-      <%= e.label :title %>
-      <%= e.text_field :title %>
-      
-      <%= e.label :description %>
-      <%= e.text_field :description %>
-      <%= e.label :date_start %>
-      <%= e.text_field :date_start, class:"datetimepicker" %>
-      <%= e.label :date_limit %>
-	  <%= e.text_field :date_limit, class:"datetimepicker" %>
+	<div class="col-sm-4 col-sm-offset-4 timeline">
+		
+		<br>
+		<%= form_for(@event) do |e| %>
+			<ul class="timeline-section">
+				<li class="timeline-title">
+					<div class="post-bubble">
+						<span>Event Title</span><br>
+						 <%= e.text_field :title %>
+					</div>
+					<div class="post">
+						<br>
+					</div>
+				</li>
+				<li>
+					<div class="post">
+						<span>Description</span><br>
+						<%= e.text_field :description %>
+					</div>
+				</li>
+			
+				<li>
+					<div class="post">
+						<span>Date</span><br>
+						 <%= e.text_field :date_start, class:"datetimepicker" %>
+					</div>
+				</li>
+				<li>
+					<div class="post">
+						<span>Date limit for registration</span><br>
+							<%= e.text_field :date_limit, class:"datetimepicker" %>
+						</div>
+					</div>
+				</li>
+				
+			</ul>	
+			<%= e.submit :id=>"sbm-button-bot", :type => :image, :src => "/assets/check.png" %>
+			
+		
+			<div id="img-button"><%= link_to image_tag("/assets/back.png" , size:'45') , timeline_index_path, method: :get, :id=>"back-button-bot",  :type => :image %>
+			</div>
+		
 
-      <%= e.submit "Create event", class: "btn btn-large btn-primary" %>
-<% end %>
+		<% end %>
+	</div>
+
+</div>

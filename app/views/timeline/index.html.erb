@@ -18,163 +18,90 @@
 <%= will_paginate @events, param_name: 'events_page'  %>
 <%= link_to "Create Event", new_event_path %>
 -->
-<!DOCTYPE html>
-<html>
-	<head>
-		<meta charset="utf-8">
 
-		<meta name= "viewport" content= "width=device-width, initial-scale=1.0, user-scalable=no">
-		<title>iTalent</title>
-		<!-- bootstrap styles-->
-		<link href='http://fonts.googleapis.com/css?family=Arvo:400,700' rel='stylesheet' type='text/css'>
-	</head>
-	<body>
-		
-		<!-- begin timeline-->
-		<div class="container">
-			<div class="row">
+<div class="row">
 
-				<div class="col-sm-4 col-sm-offset-4 timeline">
-					
-					<input type="image" src="/assets/add.png" name="newPost" id="img-button" width="45px" height="45px"/>
-					<br>
-
-					<ul class="timeline-section">
-						<li class="timeline-title">
-							<div class="post-bubble">
-								Vamos fazer todos um team building!!!
-								<div class="post-bubble-arrow-border"></div>
-								<div class="post-bubble-arrow"></div>
-							</div>
-							<div class="post">
-								<br>
-							</div>
-						</li>
-						<li>
-							<div class="post">
-								<span>Horinando</span>
-								<p>Por mim tanto dá hoje como amanhã. No dia seguinte não posso mas depois volto a poder. Penso que é isso. Mas mesmo assim não sei se gosto da ideia...</p>
-							</div>
-						</li>
-						<li>
-							<div class="post">
-								<span>Genoveva</span>
-								<p>Quem é que convidou o Horinaldo?</p>
-							</div>
-						</li>
-						<li>
-							<div class="post">
-								<span>Bucetildes</span>
-								<p>C'o a breca! Bora la!</p>
-							</div>
-						</li>
-						<li>
-							<div class="post">
-								<span>Mijardina</span>
-								<p>Ela não anda a pôr posts duplicados?</p>
-							</div>
-						</li>
-						<li>
-							<div class="post">
-								<span>Francisoreia</span>
-								<p>Yeap... é naba ainda..</p>
-							</div>
-						</li>
-					</ul>
-					<ul class="timeline-section">
-						<li class="timeline-title">
-							<div class="post-bubble">
-								Vamos fazer todos um team building!!!
-								<div class="post-bubble-arrow-border"></div>
-								<div class="post-bubble-arrow"></div>
-							</div>
-							<div class="post">
-								<!--<h1>Conteúdos</h1>-->
-								<br>
-							</div>
-						</li>
-						<li>
-							<div class="post">
-								<span>Horinando</span>
-								<p>Por mim tanto dá hoje como amanhã. No dia seguinte não posso mas depois volto a poder. Penso que é isso. Mas mesmo assim não sei se gosto da ideia...</p>
-							</div>
-						</li>
-						<li>
-							<div class="post">
-								<span>Genoveva</span>
-								<p>Quem é que convidou o Horinaldo?</p>
-							</div>
-						</li>
-						<li>
-							<div class="post">
-								<span>Bucetildes</span>
-								<p>C'o a breca! Bora la!</p>
-							</div>
-						</li>
-					</ul>
-				</div>
-
-				<div class="col-sm-2 col-sm-offset-2 timeline">
-				
-					<input type="image" src="/assets/add.png" href="create_event.html" name="newEvent" id="img-button" width="45px" height="45px" onclick="window.location='create_event.html';"/>
-					
-					<br>
-
-					<ul class="timeline-section">
-						<li class="timeline-title">
-							<span class="fa-stack fa-lg hidden-xs">
-								<i class="fa fa-circle fa-stack-2x"></i>
-								<i class="fa fa-users fa-stack-1x fa-inverse"></i>
-							</span>
-						</li>
-						<li>
-							<div class="post">
-								<div class="event-bubble">
-									Reunião Semanal 11h00 18-04-2014
-								</div>
-							</div>
-						</li>
-						<li>
-							<div class="post">
-								<div class="event-bubble">
-									Team Building iTalent II
-								</div>
-							</div>
-						</li>
-						<li>
-							<div class="post">
-								<div class="event-bubble">
-									Reunião Semanal 11h00 25-04-2014
-								</div>
-							</div>
-						</li>
-						<li>
-							<div class="post">
-								<div class="event-bubble">
-									Team Building iTalent III
-								</div>
-							</div>
-						</li>
-						<li>
-							<div class="post">
-								<div class="event-bubble">
-									Reunião Semanal 11h00 02-05-2014
-								</div>
-							</div>
-						</li>
-						<li>
-							<div class="post">
-								<div class="event-bubble">
-									Team Building iTalent IV
-								</div>
-							</div>
-						</li>
-					</ul>
-				</div>
-
-			</div>
+	<div class="col-sm-4 col-sm-offset-4 timeline">
+		<div id="img-button"><%= link_to image_tag("/assets/add.png"), new_publication_path, method: :get %>
 		</div>
+		<br>
 
-	</body>
-</html>
+		<% @publications.each do |publication| %>
+			<ul class="timeline-section" >		
+				<li class="timeline-title" >
+						<div class="post-bubble">
+							<%=publication.text%>
+							<div class="post-bubble-arrow-border"></div>
+							<div class="post-bubble-arrow"></div>
+						</div>
+					<br><br>
+				</li>
+				<li>
+					<div class="post">
+						<span>Horinando</span>
+						<p>Por mim tanto dá hoje como amanhã. No dia seguinte não posso mas depois volto a poder. Penso que é isso. Mas mesmo assim não sei se gosto da ideia...</p>
+					</div>
+				</li>
+				<li>
+					<div class="post">
+						<span>Genoveva</span>
+						<p>Quem é que convidou o Horinaldo?</p>
+					</div>
+				</li>
+				<li>
+					<div class="post">
+						<span>Bucetildes</span>
+						<p>C'o a breca! Bora la!</p>
+					</div>
+				</li>
+				<li>
+					<div class="post">
+						<span>Mijardina</span>
+						<p>Ela não anda a pôr posts duplicados?</p>
+					</div>
+				</li>
+				<li>
+					<div class="post">
+						<span>Francisoreia</span>
+						<p>Yeap... é naba ainda..</p>
+					</div>
+				</li>
+			</ul>
+		<% end %>
 
+
+	</div>
+
+	<div class="col-sm-2 col-sm-offset-2 timeline">
+	
+		
+		<div id="img-button"><%= link_to image_tag("/assets/add.png"), new_event_path, method: :get %>
+		</div>
+		<br>
+		
+
+
+		<ul class="timeline-section">
+
+
+			<li class="timeline-title">
+				<span class="fa-stack fa-lg hidden-xs">
+					<i class="fa fa-circle fa-stack-2x"></i>
+					<i class="fa fa-users fa-stack-1x fa-inverse"></i>
+				</span>
+			</li>
+
+
+			<% @events.each do |event| %>				
+				<li>
+					<div class="post">
+						<div class="event-bubble">
+							<%=event.title%>
+						</div>
+					</div>
+				</li>
+			<% end %>			
+		</ul>
+	</div>
+
+</div>
