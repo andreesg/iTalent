@@ -20,7 +20,11 @@ class PublicationsController < ApplicationController
 
   def create
     @publication = Publication.new(publication_params)
-    @publication.tags = Tag.find(params[:publication][:tags])
+    if Tag.find(params[:publication][:tags]).nil?
+      @publication.tags = Tag.first
+    else
+      @publication.tags = Tag.find(params[:publication][:tags])
+    end
     @publication.creator = current_user
     if @publication.save
       redirect_to @publication
