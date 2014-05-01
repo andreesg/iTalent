@@ -20,8 +20,8 @@ class PublicationsController < ApplicationController
 
   def create
     @publication = Publication.new(publication_params)
-    if Tag.find(params[:publication][:tags]).nil?
-      @publication.tags = Tag.first
+    if params[:publication][:tags].nil?
+      @publication.tags = [Tag.first]
     else
       @publication.tags = Tag.find(params[:publication][:tags])
     end

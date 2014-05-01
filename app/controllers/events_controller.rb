@@ -20,8 +20,8 @@ class EventsController < ApplicationController
 
   def create
     @event = Event.new(event_params)
-    if Tag.find(params[:event][:tags]).nil?
-      @event.tags = Tag.first
+    if params[:event][:tags].nil?
+      @event.tags = [Tag.first]
     else
       @event.tags = Tag.find(params[:event][:tags])
     end

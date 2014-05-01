@@ -50,9 +50,9 @@ input{
   margin-left: 10px;
   float: left;
   color:  #f7f7f7; 
-  padding-top: 40px; 
+  padding-top: 30px; 
 }
-#top-content a
+#top-content p a
 {
   font-family: Frutiger, "Frutiger Linotype", Univers, Calibri, "Gill Sans", "Gill Sans MT", "Myriad Pro", Myriad, "DejaVu Sans Condensed", "Liberation Sans", "Nimbus Sans L", Tahoma, Geneva, "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 400; 
@@ -61,18 +61,20 @@ input{
   color:  #e4995e;
   line-height: 5px;
 }
-#logo
+.logo a
 {
-  margin-left: 35px;
+  margin-left: 25px;
+  margin-right: 25px;
   float: left;
+  margin-top: 0px;
 }
 
-#avatar
+#avatar 
 {
   padding-top: 5px; 
   margin-left: 25px;
   margin-right: 25px;
-  padding-left: 15px;
+  padding-left: 45px;
   float: left;
 }
 
@@ -363,7 +365,7 @@ input{
   font-weight: 700; 
   font-size: 14px;
   /*color: #315b73 ;*/
-  color: #00698c;
+  color: #517699;
   opacity: .75;
   /*text-transform: uppercase;*/
 }
@@ -420,7 +422,7 @@ input{
   position: absolute;
   left: -325px;
   width:300px;
-  background-color: #00698c;
+  background-color: #517699;/*#00698c;*/
   /*border:2px solid #666666;*/
   line-height:1.3em;
   margin:10px auto;
@@ -431,6 +433,16 @@ input{
   -moz-box-shadow:0 0 5px #888888;
   -webkit-box-shadow:0 0 5px #888888;
 }
+.post-bubble h5
+{
+  font-size: 11px !important;
+}
+
+.post-bubble span
+{
+  font-weight: 700;
+}
+
 .event-bubble 
 {
   font-family: Frutiger, "Frutiger Linotype", Univers, Calibri, "Gill Sans", "Gill Sans MT", "Myriad Pro", Myriad, "DejaVu Sans Condensed", "Liberation Sans", "Nimbus Sans L", Tahoma, Geneva, "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -453,7 +465,7 @@ input{
 {
   width: 0;
   height: 0;
-  border-left: 15px solid #00698c;
+  border-left: 15px solid #517699;
   border-top: 9px solid transparent;
   border-bottom: 10px solid transparent;
   /*border-color: #EDEDED transparent transparent transparent;*/
@@ -466,7 +478,7 @@ input{
 {
   width: 0;
   height: 0;
-  border-left: 15px solid #00698c;
+  border-left: 15px solid #517699;
   border-top: 8px solid transparent;
   border-bottom: 10px solid transparent;
   /*border-color: #EDEDED transparent transparent transparent;*/
