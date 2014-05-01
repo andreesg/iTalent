@@ -7,8 +7,9 @@
 	<%= csrf_meta_tags %>
 	<link href='http://fonts.googleapis.com/css?family=Arvo:400,700' rel='stylesheet' type='text/css'>
 </head>
-<body>	
-	<%= render 'layouts/header' %>
+<body>
+	<%= render 'layouts/header' if render_header? %>
+
 	<div class="container">
 		<% unless notice.nil? %>
 			<div  class="alert alert-success">			
