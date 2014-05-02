@@ -114,9 +114,9 @@ describe EventsController do
 					}.to change(Event, :count).by(1)
 				end
 
-				it "redirects to the new event" do
+				it "redirects to the timeline" do
 					post :create, event: attributes_for(:event)
-					response.should redirect_to Event.last
+					response.should redirect_to timeline_index_path
 				end
 			end
 
@@ -127,9 +127,9 @@ describe EventsController do
 					}.to_not change(Event, :count)
 				end
 
-				it "re-renders the :new template" do
+				it "re-renders the timeline index template" do
 					post :create, event: attributes_for(:invalid_event)
-					response.should render_template :new
+					response.should render_template 'timeline/index'
 				end
 			end
 		end

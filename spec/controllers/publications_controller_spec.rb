@@ -114,14 +114,14 @@ describe PublicationsController do
 					}.to change(Publication, :count).by(1)
 				end
 
-				it "redirects to the new publication" do
+				it "redirects to the timeline" do
 					post :create, publication: attributes_for(:publication)
-					response.should redirect_to Publication.last
+					response.should redirect_to timeline_index_path
 				end
 
 				it "the signed in user is used as the publication creator" do
 					post :create, publication: attributes_for(:publication)
-					assigns(:publication).creator.should eq @user
+					assigns(:new_publication).creator.should eq @user
 				end
 			end
 
@@ -132,9 +132,9 @@ describe PublicationsController do
 					}.to_not change(Publication, :count)
 				end
 
-				it "re-renders the :new template" do
+				it "re-renders the timeline index template" do
 					post :create, publication: attributes_for(:invalid_publication)
-					response.should render_template :new
+					response.should render_template 'timeline/index'
 				end
 			end
 		end
