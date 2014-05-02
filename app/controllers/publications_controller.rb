@@ -19,17 +19,20 @@ class PublicationsController < ApplicationController
   end
 
   def create
-    @publication = Publication.new(publication_params)
-    if Tag.find(params[:publication][:tags]).nil?
-      @publication.tags = Tag.first
+    @new_publication = Publication.new(publication_params)
+    if params[:publication][:tags].nil?
+      @new_publication.tags = [Tag.first]
     else
-      @publication.tags = Tag.find(params[:publication][:tags])
+      @new_publication.tags = Tag.find(params[:publication][:tags])
     end
-    @publication.creator = current_user
-    if @publication.save
-      redirect_to @publication
+    @new_publication.creator = current_user
+    if @new_publication.save
+      redirect_to timeline_index_path
     else
-      render 'new'
+      @publications=Publication.paginate(page: params[:publications_page],per_page: 100).order('created_at DESC')
+      @events=Event.paginate(page: params[:events_page],per_page: 100).order('date_start DESC')
+      @new_event = Event.new  
+      render '/timeline/index'
     end
   end
 
