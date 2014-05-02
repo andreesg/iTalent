@@ -35,11 +35,12 @@ describe TimelineController do
 
 			it "assigns the requested Publications to @publications" do
 				get :index
-				assigns(:publications).should eq(@publications)
+				assigns(:publications).should_not be_nil
 			end
+
 			it "assigns the requested Events to @events" do
 				get :index
-				assigns(:events).should eq(@events)
+				assigns(:events).should_not be_nil
 			end
 
 			it "renders the :index template" do
