@@ -1,0 +1,23 @@
+<div class="row">
+	<div class="modal fade" id="new-publication-modal">
+	  <div class="modal-dialog">
+	    <div class="modal-content form-bg">
+	      	<%= form_for(publication) do |f| %>
+
+			      <div class="modal-header ">
+			        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+			        <h4 class="modal-title">Create Publication</h4>
+			      </div>
+			      <div class="modal-body form-bg-body">
+			      		<%= render 'publications/fields', f: f %>	      	
+			      </div>
+			      <div class="modal-footer form-bg-body">
+			        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			        <%= f.submit "Create", class: "btn btn-primary" %>
+			      </div>
+	      <% end %>
+	    </div><!-- /.modal-content -->
+	  </div><!-- /.modal-dialog -->
+	</div><!-- /.modal -->
+
+</div>

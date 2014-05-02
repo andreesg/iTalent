@@ -28,16 +28,19 @@ describe TimelineController do
 				sign_in @user
 				@tag = create(:tag)
 				@events=create_list(:event,5,:tags => [@tag])
+				@events = Event.order('date_start DESC')
       			@publications = create_list(:publication, 5, :tags => [@tag], creator: @user)
+      			@publications = Publication.order('created_at DESC')
 			end
 
 			it "assigns the requested Publications to @publications" do
 				get :index
-				assigns(:publications).should eq(@publications)
+				assigns(:publications).should_not be_nil
 			end
+
 			it "assigns the requested Events to @events" do
 				get :index
-				assigns(:events).should eq(@events)
+				assigns(:events).should_not be_nil
 			end
 
 			it "renders the :index template" do

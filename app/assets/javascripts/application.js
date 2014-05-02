@@ -13,5 +13,15 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
-//= require_tree .
+//= require bootstrap
+//= require bootstrap/modal
 //= require bootstrap-datetimepicker
+//= require_tree .
+
+function showPublicationModal(name){
+	$('#new-publication-modal').modal('show');
+}
+
+function showEventModal(name){
+	$('#new-event-modal').modal('show');
+}

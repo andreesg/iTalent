@@ -19,17 +19,20 @@ class EventsController < ApplicationController
   end
 
   def create
-    @event = Event.new(event_params)
-    if Tag.find(params[:event][:tags]).nil?
-      @event.tags = Tag.first
+    @new_event = Event.new(event_params)
+    if params[:event][:tags].nil?
+      @new_event.tags = [Tag.first]
     else
-      @event.tags = Tag.find(params[:event][:tags])
+      @new_event.tags = Tag.find(params[:event][:tags])
     end
-    @event.creator = current_user
-    if @event.save
-      redirect_to @event
+    @new_event.creator = current_user
+    if @new_event.save
+      redirect_to timeline_index_path
     else
-      render 'new'
+      @publications=Publication.paginate(page: params[:publications_page],per_page: 100).order('created_at DESC')
+      @events=Event.paginate(page: params[:events_page],per_page: 100).order('date_start DESC')
+      @new_publication = Publication.new  
+      render '/timeline/index'
     end
   end
 
