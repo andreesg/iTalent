@@ -1,3 +1,489 @@
-// Place all the styles related to the Timeline controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+
+/*------------------------------------*\
+   >>>>>>>>> iTalent Project <<<<<<<<< 
+   http://www.okilla.com/
+   http://romerobros.files.wordpress.com/2010/01/mountain-of-souls-ghost_mountain_by_caffeine_romance-small.jpg?w=450
+\*------------------------------------*/
+
+html,body
+{
+  width:100% ;
+  height:100%;
+  /*background-color: #9cb58b; e3deb6*/
+  background-color: #f7f7f7;
+  background-size:100% 100%;
+
+  /*background:   url(/assets/woodBG.jpg) ;*/
+
+}
+input{
+  color:#424242;
+}
+.post p
+{ 
+  font-family: Frutiger, "Frutiger Linotype", Univers, Calibri, "Gill Sans", "Gill Sans MT", "Myriad Pro", Myriad, "DejaVu Sans Condensed", "Liberation Sans", "Nimbus Sans L", Tahoma, Geneva, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 700; 
+  font-size: 22px;
+  /*color: #315b73 ;*/
+  color: #ffffff;
+}
+
+#top-content 
+{
+  position: fixed;  
+  top: 0px;
+  width: 100%;
+  height: 90px;
+  /*background-color: #e3deb6; 9cb58b*/
+  background-color: #424242;
+  /*box-shadow: 0 0 2px 2px  #788a6d;  */
+  box-shadow: 0 0 2px 2px  #424242;/*#faa200;  */
+  z-index: 1;
+}
+
+
+#top-content p
+{
+  font-family: Frutiger, "Frutiger Linotype", Univers, Calibri, "Gill Sans", "Gill Sans MT", "Myriad Pro", Myriad, "DejaVu Sans Condensed", "Liberation Sans", "Nimbus Sans L", Tahoma, Geneva, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 400; 
+  font-size: 16px;
+  margin-left: 10px;
+  float: left;
+  color:  #f7f7f7; 
+  padding-top: 30px; 
+}
+#top-content p a
+{
+  font-family: Frutiger, "Frutiger Linotype", Univers, Calibri, "Gill Sans", "Gill Sans MT", "Myriad Pro", Myriad, "DejaVu Sans Condensed", "Liberation Sans", "Nimbus Sans L", Tahoma, Geneva, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 400; 
+  font-size: 14px;
+  float: left;
+  color:  #e4995e;
+  line-height: 5px;
+}
+.logo a
+{
+  margin-left: 25px;
+  margin-right: 25px;
+  float: left;
+  margin-top: 0px;
+}
+
+#avatar 
+{
+  padding-top: 5px; 
+  margin-left: 25px;
+  margin-right: 25px;
+  padding-left: 45px;
+  float: left;
+}
+
+#top-icons 
+{
+  float:right;
+  padding-right: 15px; 
+  margin-top: 10px;
+}
+
+#top-icons ul li
+{
+
+  margin-left: 15px;
+  display: inline;  
+}
+
+#top-icons  img
+{
+  border: 0px solid #fff;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+  /*ver box shadow generator para avaliar a sombra...*/
+  -webkit-box-shadow: 0 2px 2px rgba(0,0,0,0.3);
+  -moz-box-shadow: 0 2px 2px rgba(0,0,0,0.3);
+  box-shadow: 0 2px 2px rgba(0,0,0,0.3);
+
+  /*ver suporte de browser - "can i use it"*/
+  -webkit-transition: border-radius .2s linear;
+  -moz-transition: border-radius .2s linear;
+  -o-transition: border-radius .2s linear;
+  -ms-transition: border-radius .2s linear;
+ 
+}
+
+#top-icons img:hover
+{
+  border: 2px solid #fff;
+
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+}
+
+
+
+#img-button img
+{
+  position: absolute;
+  left:  2px;
+  margin-top: 3px;
+  border: 0px solid #fff;
+  height: 30px;
+  width: 30px;
+  background-color: #ccc8a3;
+
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+  /*ver box shadow generator para avaliar a sombra...*/
+  -webkit-box-shadow: 0 2px 2px rgba(0,0,0,0.3);
+  -moz-box-shadow: 0 2px 2px rgba(0,0,0,0.3);
+  box-shadow: 0 2px 2px rgba(0,0,0,0.3);
+
+  /*ver suporte de browser - "can i use it"*/
+  -webkit-transition: border-radius .2s linear;
+  -moz-transition: border-radius .2s linear;
+  -o-transition: border-radius .2s linear;
+  -ms-transition: border-radius .2s linear;
+}
+#img-button img:hover
+{
+  border: 2px solid #424242;
+
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+}
+#publication-sbm-button-bot 
+{
+  position: absolute;
+  left: -1%;
+  top: 60%;
+  border: 0px solid #fff;
+  height: 45px;
+  width: 45px;
+  background-color: #424242;
+
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+  /*ver box shadow generator para avaliar a sombra...*/
+  -webkit-box-shadow: 0 2px 2px rgba(0,0,0,0.3);
+  -moz-box-shadow: 0 2px 2px rgba(0,0,0,0.3);
+  box-shadow: 0 2px 2px rgba(0,0,0,0.3);
+
+  /*ver suporte de browser - "can i use it"*/
+  -webkit-transition: border-radius .2s linear;
+  -moz-transition: border-radius .2s linear;
+  -o-transition: border-radius .2s linear;
+  -ms-transition: border-radius .2s linear;
+}
+
+#publication-sbm-button-bot :hover
+{
+  border: 2px solid #fff;
+
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+}
+#post-sbm-button-bot 
+{
+  position: absolute;
+  left: -1%;
+  top: 85%;
+  border: 0px solid #fff;
+  height: 45px;
+  width: 45px;
+  background-color: #424242;
+
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+  /*ver box shadow generator para avaliar a sombra...*/
+  -webkit-box-shadow: 0 2px 2px rgba(0,0,0,0.3);
+  -moz-box-shadow: 0 2px 2px rgba(0,0,0,0.3);
+  box-shadow: 0 2px 2px rgba(0,0,0,0.3);
+
+  /*ver suporte de browser - "can i use it"*/
+  -webkit-transition: border-radius .2s linear;
+  -moz-transition: border-radius .2s linear;
+  -o-transition: border-radius .2s linear;
+  -ms-transition: border-radius .2s linear;
+}
+
+#post-sbm-button-bot :hover
+{
+  border: 2px solid #fff;
+
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+}
+#sbm-button-bot 
+{
+  position: absolute;
+  left: 38%;
+  top: 55%;
+  border: 0px solid #fff;
+  height: 45px;
+  width: 45px;
+  background-color: #424242;
+
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+  /*ver box shadow generator para avaliar a sombra...*/
+  -webkit-box-shadow: 0 2px 2px rgba(0,0,0,0.3);
+  -moz-box-shadow: 0 2px 2px rgba(0,0,0,0.3);
+  box-shadow: 0 2px 2px rgba(0,0,0,0.3);
+
+  /*ver suporte de browser - "can i use it"*/
+  -webkit-transition: border-radius .2s linear;
+  -moz-transition: border-radius .2s linear;
+  -o-transition: border-radius .2s linear;
+  -ms-transition: border-radius .2s linear;
+}
+
+#sbm-button-bot :hover
+{
+  border: 2px solid #fff;
+
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+}
+#back-button-bot  img
+{
+  position: absolute;
+  left: 38%;
+  top: 60%;
+  border: 0px solid #fff;
+  height: 45px;
+  width: 45px;
+  background-color: #424242;
+
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+  /*ver box shadow generator para avaliar a sombra...*/
+  -webkit-box-shadow: 0 2px 2px rgba(0,0,0,0.3);
+  -moz-box-shadow: 0 2px 2px rgba(0,0,0,0.3);
+  box-shadow: 0 2px 2px rgba(0,0,0,0.3);
+
+  /*ver suporte de browser - "can i use it"*/
+  -webkit-transition: border-radius .2s linear;
+  -moz-transition: border-radius .2s linear;
+  -o-transition: border-radius .2s linear;
+  -ms-transition: border-radius .2s linear;
+}
+
+#back-button-bot  img:hover
+{
+  border: 2px solid #fff;
+
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+}
+#post-back-button-bot  img
+{
+  position: absolute;
+  left: -1%;
+  top: 75%;
+  border: 0px solid #fff;
+  height: 45px;
+  width: 45px;
+  background-color: #424242;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+  /*ver box shadow generator para avaliar a sombra...*/
+  -webkit-box-shadow: 0 2px 2px rgba(0,0,0,0.3);
+  -moz-box-shadow: 0 2px 2px rgba(0,0,0,0.3);
+  box-shadow: 0 2px 2px rgba(0,0,0,0.3);
+
+  /*ver suporte de browser - "can i use it"*/
+  -webkit-transition: border-radius .2s linear;
+  -moz-transition: border-radius .2s linear;
+  -o-transition: border-radius .2s linear;
+  -ms-transition: border-radius .2s linear;
+}
+
+#post-back-button-bot  img:hover
+{
+  border: 2px solid #fff;
+
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+}
+.container
+{
+  margin-top: 115px;
+  z-index: -1;
+}
+
+.break
+{
+  margin-top: 30px;
+}
+
+/*Timeline*/
+.timeline-section
+{
+  padding: 65px 0;
+  margin: 0;
+  border-left: 4px solid #424242;
+  list-style: none;
+  text-align: left;
+
+}
+
+.timeline-title
+{
+  font-weight: bold;
+  /*text-transform: uppercase;*/
+  margin-top: 0;
+}
+
+.timeline .post
+{
+  padding: 0 0 20px 20px;
+  /*acrescentado*/
+  background-color: #f7f7f7;
+  opacity: 0.8;
+  -moz-border-radius:0px 10px 10px 0px;
+  -webkit-border-radius:0px 10px 10px 0px;
+ 
+  margin-bottom: 10px;
+}
+
+.timeline .post span
+{
+  font-family: Frutiger, "Frutiger Linotype", Univers, Calibri, "Gill Sans", "Gill Sans MT", "Myriad Pro", Myriad, "DejaVu Sans Condensed", "Liberation Sans", "Nimbus Sans L", Tahoma, Geneva, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 700; 
+  font-size: 14px;
+  /*color: #315b73 ;*/
+  color: #517699;
+  opacity: .75;
+  /*text-transform: uppercase;*/
+}
+
+.timeline .post p
+{
+  font-family: Frutiger, "Frutiger Linotype", Univers, Calibri, "Gill Sans", "Gill Sans MT", "Myriad Pro", Myriad, "DejaVu Sans Condensed", "Liberation Sans", "Nimbus Sans L", Tahoma, Geneva, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 400;
+  color: #424242;
+  font-size: 14px;
+  margin-bottom: 0;
+}
+
+.timeline-section li
+{
+  position: relative;
+
+}
+
+.timeline-section li:not(:first-child):after
+{
+  display: block;
+  content: ' ';
+  position: absolute;
+  top: 7px;
+  left: -9px;
+  width: 14px;
+  height: 14px;
+  /*background-color: #76c2af;*/
+  background-color: #424242;
+  border: 2px solid white;
+
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+}
+
+@media all and (min-width: 992px) {
+
+  .timeline-section li:not(:first-child):hover:after
+  {
+    border-width: 4px;
+  }
+
+}
+
+/*Bubble*/
+.post-bubble 
+{
+  font-family: Frutiger, "Frutiger Linotype", Univers, Calibri, "Gill Sans", "Gill Sans MT", "Myriad Pro", Myriad, "DejaVu Sans Condensed", "Liberation Sans", "Nimbus Sans L", Tahoma, Geneva, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  color: #f7f7f7;
+  /*opacity: 0.8;*/
+  position: absolute;
+  left: -325px;
+  width:300px;
+  background-color: #517699;/*#00698c;*/
+  /*border:2px solid #666666;*/
+  line-height:1.3em;
+  margin:10px auto;
+  padding:10px;
+  text-align:center;
+  -moz-border-radius:10px;
+  -webkit-border-radius:10px;
+  -moz-box-shadow:0 0 5px #888888;
+  -webkit-box-shadow:0 0 5px #888888;
+}
+.post-bubble h5
+{
+  font-size: 11px !important;
+}
+
+.post-bubble span
+{
+  font-weight: 700;
+}
+
+.event-bubble 
+{
+  font-family: Frutiger, "Frutiger Linotype", Univers, Calibri, "Gill Sans", "Gill Sans MT", "Myriad Pro", Myriad, "DejaVu Sans Condensed", "Liberation Sans", "Nimbus Sans L", Tahoma, Geneva, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  width:200px;
+  color: #f7f7f7;
+  /*background-color:#EDEDED;*/
+  background-color: #424242;
+  /*border:2px solid #666666;*/
+  line-height:1.3em;
+  margin-bottom: 20px ;
+  padding:10px;
+  text-align:center;
+  -moz-border-radius:10px 10px 10px 10px;
+  -webkit-border-radius:10px 10px 10px 10px;
+}
+
+.post-bubble-arrow-border 
+{
+  width: 0;
+  height: 0;
+  border-left: 15px solid #517699;
+  border-top: 9px solid transparent;
+  border-bottom: 10px solid transparent;
+  /*border-color: #EDEDED transparent transparent transparent;*/
+  position:absolute;
+  bottom: 35%;
+  right:-4%;
+}
+
+.post-bubble-arrow 
+{
+  width: 0;
+  height: 0;
+  border-left: 15px solid #517699;
+  border-top: 8px solid transparent;
+  border-bottom: 10px solid transparent;
+  /*border-color: #EDEDED transparent transparent transparent;*/
+  position:absolute;
+  bottom: 35%;
+  right:-4%;
+}
+

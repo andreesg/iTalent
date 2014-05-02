@@ -1,7 +1,23 @@
-
 <div class="row">
-    <%= form_for(@publication) do |f| %>
-    	<%= render 'fields', f: f %>
-      	<%= f.submit "Create" %>
-    <% end %>
+	<div class="col-sm-4 col-sm-offset-4 timeline">		
+		<br>
+		<%= form_for(@publication) do |f| %>
+			<ul class="timeline-section">
+				<li class="timeline-title">
+					<div class="post-bubble">
+						Post <br>
+						<%= render 'fields', f: f %>
+					</div>
+					<div class="post">
+						<br>
+					</div>
+				</li>
+				<br><br><!--Remover <br><br> quando forem adicionados parametros (especificar sub-organizações e interesses)-->
+			</ul>
+			<br>
+			<%= f.submit "Create",:id=>"publication-sbm-button-bot", :type => :image, :src => "/assets/check.png" %>
+			<div id="img-button"><%= link_to image_tag("/assets/back.png" , size:'45') , timeline_index_path, method: :get, :id=>"post-back-button-bot",  :type => :image %>
+			</div>
+		<% end %>
+	</div>
 </div>

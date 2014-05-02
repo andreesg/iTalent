@@ -1,19 +1,104 @@
-<h1>Welcome to the timeline!</h1>
+<div class="row">
+	<div class="col-md-offset-3 col-md-6">
+	<% if @new_publication.errors.any? %>
+	  <div class="alert alert-danger" id="error_explanation">
+	    <h2><%= pluralize(@new_publication.errors.count, "error") %> prohibited
+	      this publication from being saved:</h2>
+	    <ul>
+		    <% @new_publication.errors.full_messages.each do |msg| %>
+		      <li><%= msg %></li>
+		    <% end %>
+	    </ul>
+	  </div>
+	<% end %>
+	<% if @new_event.errors.any? %>
+	  <div class="alert alert-danger" id="error_explanation">
+	    <h2><%= pluralize(@new_event.errors.count, "error") %> prohibited
+	      this event from being saved:</h2>
+	    <ul>
+		    <% @new_event.errors.full_messages.each do |msg| %>
+		      <li><%= msg %></li>
+		    <% end %>
+	    </ul>
+	  </div>
+	<% end %>
+	</div>
+</div>
 
-<h2>Publications</h2>
-<ol>
-<% @publications.each do |publication| %>
-	<li><%=publication.text%></li>	
-<% end %>
-</ol>
-<%= will_paginate @publications, param_name: 'publications_page' %>
-<%= link_to "Create Publication", new_publication_path %>
+	<%= render '/publications/new_modal', publication: @new_publication%>
+	<%= render '/events/new_modal', event: @new_event%>
+<div class="row">
+	<div class="col-sm-4 col-md-4 col-md-offset-4  timeline">
+		<div id="img-button"><%= image_tag("/assets/add.png", onclick: "showPublicationModal()")%>
+		</div>
+		<br>
 
-<h2>Events</h2>
-<ol>
-<% @events.each do |event| %>
-	<li><%=event.title%></li>
-<% end %>	
-</ol>
-<%= will_paginate @events, param_name: 'events_page'  %>
-<%= link_to "Create Event", new_event_path %>
+		<% @publications.each do |publication| %>
+			<ul class="timeline-section" >		
+				<li class="timeline-title" >
+						<div class="post-bubble">
+							<span><%=publication.creator.email%></span><br><br>
+							<%=publication.text%><br>
+							<h5><%=publication.created_at%></h5>
+							<div class="post-bubble-arrow-border"></div>
+							<div class="post-bubble-arrow"></div>
+						</div>
+					<br><br>
+				</li>
+				<li>
+					<div class="post">
+						<span>joão@itgrow.pt</span>
+						<p>Adorei!!</p>
+					</div>
+				</li>
+				<li>
+					<div class="post">
+						<span>maria@itgrow.pt</span>
+						<p>Oh que bonito :D</p>
+					</div>
+				</li>
+				<li>
+					<div class="post">
+						<span>diogo@itgrow.pt</span>
+						<p>Que horror!!! Em Paris é que é giro.</p>
+					</div>
+				</li>
+			</ul>
+		<% end %>
+
+
+	</div>
+
+	<div class="col-sm-2 col-md-2 col-md-offset-1 timeline">
+	
+		
+		<div id="img-button"><%= image_tag("/assets/add.png", onclick: "showEventModal()") %>
+		</div>
+		<br>
+		
+
+
+		<ul class="timeline-section">
+
+
+			<li class="timeline-title">
+				<span class="fa-stack fa-lg hidden-xs">
+					<i class="fa fa-circle fa-stack-2x"></i>
+					<i class="fa fa-users fa-stack-1x fa-inverse"></i>
+				</span>
+			</li>
+
+
+			<% @events.each do |event| %>				
+				<li>
+					<div class="post">
+						<div class="event-bubble">
+							<%=event.title%>
+						</div>
+					</div>
+				</li>
+			<% end %>			
+		</ul>
+	</div>
+
+</div>
