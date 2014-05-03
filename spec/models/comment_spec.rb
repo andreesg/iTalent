@@ -27,4 +27,9 @@ describe Comment do
 		before { @comment.creator = nil }
 		it { should_not be_valid }
 	end
+
+	describe "when publication is not assigned it" do
+		before { @comment.publication = nil }
+		it { should_not be_valid }
+	end
 end

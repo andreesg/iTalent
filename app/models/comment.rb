@@ -5,5 +5,6 @@ class Comment < ActiveRecord::Base
 
 	validates :text, presence: true, length: { maximum: 500 }
 	validates :creator, presence: true
+	validates :publication, presence: true
 
 end

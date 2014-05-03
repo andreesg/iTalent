@@ -1,0 +1,19 @@
+<ul class="timeline-section" >    
+  <li class="timeline-title" >
+      <div class="post-bubble">
+        <span><%= publication.creator.email %></span><br><br>
+        <%= publication.text %><br>
+        <h5><%= publication.created_at %></h5>
+        <div class="post-bubble-arrow-border"></div>
+        <div class="post-bubble-arrow"></div>
+      </div>
+    <br><br>
+  </li>
+
+  <% publication.paginated_comments.each do |comment| %>
+  <li>
+    <%= render 'comment', comment: comment %>
+  </li>
+  <% end %>
+
+</ul>
