@@ -30,7 +30,7 @@
 
 <div class="row">
   <div class="col-sm-4 col-md-4 col-md-offset-4  timeline">
-    <div id="img-button"><%= image_tag("/assets/add.png", onclick: "showPublicationModal()")%>
+    <div id="img-button"><%= image_tag( asset_path("add.png"), alt: "New publication", title: "Create new publication", onclick: "showPublicationModal()")%>
     </div>
     <br>
 
@@ -42,7 +42,7 @@
 
   <div class="col-sm-2 col-md-2 col-md-offset-1 timeline">
   
-    <div id="img-button"><%= image_tag("/assets/add.png", onclick: "showEventModal()") %></div>
+    <div id="img-button"><%= image_tag( asset_path("add.png"), alt: "New event", title: "Create new event", onclick: "showEventModal()") %></div>
     <br>
     
     <ul class="timeline-section">
