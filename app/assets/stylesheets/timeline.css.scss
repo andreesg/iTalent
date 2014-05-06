@@ -122,7 +122,7 @@ input{
 
 
 
-#img-button img
+.img-button img
 {
   position: absolute;
   left:  2px;
@@ -146,7 +146,7 @@ input{
   -o-transition: border-radius .2s linear;
   -ms-transition: border-radius .2s linear;
 }
-#img-button img:hover
+.img-button img:hover
 {
   border: 2px solid #424242;
 
