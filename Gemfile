@@ -52,6 +52,7 @@ gem 'bootstrap-sass', '~> 3.1.1.0'
 gem 'bootstrap-modal-rails', '~> 2.2.5'
 gem 'smalot-bootstrap-datetimepicker-rails'
 gem 'bootstrap-will_paginate', '0.0.9'
+gem 'bootstrap-multiselect-rails', '~> 0.0.4'
 gem 'date_validator', '~> 0.7.0'
 gem 'sprockets', '~> 2.11.0'
 
@@ -74,6 +75,7 @@ group :test do
 	gem 'selenium-webdriver', '~> 2.41.0'
 	# simulates real user interactions with the app
 	gem 'capybara', '~> 2.2.1'
+  gem 'database_cleaner', '~> 1.2.0'
 
 end
 
