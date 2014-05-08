@@ -1,0 +1,5 @@
+
+$("<%= escape_javascript( render 'timeline/comment', comment: @comment) %>")
+	.appendTo("#publication-<%= @publication.id %>-comments");
+
+$("#publication-<%= @publication.id %>-new-comment input").val('')
