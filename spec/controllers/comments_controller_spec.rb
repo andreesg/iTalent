@@ -2,7 +2,6 @@ require 'spec_helper'
 
 describe CommentsController do
 
-=begin
   before :all do
     @user = create(:user)
   end
@@ -11,158 +10,181 @@ describe CommentsController do
     @user.destroy
   end
 
-  describe "GET #index" do
-    describe "when authenticated" do
-      before :each do
-        @publication = create(:publication)
-        @comments = create_list(:comment ,5 , publication: @publication)
-        sign_in @user
-      end
-
-      describe "when a valid publication id is passed" do
-        it "assigns the requested comments to @comments" do
-          get :index, pulication_id: @publication.id
-          assigns(:comments).should eq(@comments)
-        end
-      end
-
-      describe "when a invalid publication id is passed" do
-        it "@comments should be empty" do
-          get :index, pulication_id: @publication.id
-          assigns(:comments).should eq([])
-        end
-      end
-
-      describe "when no argument is passed" do
-        it "redirects to timeline" do
-          get :index
-          response.should redirect_to timeline_index_path
-        end
-      end
-    end
-
-    describe "when not authenticated" do
-      it "it wont allow the operation" do
-        get :index
-        response.should redirect_to new_user_session_path
-      end
-    end
-  end
-
-  describe "GET #show" do
-    before :each do
-      @comment = create(:comment)
-    end
-
-    describe "when authenticated" do
-      before :each do
-        sign_in @user
-      end
-
-      it "assigns the requested comment to @comment" do
-        get :show, id: @comment
-        assigns(:comment).should eq @comment
-      end
-
-      it "renders the :show template" do
-        get :show, id: @comment
-        response.should render_template :show
-      end
-    end
-
-    describe "when not authenticated" do
-      it "it wont allow the operation" do
-        get :show, id: @comment
-        response.should redirect_to new_user_session_path
-      end
-    end
-  end
-
-  describe "GET #new" do
-    describe "when authenticated" do
-      before :each do
-        sign_in @user
-      end
-
-      it "assigns a new comment to @comment" do
-        get :new
-        assigns(:comment).should_not be_nil
-      end
-
-      it "renders the :new template" do
-        get :new
-        response.should render_template :new
-      end
-    end
-
-    describe "when not authenticated" do
-      it "it wont allow the operation" do
-        get :new
-        response.should redirect_to new_user_session_path
-      end
-    end
-  end
-
   describe "POST #create" do
-    describe "when authenticated" do
-      before :each do
-        sign_in @user
-      end
+    before :each do
+      @publication = create(:publication, creator: @user)
+    end
 
-      context "with valid attributes" do
-        it "saves the new comment in the database" do
-          expect{
-            post :create, comment: attributes_for(:comment)
-          }.to change(Comment, :count).by(1)
+    describe "with format HTML" do
+      describe "when authenticated" do
+        before :each do
+          sign_in @user
         end
 
-        it "redirects to the timeline" do
-          post :create, event: attributes_for(:event)
+        context "with valid attributes" do
+          it "saves the new comment in the database" do
+            expect{
+              post :create, comment: attributes_for(:comment), publication_id: @publication
+            }.to change(Comment, :count).by(1)
+          end
+
+          it "redirects to the timeline" do
+            post :create, comment: attributes_for(:comment), publication_id: @publication
+            response.should redirect_to timeline_index_path
+          end
+
+          it "flashes a success message" do
+            post :create, comment: attributes_for(:comment), publication_id: @publication
+            flash[:notice].should eq "Comment was successfully created!"
+          end
+        end
+
+        context "with invalid attributes" do
+          it "does not save the new comment in the database" do
+            expect{
+              post :create, comment: attributes_for(:invalid_comment), publication_id: @publication
+            }.to_not change(Comment, :count)
+          end
+
+          it "redirects the timeline index template" do
+            post :create, comment: attributes_for(:invalid_comment), publication_id: @publication
+            response.should redirect_to timeline_index_path
+          end
+
+          it "returns error notice message" do
+            post :create, comment: attributes_for(:invalid_comment), publication_id: @publication
+            flash[:notice].should_not be_nil 
+          end
+        end
+      end # describe "when authenticated"
+
+      describe "when not authenticated" do
+        it "it wont allow the operation" do
+          post :create, comment: attributes_for(:comment), publication_id: @publication
+          response.should redirect_to new_user_session_path
+        end
+      end
+    end # describe "with format HTML"
+
+    describe "with AJAX" do
+      describe "when authenticated" do
+        before :each do
+          sign_in @user
+        end
+
+        context "with valid attributes" do
+          it "saves the new comment in the database" do
+            expect{
+              xhr :post, :create, comment: attributes_for(:comment), publication_id: @publication
+            }.to change(Comment, :count).by(1)
+          end
+
+          it "response should be 200" do
+            xhr :post, :create, comment: attributes_for(:comment), publication_id: @publication
+            response.should be_success
+          end
+        end
+
+        context "with invalid attributes" do
+          it "does not save the new comment in the database" do
+            expect{
+              xhr :post, :create, comment: attributes_for(:invalid_comment), publication_id: @publication
+            }.to_not change(Comment, :count)
+          end
+
+          it "redirects the timeline index" do
+            xhr :post, :create, comment: attributes_for(:invalid_comment), publication_id: @publication
+            response.should redirect_to timeline_index_path
+          end
+        end
+      end # describe "when authenticated"
+
+      describe "when not authenticated" do
+        it "it wont allow the operation" do
+          xhr :post, :create, comment: attributes_for(:comment), publication_id: @publication
+          response.status.should be(401)
+        end
+      end
+    end # describe "with AJAX"
+  end # describe "POST #create"
+
+  describe "DELETE #destroy" do
+    before :each do
+      @publication = create(:publication, creator: @user)
+      @comment = create(:comment, creator: @user, publication: @publication)
+    end
+
+    describe "with AJAX" do
+      describe "when authenticated" do
+        before :each do
+          sign_in @user
+        end
+
+        it "deletes the requested publication" do
+          expect{
+            xhr :delete, :destroy, id: @comment, publication_id: @publication.id
+          }.to change(Comment, :count).by(-1)
+        end
+
+        it "response should be success" do
+          xhr :delete, :destroy, id: @comment, publication_id: @publication.id
+          response.should be_success
+        end
+
+        describe "when the publication does not bellong to the user" do
+          it "it wont allow the operation" do
+            other_comment = create(:comment, publication: @publication)
+            xhr :delete, :destroy, id: other_comment, publication_id: @publication.id
+            response.status.should be(403)
+          end
+        end
+      end # describe "when authenticated"
+
+      describe "when not authenticated" do
+        it "it wont allow the operation" do
+          xhr :delete, :destroy, id: @comment, publication_id: @publication.id
+          response.status.should be(401)
+        end
+      end
+    end # describe "with AJAX"
+
+    describe "format HTML" do
+      describe "when authenticated" do
+        before :each do
+          sign_in @user
+        end
+
+        it "deletes the requested publication" do
+          expect{
+            delete :destroy, id: @comment, publication_id: @publication.id
+          }.to change(Comment, :count).by(-1)
+        end
+
+        it "redirects to the '/' page" do
+          delete :destroy, id: @comment, publication_id: @publication.id
           response.should redirect_to timeline_index_path
         end
-      end
 
-      context "with invalid attributes" do
-        it "does not save the new event in the database" do
-          expect{
-            post :create, event: attributes_for(:invalid_event)
-          }.to_not change(Event, :count)
+        it "flashes a success message" do
+          delete :destroy, id: @comment, publication_id: @publication.id
+          flash[:notice].should eq "The comment was deleted successfully!"
         end
 
-        it "re-renders the timeline index template" do
-          post :create, event: attributes_for(:invalid_event)
-          response.should render_template 'timeline/index'
+        describe "when the publication does not bellong to the user" do
+          it "it wont allow the operation" do
+            other_comment = create(:comment, publication: @publication)
+            delete :destroy, id: other_comment, publication_id: @publication.id
+            response.status.should be(403)
+          end
+        end
+      end # describe "when authenticated"
+
+      describe "when not authenticated" do
+        it "it wont allow the operation" do
+          delete :destroy, id: @comment, publication_id: @publication.id
+          response.should redirect_to new_user_session_path
         end
       end
-    end
-
-    describe "when not authenticated" do
-      it "it wont allow the operation" do
-        post :create, event: attributes_for(:event)
-        response.should redirect_to new_user_session_path
-      end
-    end
-  end
-
-  describe "GET 'edit'" do
-    it "returns http success" do
-      get 'edit'
-      response.should be_success
-    end
-  end
-
-  describe "GET 'update'" do
-    it "returns http success" do
-      get 'update'
-      response.should be_success
-    end
-  end
-
-  describe "GET 'destroy'" do
-    it "returns http success" do
-      get 'destroy'
-      response.should be_success
-    end
-  end
-=end
+    end # describe "with format HTML"
+  end # describe "DELETE #destroy"
 end

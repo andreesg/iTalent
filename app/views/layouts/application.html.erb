@@ -7,7 +7,7 @@
 	<%= csrf_meta_tags %>
 	<link href='http://fonts.googleapis.com/css?family=Arvo:400,700' rel='stylesheet' type='text/css'>
 </head>
-<body>
+<body class="<%= params[:controller] %>">
 	<%= render 'layouts/header' if user_signed_in? %>
 
 	<div class="container">

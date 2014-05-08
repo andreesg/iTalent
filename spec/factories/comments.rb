@@ -6,4 +6,10 @@ FactoryGirl.define do
     association :creator
     association :publication
   end
+
+  factory :invalid_comment, parent: :comment do
+    text "M"*501
+    creator nil
+    publication nil
+  end
 end

@@ -10,6 +10,7 @@ class TimelineController < ApplicationController
     @events = Event.includes(:creator).paginate(page: params[:events_page],per_page:10).order('date_start DESC')
     @new_publication = Publication.new
     @new_event = Event.new
+    @comment = Comment.new
   end
 
 end

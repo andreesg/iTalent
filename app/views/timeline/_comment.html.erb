@@ -1,6 +1,16 @@
 
-<div class="post">
+<div id="publication-<%= comment.publication.id %>-comment-<%= comment.id %>">
   <span><%= comment.creator.email %></span>
   <p><%= comment.text %></p>
   <%= comment.updated_at %>
+  <% if comment.creator == current_user %>
+    <p>
+      <%= link_to 'Delete', [comment.publication, comment],
+                   method: :delete,
+                   remote: true,
+                   data: { confirm: 'Are you sure?' } %>
+    </p>
+  <% end %>
+  <br>
 </div>
+
