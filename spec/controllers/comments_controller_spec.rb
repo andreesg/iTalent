@@ -120,7 +120,7 @@ describe CommentsController do
           sign_in @user
         end
 
-        it "deletes the requested publication" do
+        it "deletes the requested comment" do
           expect{
             xhr :delete, :destroy, id: @comment, publication_id: @publication.id
           }.to change(Comment, :count).by(-1)
@@ -131,7 +131,7 @@ describe CommentsController do
           response.should be_success
         end
 
-        describe "when the publication does not bellong to the user" do
+        describe "when the comment does not bellong to the user" do
           it "it wont allow the operation" do
             other_comment = create(:comment, publication: @publication)
             xhr :delete, :destroy, id: other_comment, publication_id: @publication.id
@@ -154,13 +154,13 @@ describe CommentsController do
           sign_in @user
         end
 
-        it "deletes the requested publication" do
+        it "deletes the requested comment" do
           expect{
             delete :destroy, id: @comment, publication_id: @publication.id
           }.to change(Comment, :count).by(-1)
         end
 
-        it "redirects to the '/' page" do
+        it "redirects to the timeline page" do
           delete :destroy, id: @comment, publication_id: @publication.id
           response.should redirect_to timeline_index_path
         end
@@ -170,7 +170,7 @@ describe CommentsController do
           flash[:notice].should eq "The comment was deleted successfully!"
         end
 
-        describe "when the publication does not bellong to the user" do
+        describe "when the comment does not bellong to the user" do
           it "it wont allow the operation" do
             other_comment = create(:comment, publication: @publication)
             delete :destroy, id: other_comment, publication_id: @publication.id
