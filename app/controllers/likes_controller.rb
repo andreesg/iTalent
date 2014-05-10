@@ -2,13 +2,21 @@ class LikesController < ApplicationController
   before_filter :authenticate_user!
 
   def create
-    # verify first if the user has already liked the publication, lets try to see what error it returns!
+    success = false
+    
     @publication = Publication.find(params[:publication_id])
-    @like = @publication.likes.new() # like as no params.
-    @like.user = current_user
+
+    # verify first if the user has already liked the publication, lets try to see what error it returns!
+    if @publication.likes.find_by(user: current_user).nil?
+      @like = @publication.likes.new() # like as no params.
+      @like.user = current_user
+      success = true if @like.save!
+    else
+      success = true # the like was already made! proced successfuly
+    end
 
     respond_to do |format|
-      if @like.save!
+      if success
         format.html { redirect_to timeline_index_path, notice: 'The publication was successfully liked!' }
         format.js {} # change the like button to unlike!
       else
@@ -20,9 +28,9 @@ class LikesController < ApplicationController
 
   def destroy
     @publication = Publication.find(params[:publication_id])
-    @like = @publication.likes.where(user: current_user)
+    @like = @publication.likes.find_by(user: current_user)
 
-    @like.destroy
+    @like.destroy unless @like.nil?
 
     respond_to do |format|
       format.html { redirect_to timeline_index_path, notice: 'The publication was successfully unliked!' }

@@ -42,7 +42,7 @@ describe LikesController do
             post :create, publication_id: @publication
             expect{
               post :create, publication_id: @publication
-            }.to change(Like, :count).by(1)
+            }.to change(Like, :count).by(0)
           end
         end
       end # describe "when authenticated"
@@ -77,7 +77,7 @@ describe LikesController do
             xhr :post, :create, publication_id: @publication
             expect{
               xhr :post, :create, publication_id: @publication
-            }.to change(Like, :count).by(1)
+            }.to change(Like, :count).by(0)
           end
         end
       end # describe "when authenticated"
@@ -131,17 +131,17 @@ describe LikesController do
 
         it "deletes the requested like" do
           expect{
-            delete :destroy, id: @like.id, publication_id: @publication.id
+            delete :destroy, publication_id: @publication.id
           }.to change(Like, :count).by(-1)
         end
 
         it "redirects to the timeline page" do
-          delete :destroy, publication_id: @publication.id, id: @like.id
+          delete :destroy, publication_id: @publication.id
           response.should redirect_to timeline_index_path
         end
 
         it "flashes a success message" do
-          delete :destroy
+          delete :destroy, publication_id: @publication
           flash[:notice].should eq "The publication was successfully unliked!"
         end
       end # describe "when authenticated"
