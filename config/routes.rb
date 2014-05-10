@@ -1,7 +1,9 @@
 Italentapp::Application.routes.draw do
   devise_for :users
   resources :tags, except: :index
-  resources :publications
+  resources :publications do
+    resource :like, only: [:create, :destroy] # singular resource. the user always likes from his account
+  end
   resources :subscriptions, only: [:create, :destroy]
   resources :events
 
