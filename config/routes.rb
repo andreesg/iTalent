@@ -1,9 +1,13 @@
 Italentapp::Application.routes.draw do
+  
   devise_for :users
   resources :tags, except: :index
+  
   resources :publications do
     resource :like, only: [:create, :destroy] # singular resource. the user always likes from his account
+    resources :comments
   end
+
   resources :subscriptions, only: [:create, :destroy]
   resources :events
 
@@ -11,6 +15,8 @@ Italentapp::Application.routes.draw do
   
   resources :timeline, only: [:index]
   resources :event_attendees, only: [:create, :destroy]
+
+  
 
   devise_scope :user do
     authenticated :user do
