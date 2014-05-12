@@ -4,3 +4,8 @@ $("#publication-<%= @publication.id %>-like").append(
 	'<%= link_to publication_like_path(@publication), class: "btn btn-default", remote: true, method: :delete do %>'+ 
 		'<span class="glyphicon glyphicon-thumbs-down">Unlike</span>'+
 	'<% end %>')
+
+$("#publication-<%= @publication.id %>-likes-count").empty()
+if ( <%=@publication.likes.count%> > 0) {
+	$("#publication-<%= @publication.id %>-likes-count").append('<p><%= pluralize(@publication.likes.count, "person") %> <%= "like".pluralize(@publication.likes.count) %> this publication!</p>')
+}
