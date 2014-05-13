@@ -24,9 +24,12 @@ class PublicationsController < ApplicationController
     @new_publication.creator = current_user
 
     if @new_publication.save
-      redirect_to timeline_index_path
+      redirect_to timeline_index_path, notice: "Publication successfully created."
     else
       @publications=Publication.paginate(page: params[:publications_page],per_page: 100).order('created_at DESC')
+      @publications.each do |p|
+        p.paginated_comments = p.comments.includes(:creator).paginate(page: 1, per_page: 10).order('updated_at DESC')
+      end
       @events=Event.paginate(page: params[:events_page],per_page: 100).order('date_start DESC')
       @new_event = Event.new  
       render '/timeline/index'
