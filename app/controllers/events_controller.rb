@@ -20,12 +20,9 @@ class EventsController < ApplicationController
 
   def create
     @new_event = Event.new(event_params)
-    if params[:event][:tags].nil?
-      @new_event.tags = [Tag.first]
-    else
-      @new_event.tags = Tag.find(params[:event][:tags])
-    end
+    @new_event.tags = Tag.find(params[:event][:tags]) unless params[:event][:tags].nil?
     @new_event.creator = current_user
+
     if @new_event.save
       redirect_to timeline_index_path
     else

@@ -2,5 +2,9 @@
 <div class="post">
   <div class="event-bubble">
     <%=event.title%>
+
+    <% event.tags.each do |tag| %>
+      <% tag.name %>
+    <% end %>
   </div>
 </div>

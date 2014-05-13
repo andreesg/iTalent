@@ -6,6 +6,7 @@ FactoryGirl.define do
     description "MyString"
     location "MyString"
     date_start DateTime.now
+    date_end DateTime.now + 1.hour
     date_limit "2014-04-02 23:16:43"
     created_at "2014-04-02 23:16:43"
     updated_at "2014-04-02 23:16:43"

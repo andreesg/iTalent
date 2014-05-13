@@ -16,5 +16,6 @@
 //= require bootstrap
 //= require bootstrap/modal
 //= require bootstrap-datetimepicker
+//= require bootstrap-multiselect
 //= require_tree .
 

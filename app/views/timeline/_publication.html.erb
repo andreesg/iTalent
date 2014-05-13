@@ -4,6 +4,9 @@
         <span><%= publication.creator.email %></span><br><br>
         <%= publication.text %><br>
         <h5><%= publication.created_at %></h5>
+        <% publication.tags.each do |tag| %>
+          <h5><%= tag.name %></h5>
+        <% end %>
         <div id="publication-<%= publication.id %>-likes-count">
           <% if publication.likes.count > 0 %>
             <p><%= pluralize(publication.likes.count, 'person') %> <%= 'like'.pluralize(publication.likes.count) %> this publication!</p>
