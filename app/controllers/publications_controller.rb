@@ -20,12 +20,9 @@ class PublicationsController < ApplicationController
 
   def create
     @new_publication = Publication.new(publication_params)
-    if params[:publication][:tags].nil?
-      @new_publication.tags = [Tag.first]
-    else
-      @new_publication.tags = Tag.find(params[:publication][:tags])
-    end
+    @new_publication.tags = Tag.find(params[:publication][:tags]) unless params[:publication][:tags].nil?
     @new_publication.creator = current_user
+
     if @new_publication.save
       redirect_to timeline_index_path
     else
