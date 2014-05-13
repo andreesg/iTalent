@@ -63,8 +63,6 @@ GEM
       execjs
     coffee-script-source (1.7.0)
     database_cleaner (1.2.0)
-    date_validator (0.7.0)
-      activemodel (>= 3)
     debug_inspector (0.0.2)
     devise (3.2.4)
       bcrypt (~> 3.0)
@@ -230,7 +228,6 @@ DEPENDENCIES
   childprocess (~> 0.5.2)
   coffee-rails (~> 4.0.0)
   database_cleaner (~> 1.2.0)
-  date_validator (~> 0.7.0)
   devise (~> 3.2.4)
   factory_girl_rails (~> 4.4.1)
   guard-rspec (~> 4.2.8)

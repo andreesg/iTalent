@@ -11,18 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140429175045) do
+ActiveRecord::Schema.define(version: 20140513161624) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "comments", force: true do |t|
-    t.string   "text",           limit: 500
-    t.integer  "publication_id"
-    t.integer  "creator_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
 
   create_table "event_attendees", force: true do |t|
     t.integer  "attendee_id"
@@ -59,6 +51,7 @@ ActiveRecord::Schema.define(version: 20140429175045) do
     t.datetime "updated_at"
     t.datetime "date_start"
     t.integer  "creator_id"
+    t.datetime "date_end"
   end
 
   add_index "events", ["creator_id"], name: "index_events_on_creator_id", using: :btree

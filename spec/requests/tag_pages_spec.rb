@@ -20,13 +20,9 @@ describe "Tag Pages" do
 
       visit timeline_index_path
 
-      
-
       within('.post-bubble') do
         expect(page).to have_content(@publication.tags.first.name)
       end
-
-
     end
   end
 

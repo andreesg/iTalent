@@ -1,11 +1,11 @@
 
 <%= f.text_field :text, class: 'form-control ' %>
 
-<%= collection_select :publication, :tags, Tag.all, :id, :name, {:include_hidden => false}, {class: "multiselect",:multiple => true} %>
+<%= collection_select :publication, :tags, Tag.all, :id, :name, {:include_hidden => false}, {class: "multiselect-publications",:multiple => true} %>
 
 
 <script type="text/javascript">
   $(document).ready(function() {
-    $('.multiselect').multiselect();
+    $('.multiselect-publications').multiselect();
   });
 </script>

@@ -19,9 +19,23 @@
 	</div>
 	<div class="col-md-6">
 		<div class="form-group">
+			<%= e.label :date_end %>
+			<p><%= e.text_field :date_end, class: "datetimepicker form-control" %></p>
+		</div>
+	</div>
+	<div class="col-md-6">
+		<div class="form-group">
 			<%= e.label :date_limit %>
 			<p><%= e.text_field :date_limit, class: "datetimepicker form-control" %></p> 
 		</div>
 	</div>
 </div>
 
+<%= collection_select :event, :tags, Tag.all, :id, :name, {:include_hidden => false}, {class: "multiselect-events",:multiple => true} %>
+
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('.multiselect-events').multiselect();
+  });
+</script>
