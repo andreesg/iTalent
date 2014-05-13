@@ -2,11 +2,10 @@
 <!--header -->
 <header id="top-content" >
 	<div class= "logo" >
-		<!--<img href="http://localhost:3000/timeline"src="/assets/logo2.png" title="iTalent-Logo" >-->
-		<%= link_to image_tag("/assets/logo2.png"), timeline_index_path, method: :get %> 
+		<%= link_to image_tag( asset_path("logo2.png"), alt: "iTalent", title: "Home" ), timeline_index_path, method: :get %> 
 	</div>
 	<div id= "avatar" >
-		<img src="/assets/profile.png" title="iTalent-Logo"  width="45px" height="45px">	
+		<%= image_tag( asset_path("profile.png"), alt: "Profile", title: "Profile", width: "45px", height: "45px")%>
 	</div>
 	<div>
 		<% if user_signed_in? %>
@@ -21,9 +20,9 @@
 
 		<div id="top-icons" >					
 			<ul>
-				<li><img class="icon" src="/assets/search.png" title="search" width="35px" height="35px" ></li>
-				<li><img class="icon" src="/assets/i.png" title="statistics" width="35px" height="35px"></li>
-				<li><img class="icon" src="/assets/settings.png" title="settings"  width="35px" height="35px"></li>
+				<li><%= image_tag( asset_path("search.png"), class: "icon", alt: "Search", title: "Search", width: "35px", height: "35px" ) %></li>
+				<li><%= image_tag( asset_path("i.png"), class: "icon", alt: "Statistics", title: "Statistics", width: "35px", height: "35px" ) %></li>
+				<li><%= image_tag( asset_path("settings.png"), class: "icon", alt: "Settings", title: "Settings", width: "35px", height: "35px" ) %></li>
 			</ul>
 	</div>
 </header>
