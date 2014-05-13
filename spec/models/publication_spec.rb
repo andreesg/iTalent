@@ -1,7 +1,6 @@
 require 'spec_helper'
 
 describe Publication do
-	
 	before do
 		@publication = build_stubbed(:publication)
 	end
@@ -11,6 +10,7 @@ describe Publication do
 	it { should respond_to(:text) }
 	it { should respond_to(:tags) }
 	it { should respond_to(:creator) }
+	it { should respond_to(:comments) }
 
 	it { should be_valid }
 

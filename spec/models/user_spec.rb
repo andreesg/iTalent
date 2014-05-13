@@ -15,6 +15,7 @@ describe User do
 	it { should respond_to(:subscribed_tags) }
 	it { should respond_to(:event_attendees) }
 	it { should respond_to(:attending_events) }
+	it { should respond_to(:created_comments) }
 	
 	it { should be_valid }
 

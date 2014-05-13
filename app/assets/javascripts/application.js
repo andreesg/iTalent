@@ -19,10 +19,3 @@
 //= require bootstrap-multiselect
 //= require_tree .
 
-function showPublicationModal(name){
-	$('#new-publication-modal').modal('show');
-}
-
-function showEventModal(name){
-	$('#new-event-modal').modal('show');
-}

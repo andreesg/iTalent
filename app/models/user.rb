@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
 
 	has_many :created_publications
 	has_many :created_events
+	has_many :created_comments
 
 	has_many :subscriptions, dependent: :destroy
 	has_many :subscribed_tags, through: :subscriptions, source: :subscribed_tag
@@ -16,6 +17,8 @@ class User < ActiveRecord::Base
 	has_many :event_attendees, dependent: :destroy, foreign_key: "attendee_id"
 	has_many :attending_events, through: :event_attendee, source: :event
 
+	has_many :likes, dependent: :destroy
+	has_many :liked_publications, through: :like, source: :publication
 
 	def subscribe(tag)
 		subscriptions.create(tag_id: tag.id)

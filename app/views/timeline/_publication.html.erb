@@ -1,0 +1,41 @@
+<ul class="timeline-section" >    
+  <li class="timeline-title" >
+      <div class="post-bubble">
+        <span><%= publication.creator.email %></span><br><br>
+        <%= publication.text %><br>
+        <h5><%= publication.created_at %></h5>
+        <div id="publication-<%= publication.id %>-likes-count">
+          <% if publication.likes.count > 0 %>
+            <p><%= pluralize(publication.likes.count, 'person') %> <%= 'like'.pluralize(publication.likes.count) %> this publication!</p>
+          <% end %>
+        </div>
+        <div id="publication-<%= publication.id %>-like" class="like-btn">
+          <% if liked_publication?(publication.id) %>
+            <%= link_to publication_like_path(publication), class: "btn btn-default", remote: true, method: :delete do %>
+              <span class="glyphicon glyphicon-thumbs-down">Unlike</span>
+            <% end %>
+          <% else %>
+            <%= link_to publication_like_path(publication), class: "btn btn-default", remote: true, method: :post do %>
+              <span class="glyphicon glyphicon-thumbs-up">Like</span>
+            <% end %>
+          <% end %>
+        </div>
+        <div class="post-bubble-arrow-border"></div>
+        <div class="post-bubble-arrow"></div>
+      </div>
+    <br><br>
+  </li>
+
+  <div id="publication-<%= publication.id %>-comments">
+    <% publication.paginated_comments.each do |comment| %>
+      <%= render 'comment', comment: comment %>
+    <% end %>
+  </div>
+
+  <div id="publication-<%= publication.id %>-new-comment">
+    <%= form_for([publication, publication.comments.build], remote: true, class: "input-group") do |f| %>
+      <%= render 'comments/fields', f: f %>
+    <% end %>
+  </div>
+  
+</ul>
