@@ -20,7 +20,6 @@ class User::PublicationsController < ApplicationController
     @publication = Publication.find(params[:id])
     return head :forbidden unless @publication.creator.id == current_user.id
     @publication.destroy unless @publication.nil?
-    redirect_to :back
   end
 
   private 

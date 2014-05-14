@@ -18,8 +18,8 @@ class User::EventsController < ApplicationController
   def destroy
     @event = Event.find(params[:id])
     return head :forbidden unless @event.creator.id == current_user.id
+    
     @event.destroy
-    redirect_to :back
   end
   
   private 
