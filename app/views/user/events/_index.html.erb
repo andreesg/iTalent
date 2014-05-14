@@ -1,0 +1,23 @@
+<h2 style="text-decoration: underline;"> Eventos criados por mim: </h2>
+          <% current_user.created_events.each do |event| %>
+              <div style="background-color: grey;">
+                <div>
+                  <p>título: <%= event.title %></p>
+                  <p>data: <%= event.date_start %></p>
+                  <p><%= link_to "eliminar", user_event_path(event), method: :delete %></p>
+                  <p><%= link_to "editar", edit_user_event_path(event), remote: true %></p>
+                </div>
+              </div>
+              </br>
+            <% end %>
+          <h2 style="text-decoration: underline;"> Eventos em que vou participar: </h2>
+          <% current_user.event_attendees.each do |event_attendee| %>
+              <div style="background-color: grey;">
+                <div>
+                  <p>título: <%= event_attendee.event.title %></p>
+                  <p>data: <%= event_attendee.event.date_start %></p>
+                  <p><%= link_to "eliminar", user_event_attendee_path(event_attendee), method: :delete %></p>
+                </div>
+              </div>
+              </br>
+            <% end %>

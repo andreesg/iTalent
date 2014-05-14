@@ -4,8 +4,15 @@
 <%= collection_select :publication, :tags, Tag.all, :id, :name, {:include_hidden => false}, {class: "multiselect-publications",:multiple => true} %>
 
 
-<script type="text/javascript">
+<%= javascript_tag do %>
+
   $(document).ready(function() {
+
     $('.multiselect-publications').multiselect();
+
+    <% @publication.tags.each do |tag| %>
+      $(".multiselect-publications").multiselect('select', <%= tag.id %>);
+    <% end %>
   });
-</script>
+
+<% end %>
