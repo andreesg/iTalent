@@ -1,0 +1,63 @@
+<div class="container">
+  <div class="row clearfix">
+    <div class="col-md-12 column">
+      <div class="row clearfix">
+        <div class="col-md-3 column">
+          <h3 style="background-color: grey;">
+            Email: <%= current_user.email %>
+          </h3>
+          </br>
+          <h3 style="background-color: grey;">
+            Organização: <%= current_user.organization unless !User.method_defined?(:organization) %>
+          </h3>
+          </br>
+          <ul style="background-color: grey;">
+            Interesses
+            <% current_user.subscribed_tags.each do |tag| %>
+              <li>
+                - <%= tag.name %>
+              </li>
+            <% end %>
+            <li>
+              <%= link_to "modificar interesses", "#" %>
+            </li>
+            
+          </ul>
+        </div>
+        <div class="col-md-6 column">
+            <% current_user.created_publications.each do |publication| %>
+              <div style="background-color: grey;">
+                <div>
+                  <h2 style="text-decoration: underline;"> Publicação: </h2>
+                  <p>email: <%= current_user.email %></p>
+                  <p>texto: <%= publication.text %></p>
+                  <p>data: <%= publication.updated_at %></p>
+                </div>
+                <div>
+                  <h2 style="text-decoration: underline;"> Comentários: </h2>
+                  <% publication.comments.each do |comment| %>
+                    <p>email: <%= comment.creator.email %></p>
+                    <p>texto: <%= comment.text %></p>
+                  <% end %>
+                  </br>
+                </div>
+              </div>
+              </br>
+            <% end %>
+        </div>
+        <div class="col-md-3 column">
+          <% current_user.created_events.each do |event| %>
+              <div style="background-color: grey;">
+                <div>
+                  <h2 style="text-decoration: underline;"> Evento: </h2>
+                  <p>título: <%= event.title %></p>
+                  <p>data: <%= event.date_start %></p>
+                </div>
+              </div>
+              </br>
+            <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
