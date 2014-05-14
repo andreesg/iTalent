@@ -1,0 +1,28 @@
+<% current_user.created_publications.each do |publication| %>
+  <div style="background-color: grey;">
+    <div>
+      <h2 style="text-decoration: underline;"> Publicação: </h2>
+      <p>email: <%= current_user.email %></p>
+      <p>texto: <%= publication.text %></p>
+      <p>data: <%= publication.updated_at %></p>
+      <p><%= link_to "eliminar", user_publication_path(publication), method: :delete %></p>
+      <p><%= link_to "editar", edit_user_publication_path(publication), remote: true %></p>
+    </div>
+    <div>
+      <h2 style="text-decoration: underline;"> Tags: </h2>
+      <% publication.tags.each do |tag| %>
+        <p><%= tag.name %></p>
+      <% end %>
+    </div>
+    <div>
+      <h2 style="text-decoration: underline;"> Comentários: </h2>
+      <% publication.comments.each do |comment| %>
+        <p>email: <%= comment.creator.email %></p>
+        <p>texto: <%= comment.text %></p>
+      <% end %>
+    </br>
+  </div>
+  </div>
+  </br>
+<% end %>
+        

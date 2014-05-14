@@ -1,0 +1,11 @@
+
+<%= f.text_field :text, class: 'form-control ' %>
+
+<%= collection_select :publication, :tags, Tag.all, :id, :name, {:include_hidden => false}, {class: "multiselect-publications",:multiple => true} %>
+
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('.multiselect-publications').multiselect();
+  });
+</script>

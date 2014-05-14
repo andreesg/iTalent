@@ -21,7 +21,15 @@ Italentapp::Application.routes.draw do
   devise_scope :user do
     authenticated :user do
 
-      get '/dashboard', to: 'user_dashboard#index'
+      namespace :user do
+        get '/dashboard', to: 'dashboard#index'
+
+        resources :publications
+        resources :events
+        resources :event_attendees, only: [:create, :destroy]
+        
+        root to: 'dashboard#index', as: :user_root
+      end
 
       root 'timeline#index', as: :authenticated_root
     end
