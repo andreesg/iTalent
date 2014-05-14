@@ -27,6 +27,12 @@ Italentapp::Application.routes.draw do
         resources :publications
         resources :events
         resources :event_attendees, only: [:create, :destroy]
+        resources :tags do
+          collection do 
+            post 'edit_multiple'
+            put 'update_multiple'
+          end
+        end
         
         root to: 'dashboard#index', as: :user_root
       end

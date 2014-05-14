@@ -11,20 +11,7 @@
             Organização: <%= current_user.organization unless !User.method_defined?(:organization) %>
           </h3>
           </br>
-          <ul class="well">
-            Interesses
-            <% current_user.subscribed_tags.each do |tag| %>
-              <li>
-                - <%= tag.name %>
-              </li>
-            <% end %>
-            <li>
-              <div class="btn-group">
-                <%= link_to "modificar", "#", class: "btn btn-primary" %>
-              </div>
-            </li>
-            
-          </ul>
+          <%= render partial: 'user/tags/index' %>
         </div>
         <div id="publication-index" class="col-md-6 column">
           <%= render partial: 'user/publications/index' %>
@@ -45,6 +32,15 @@
 
 
   <div class="modal fade" id="new-event-modal">
+    <div class="modal-dialog">
+      <div class="modal-content form-bg">
+      
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+
+
+  <div class="modal fade" id="user-edit-tags-modal">
     <div class="modal-dialog">
       <div class="modal-content form-bg">
       

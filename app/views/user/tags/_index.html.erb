@@ -1,0 +1,16 @@
+<div class="well" id="tags-index">
+<ul >
+            Interesses
+            <% current_user.subscribed_tags.each do |tag| %>
+              <li>
+                - <%= tag.name %>
+              </li>
+            <% end %>
+            <li>
+              <div class="btn-group">
+                <%= link_to "modificar", edit_multiple_user_tags_path, class: "btn btn-primary", remote: true, method: :post %>
+              </div>
+            </li>
+            
+          </ul>
+          </div>
