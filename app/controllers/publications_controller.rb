@@ -26,7 +26,7 @@ class PublicationsController < ApplicationController
     @new_publication.creator = current_user
 
     if @new_publication.save
-      redirect_to :back
+      redirect_to timeline_index_path
     else
       @publications=Publication.paginate(page: params[:publications_page],per_page: 100).order('created_at DESC')
       @events=Event.paginate(page: params[:events_page],per_page: 100).order('date_start DESC')
@@ -44,13 +44,18 @@ class PublicationsController < ApplicationController
     @publication = Publication.find(params[:id])
     return head :forbidden unless @publication.creator.id == current_user.id
     @publication.update_attributes(publication_params)
+    if @publication.update_attributes(publication_params)
+      redirect_to @publication
+    else
+      render 'edit'
+    end
   end
 
   def destroy
     @publication = Publication.find(params[:id])
     return head :forbidden unless @publication.creator.id == current_user.id
     @publication.destroy unless @publication.nil?
-    redirect_to :back
+    redirect_to '/'
   end
 
   private 
