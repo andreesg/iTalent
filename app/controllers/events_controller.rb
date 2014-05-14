@@ -52,7 +52,7 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
     return head :forbidden unless @event.creator.id == current_user.id
     @event.destroy
-    redirect_to '/'
+    redirect_to :back
   end
   
   private 
