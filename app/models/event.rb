@@ -37,7 +37,7 @@ class Event < ActiveRecord::Base
 		def default_values
 			self.num_attendings = 0 if self.num_attendings.nil?
 			self.num_invitations = 0 if self.num_invitations.nil?
-			self.max_attendees = 1 if self.max_attendees.nil?
+			self.max_attendees = 0 if self.max_attendees.nil?
 		end
 
 

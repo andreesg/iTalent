@@ -25,8 +25,12 @@ describe Event do
 
   it { should be_valid }
 
-  it "should set max_attendees to zero by default (no limit of attendees)" do
-    @event.max_attendees.should eq 0
+  describe "max_attendees" do
+    let(:event) { create(:event) } 
+    it "should be set to zero by default (no limit of attendees)" do
+      event.max_attendees.should eq 0
+    end
+
   end
   
   describe "num_attendings should never be nil, so the value should be changed" do
