@@ -10,6 +10,15 @@
 	<%= e.label :description %>
 	<p><%= e.text_field :description, class: "form-control"%></p>
 </div>
+<div class="form-group">
+	<%= e.label "Limit max_attendees" %>
+	<%=check_box_tag 'max-attendees-checkbox', 0,false %>
+</div>
+<div id="max-attendees-optional" class="form-group hidden">
+	<%= e.label :max_attendees %>
+	<p><%= e.number_field :max_attendees, min:0, value: 0, class: "form-control"%></p>
+</div>
+
 <div class="row">
 	<div class="col-md-6">
 		<div class="form-group">
@@ -36,6 +45,9 @@
 
 <script type="text/javascript">
   $(document).ready(function() {
+  	$('#max-attendees-checkbox').click(function () {
+  		$('#max-attendees-optional').toggleClass("hidden")	
+  	});
     $('.multiselect-events').multiselect();
   });
 </script>
