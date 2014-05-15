@@ -31,13 +31,13 @@
 
   <div id="publication-<%= publication.id %>-comments">
     <% publication.paginated_comments.each do |comment| %>
-      <%= render 'comment', comment: comment %>
+      <%= render partial: 'timeline/comment', locals: { comment: comment } %>
     <% end %>
   </div>
 
   <div id="publication-<%= publication.id %>-new-comment">
     <%= form_for([publication, publication.comments.build], remote: true, class: "input-group") do |f| %>
-      <%= render 'comments/fields', f: f %>
+      <%= render partial: 'comments/fields', locals: { f: f } %>
     <% end %>
   </div>
   
