@@ -4,4 +4,5 @@ class EventAttendee < ActiveRecord::Base
 
 	validates :attendee, presence: true
 	validates :event, presence: true
+	
 end
