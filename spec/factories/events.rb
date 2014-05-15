@@ -12,6 +12,7 @@ FactoryGirl.define do
     updated_at "2014-04-02 23:16:43"
     tags {[create(:tag)]}
     association :creator
+    max_attendees 0
   end
 
   factory :invalid_event, parent: :event do
