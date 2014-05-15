@@ -263,6 +263,12 @@ describe PublicationsController do
 				}.to change(Publication, :count).by(-1)
 			end
 
+			it "deletes the requested publication with ajax" do
+				expect{
+					xhr :delete, :destroy, id: @publication
+				}.to change(Publication,:count).by(-1)
+			end
+			
 			it "redirects to the '/' page" do
 				delete :destroy, id: @publication
 				response.should redirect_to '/'
