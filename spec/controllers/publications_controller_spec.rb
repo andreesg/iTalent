@@ -250,6 +250,8 @@ describe PublicationsController do
 	describe "DELETE #destroy" do
 		before :each do
 			@publication = create(:publication, creator: @user)
+			#create a single comment for the publication
+			create(:comment,publication:@publication,creator: @user)
 		end
 
 		describe "when authenticated" do
@@ -262,13 +264,19 @@ describe PublicationsController do
 					delete :destroy, id: @publication
 				}.to change(Publication, :count).by(-1)
 			end
+			
+			it "deletes the requested publication and also the comments" do
+				expect{
+					delete :destroy, id: @publication
+				}.to change(Publication, :count).by(-1) && change(Comment,:count).by(-@publication.comments.count)
+			end
 
 			it "deletes the requested publication with ajax" do
 				expect{
 					xhr :delete, :destroy, id: @publication
 				}.to change(Publication,:count).by(-1)
 			end
-			
+
 			it "redirects to the '/' page" do
 				delete :destroy, id: @publication
 				response.should redirect_to '/'
