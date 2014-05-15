@@ -55,12 +55,12 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
     return head :forbidden unless @event.creator.id == current_user.id
     @event.destroy
-    redirect_to '/'
+    redirect_to authenticated_root_path
   end
   
   private 
   
   def event_params
-    params.require(:event).permit(:title,:description,:date_start,:max_attendees,:date_limit,:tags)
+    params.require(:event).permit(:title,:description,:date_start,:max_attendees,:date_limit,:tags, :date_end)
   end
 end

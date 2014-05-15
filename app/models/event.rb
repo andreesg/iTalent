@@ -42,7 +42,7 @@ class Event < ActiveRecord::Base
 
 
 	def date_end_after_date_start
-    return if date_end.blank? || date_start.blank?
+    return if date_end.blank? || date_start.blank? || date_limit.blank?
    
     if date_end < date_start
       errors.add(:date_end, "must be after the start date") 
@@ -50,10 +50,10 @@ class Event < ActiveRecord::Base
   end
 
   def date_limit_before_date_start
-    return if date_end.blank? || date_start.blank?
+    return if date_end.blank? || date_start.blank? || date_limit.blank?
    
     if date_limit > date_start
-      errors.add(:date_end, "must be after the start date") 
+      errors.add(:date_limit, "must be before the start date") 
     end 
   end
 end

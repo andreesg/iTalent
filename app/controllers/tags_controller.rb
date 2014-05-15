@@ -33,7 +33,7 @@ class TagsController < ApplicationController
   def destroy
     @tag = Tag.find(params[:id]) 
     @tag.destroy unless @tag.nil?
-    redirect_to '/'
+    redirect_to authenticated_root_path
   end
 
   private 

@@ -1,5 +1,7 @@
 class PublicationsController < ApplicationController
   before_filter :authenticate_user!
+
+  respond_to :html, :js
   
   def index
     @publications = nil
@@ -44,6 +46,7 @@ class PublicationsController < ApplicationController
   def update
     @publication = Publication.find(params[:id])
     return head :forbidden unless @publication.creator.id == current_user.id
+    @publication.update_attributes(publication_params)
     if @publication.update_attributes(publication_params)
       redirect_to @publication
     else
