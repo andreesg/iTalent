@@ -38,6 +38,11 @@
 
   $(document).ready(function() {
 
+	  $('.datetimepicker').datetimepicker({
+	    format: 'hh:ii dd-mm-yyyy',
+	    autoclose: true
+	  });
+
     $('.multiselect-events').multiselect();
 
     <% @event.tags.each do |tag| %>
