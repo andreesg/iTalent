@@ -46,7 +46,12 @@
 <script type="text/javascript">
   $(document).ready(function() {
   	$('#max-attendees-checkbox').click(function () {
-  		$('#max-attendees-optional').toggleClass("hidden")	
+  		max_attendees_form=$('#max-attendees-optional');
+  		//reset it to zero when it hides
+  		if(!max_attendees_form.hasClass('hidden')){
+  			$('#max-attendees-optional input').val(0);
+  		}
+  		max_attendees_form.toggleClass("hidden");
   	});
     $('.multiselect-events').multiselect();
   });
