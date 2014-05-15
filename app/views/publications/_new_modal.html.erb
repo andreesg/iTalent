@@ -8,7 +8,7 @@
 			        <h4 class="modal-title">Create Publication</h4>
 			      </div>
 			      <div class="modal-body form-bg-body">
-			      		<%= render 'publications/fields', f: f %>	      	
+			      		<%= render partial: 'publications/fields', locals: { f: f } %>	      	
 			      </div>
 			      <div class="modal-footer form-bg-body">
 			        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

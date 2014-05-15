@@ -35,7 +35,7 @@
     <br>
 
     <% @publications.each do |publication| %>
-      <%= render 'publication', publication: publication %>
+      <%= render partial: 'timeline/publication', locals: { publication: publication } %>
     <% end %>
 
   </div>
@@ -56,7 +56,7 @@
 
       <% @events.each do |event| %>       
         <li>
-          <%= render 'event', event: event %>
+          <%= render partial: 'timeline/event', locals: { event: event } %>
         </li>
       <% end %>     
     </ul>
