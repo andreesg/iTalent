@@ -8,10 +8,13 @@ class CommentsController < ApplicationController
 
     respond_to do |format|
       if @comment.save
-        format.html { redirect_to timeline_index_path, notice: 'Comment was successfully created!' }
-        format.js   {}
+        notice_msg = 'Comment was successfully created!'
+        format.html { redirect_to timeline_index_path, notice: notice_msg }
+        format.js   { render "create", locals: { success: true, notice: notice_msg } }
       else
-        format.any { redirect_to timeline_index_path, notice: @comment.errors }
+        notice_msg = @comment.errors
+        format.html { redirect_to timeline_index_path, notice: notice_msg }
+        format.js   { render "create", locals: { success: false, notice: notice_msg } }
       end
     end
   end

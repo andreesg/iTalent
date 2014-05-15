@@ -1,4 +1,4 @@
-<ul class="timeline-section" >    
+<ul id="publication-<%= publication.id %>" class="timeline-section" >    
   <li class="timeline-title" >
       <div class="post-bubble">
         <span><%= publication.creator.email %></span><br><br>
@@ -31,6 +31,8 @@
       <%= render 'comment', comment: comment %>
     <% end %>
   </div>
+
+  <div class="comment-errors"></div>
 
   <div id="publication-<%= publication.id %>-new-comment">
     <%= form_for([publication, publication.comments.build], remote: true, class: "input-group") do |f| %>
