@@ -79,6 +79,9 @@ GEM
       railties (>= 3.0.0)
     ffi (1.9.3)
     formatador (0.2.4)
+    gon (5.0.4)
+      actionpack (>= 2.3.0)
+      json
     guard (2.6.0)
       formatador (>= 0.2.4)
       listen (~> 2.7)
@@ -125,6 +128,8 @@ GEM
       coderay (~> 1.0)
       method_source (~> 0.8)
       slop (~> 3.4)
+    rabl (0.9.3)
+      activesupport (>= 2.3.14)
     rack (1.5.2)
     rack-test (0.6.2)
       rack (>= 1.0)
@@ -228,11 +233,13 @@ DEPENDENCIES
   date_validator (~> 0.7.0)
   devise (~> 3.2.4)
   factory_girl_rails (~> 4.4.1)
+  gon (~> 5.0.4)
   guard-rspec (~> 4.2.8)
   guard-spork (~> 1.5.1)
   jbuilder (~> 1.2)
   jquery-rails
   pg
+  rabl (~> 0.9.3)
   rails (= 4.0.4)
   rspec-rails (~> 2.14.2)
   sass-rails (~> 4.0.2)
