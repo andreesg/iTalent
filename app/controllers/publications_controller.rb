@@ -56,9 +56,15 @@ class PublicationsController < ApplicationController
 
   def destroy
     @publication = Publication.find(params[:id])
-    return head :forbidden unless @publication.creator.id == current_user.id
-    @publication.destroy unless @publication.nil?
-    redirect_to '/'
+    respond_to do |format|
+      if @publication.creator == current_user
+        @publication.destroy
+        format.html { redirect_to '/', notice: 'The publication was deleted successfully!' }
+        format.js   {}
+      else
+        return head :forbidden
+      end
+    end
   end
 
   private 

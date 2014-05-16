@@ -1,4 +1,4 @@
-<ul class="timeline-section" >    
+<ul id="publication-<%= publication.id %>" class="timeline-section" >  
   <li class="timeline-title" >
       <div class="post-bubble">
         <span><%= publication.creator.email %></span><br><br>
@@ -23,6 +23,14 @@
             <% end %>
           <% end %>
         </div>
+          <% if publication.creator == current_user %>
+          <div>
+            <%= link_to 'Delete', [publication],
+                         method: :delete,
+                         remote: true,
+                         data: { confirm: 'Are you sure?' } %>
+          </div>
+          <% end %>
         <div class="post-bubble-arrow-border"></div>
         <div class="post-bubble-arrow"></div>
       </div>
