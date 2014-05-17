@@ -34,10 +34,11 @@
     </div>
     <br>
 
-    <% @publications.each do |publication| %>
-      <%= render 'publication', publication: publication %>
-    <% end %>
-
+    <div class="publications">
+      <% @publications.each do |publication| %>
+        <%= render 'publication', publication: publication %>
+      <% end %>
+    </div>
   </div>
 
   <div class="col-sm-2 col-md-2 col-md-offset-1 timeline">

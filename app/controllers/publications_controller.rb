@@ -2,12 +2,17 @@ class PublicationsController < ApplicationController
   before_filter :authenticate_user!
   
   def index
+
+    # @all_publications = Publication.all
+    # gon.watch.rabl "app/views/timeline/index.json.rabl", as: 'publications'
+
     @publications = nil
     unless params[:tags_ids].nil?
       @publications = Publication.includes(:tags).where({'tags.id' => params[:tags_ids]})
     else
       @publications = Publication.all
     end
+
   end
 
   def show
@@ -56,6 +61,10 @@ class PublicationsController < ApplicationController
     return head :forbidden unless @publication.creator.id == current_user.id
     @publication.destroy unless @publication.nil?
     redirect_to '/'
+  end
+
+  def load
+
   end
 
   private 

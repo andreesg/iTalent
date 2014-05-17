@@ -25,7 +25,11 @@
       </div>
     <br><br>
   </li>
-
+  <div class="load-comments">
+    <%= content_tag :a , data: { publication_id: publication.id } do -%>
+      Load more comments
+    <% end -%><br/>
+  </div>
   <div id="publication-<%= publication.id %>-comments">
     <% publication.paginated_comments.each do |comment| %>
       <%= render 'comment', comment: comment %>
