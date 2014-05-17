@@ -28,10 +28,6 @@ gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 1.2'
 
-gem 'rabl', '~> 0.9.3'
-# If you need to send some data to your js files and you don't want to do this with long way trough views and parsing - use this force!
-gem 'gon', '~> 5.0.4'
-
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false
