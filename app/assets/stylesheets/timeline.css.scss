@@ -13,16 +13,14 @@
   overflow: hidden;
   text-align: center;
   background-color: #e8e4e1;
-  border: 1px solid #d6cfbf;
   /*margin: 10px 1% 10px 1%;*/
   /*margin: 10px 1% 10px 1%;*/
   margin-left: auto; 
   margin-right: auto;
-  position: relative;
-
-  -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    border-radius: 5px;
+  position: relative;  
+   -webkit-box-shadow:0 2px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+       -moz-box-shadow:0 2px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+            box-shadow:0 2px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
 
     margin-top: 10px;
     width: 80%;
@@ -60,8 +58,9 @@
   padding-right: 10px;
   padding-top: 5px;
   padding-bottom: 5px;
-  font-weight:bold;
+  font-weight:500;
   color: #ed9121;
+  font-family: "Roboto"
 }
 
 .posts-title h5:nth-child(2)
@@ -91,7 +90,7 @@
   padding-left: 10px;
   padding-right: 10px;
   font-size: 14px;
-  font-weight: bold;
+  font-weight: 500;
 }
 .posts-title h6
 {
@@ -131,6 +130,9 @@
   margin: auto;
   color: #424242;
   background-color: #ffffff;
+  -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+      border-radius: 5px; /* future proofing */
 
 }
 
@@ -165,7 +167,7 @@
 }
 .events-content 
 {
-  font-family: Frutiger, "Frutiger Linotype", Univers, Calibri, "Gill Sans", "Gill Sans MT", "Myriad Pro", Myriad, "DejaVu Sans Condensed", "Liberation Sans", "Nimbus Sans L", Tahoma, Geneva, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Roboto",Frutiger, "Frutiger Linotype", Univers, Calibri, "Gill Sans", "Gill Sans MT", "Myriad Pro", Myriad, "DejaVu Sans Condensed", "Liberation Sans", "Nimbus Sans L", Tahoma, Geneva, "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 14px;
   font-weight: 400;
   color: #f7f7f7;
@@ -177,8 +179,9 @@
   padding:10px;
   text-align:center;
   float: right;
-  /*-moz-border-radius:10px 0px 0px 10px;
-  -webkit-border-radius:10px 0px 0px 10px;*/
+  -webkit-box-shadow: 0 7px 6px -6px #777;
+     -moz-box-shadow: 0 7px 6px -6px #777;
+          box-shadow: 0 7px 6px -6px #777;
 }
 
 .content-list
@@ -193,23 +196,28 @@
 
 .create-content 
 {
-  font-family: Frutiger, "Frutiger Linotype", Univers, Calibri, "Gill Sans", "Gill Sans MT", "Myriad Pro", Myriad, "DejaVu Sans Condensed", "Liberation Sans", "Nimbus Sans L", Tahoma, Geneva, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Roboto",Frutiger, "Frutiger Linotype", Univers, Calibri, "Gill Sans", "Gill Sans MT", "Myriad Pro", Myriad, "DejaVu Sans Condensed", "Liberation Sans", "Nimbus Sans L", Tahoma, Geneva, "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 14px;
-  font-weight: 400;
   color: #f7f7f7;
+  font-weight: 400;
+  cursor: hand;
+  cursor: pointer;
   /*background-color:#EDEDED;*/
   background-color: #424242;
-  /*border:2px solid #666666;*/
   line-height:1.3em;
   margin-bottom: 20px ;
   padding:10px;
   text-align:center;
   margin-left: 0px;
   width: 60%;
-
-  /*-moz-border-radius:10px 0px 0px 10px;
-  -webkit-border-radius:10px 0px 0px 10px;*/
+  -webkit-box-shadow: 0 7px 6px -6px #777;
+     -moz-box-shadow: 0 7px 6px -6px #777;
+          box-shadow: 0 7px 6px -6px #777;
 }
+
 .color-event{
   background-color: #4f5d73;
+}
+.create-content:hover{
+  opacity: 0.9;
 }
