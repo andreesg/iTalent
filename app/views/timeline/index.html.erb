@@ -29,7 +29,7 @@
         <div >New Publication</div>
       </li>
       <li id="new-event-btn" class="create-content color-event">
-        <div >New Event</div>
+        <div>New Event</div>
       </li>
     </ul>
   </div>
@@ -44,7 +44,8 @@
         <div id="publication-infinite-scrolling">
           <%= will_paginate @publications %>
         </div>
-    <% end %>  
+      <% end %> 
+    </ul> 
   </div>
   <div class="col-md-3 col-ms-offset-2 events">
     <ul>
@@ -56,7 +57,7 @@
       </li>
 
       <% @events.each do |event| %>       
-        <li class="events-content ">
+        <li class="events-content">
           <%= render partial: 'timeline/event', locals: { event: event } %>
         </li>
       <% end %>     
