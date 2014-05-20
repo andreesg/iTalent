@@ -16,7 +16,13 @@
   <h2 style="text-decoration: underline;"> Eventos em que vou participar: </h2>
   <% current_user.event_attendees.each do |event_attendee| %>
   <div class="well">
-    <%= render partial: 'timeline/event', locals: { event: event_attendee.event } %>
+    <div>
+      <p>título: <%= event_attendee.event.title %></p>
+      <p>data: <%= event_attendee.event.date_start %></p>
+    </div>
+    <div class="btn-group" id="attends-or-not-<%=event_attendee.event.id%>">
+      <%= link_to "Do not attend", user_event_attendee_path(event_attendee) , class: "btn btn-primary", method: :delete, remote: true %>
+    </div>
   </div>
   <% end %>
   </br>
