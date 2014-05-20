@@ -48,6 +48,7 @@ gem 'devise', '~> 3.2.4'
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
+gem 'will_paginate', '~> 3.0.5'
 gem 'bootstrap-sass', '~> 3.1.1.0'
 gem 'bootstrap-modal-rails', '~> 2.2.5'
 gem 'smalot-bootstrap-datetimepicker-rails'

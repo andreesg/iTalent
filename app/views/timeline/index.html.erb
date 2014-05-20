@@ -29,16 +29,21 @@
 <%= render '/events/new_modal', event: @new_event %>
 
 <div class="row">
-  <div class="col-sm-4 col-md-4 col-md-offset-4  timeline">
+  <div class="col-sm-4 col-md-4 col-md-offset-4  timeline publication-timeline">
     <div id="new-publication-btn"><%= image_tag( asset_path("add.png"), alt: "New publication", title: "Create new publication")%>
     </div>
     <br>
 
-    <div class="publications">
+    <div id="publications">
       <% @publications.each do |publication| %>
         <%= render 'publication', publication: publication %>
       <% end %>
     </div>
+    <% if @publications.next_page %>
+      <div id="publication-infinite-scrolling">
+        <%= will_paginate @publications %>
+      </div>
+    <% end %>
   </div>
 
   <div class="col-sm-2 col-md-2 col-md-offset-1 timeline">

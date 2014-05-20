@@ -4,7 +4,7 @@ class TimelineController < ApplicationController
 
   def index
 
-    @publications = Publication.includes(:creator).paginate(page: params[:publications_page]).order('created_at DESC')
+    @publications = Publication.includes(:creator).paginate(page: params[:page], per_page:5).order('created_at DESC')
     @publications.each do |p|
       p.paginated_comments = p.comments.includes(:creator).paginate(page: 1).order('updated_at ASC')
     end
@@ -14,5 +14,9 @@ class TimelineController < ApplicationController
     @new_event = Event.new
     @comment = Comment.new
 
+    respond_to do |format|
+      format.html {}
+      format.js {}
+    end
   end
 end
