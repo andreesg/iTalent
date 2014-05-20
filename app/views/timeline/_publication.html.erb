@@ -9,11 +9,6 @@
         
         <% end %>
         <div>
-        <div id="publication-<%= publication.id %>-likes-count" class="inline-likes">
-          <% if publication.likes.count > 0 %>
-            <p><%= pluralize(publication.likes.count, 'person') %> <%= 'like'.pluralize(publication.likes.count) %> this publication!</p>
-          <% end %>
-        </div>
         <div id="publication-<%= publication.id %>-like" class="inline-likes">
           <% if liked_publication?(publication.id) %>
 
@@ -23,6 +18,11 @@
           <% else %>
             <%= link_to publication_like_path(publication), class: "btn-like", remote: true, method: :post do %>
             <% end %>
+          <% end %>
+        </div>
+        <div id="publication-<%= publication.id %>-likes-count" class="inline-likes">
+          <% if publication.likes.count > 0 %>
+            <p><%= pluralize(publication.likes.count, 'person') %> <%= 'like'.pluralize(publication.likes.count) %> this publication!</p>
           <% end %>
         </div>
         <div id="publication-<%= publication.id %>-new-comment">
