@@ -1,6 +1,10 @@
 
-<div class="post">
-  <div class="event-bubble">
+
+  <div >
     <%=event.title%>
+	
+    <% event.tags.each do |tag| %>
+      <%= tag.name %>
+    <% end %>
   </div>
-</div>
+

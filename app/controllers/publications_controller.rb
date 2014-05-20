@@ -1,5 +1,7 @@
 class PublicationsController < ApplicationController
   before_filter :authenticate_user!
+
+  respond_to :html, :js
   
   def index
 
@@ -25,16 +27,16 @@ class PublicationsController < ApplicationController
 
   def create
     @new_publication = Publication.new(publication_params)
-    if params[:publication][:tags].nil?
-      @new_publication.tags = [Tag.first]
-    else
-      @new_publication.tags = Tag.find(params[:publication][:tags])
-    end
+    @new_publication.tags = Tag.find(params[:publication][:tags]) unless params[:publication][:tags].nil?
     @new_publication.creator = current_user
+
     if @new_publication.save
-      redirect_to timeline_index_path
+      redirect_to timeline_index_path, notice: "Publication successfully created."
     else
       @publications=Publication.paginate(page: params[:publications_page],per_page: 100).order('created_at DESC')
+      @publications.each do |p|
+        p.paginated_comments = p.comments.includes(:creator).paginate(page: 1, per_page: 10).order('updated_at DESC')
+      end
       @events=Event.paginate(page: params[:events_page],per_page: 100).order('date_start DESC')
       @new_event = Event.new  
       render '/timeline/index'
@@ -49,6 +51,7 @@ class PublicationsController < ApplicationController
   def update
     @publication = Publication.find(params[:id])
     return head :forbidden unless @publication.creator.id == current_user.id
+    @publication.update_attributes(publication_params)
     if @publication.update_attributes(publication_params)
       redirect_to @publication
     else
@@ -58,9 +61,15 @@ class PublicationsController < ApplicationController
 
   def destroy
     @publication = Publication.find(params[:id])
-    return head :forbidden unless @publication.creator.id == current_user.id
-    @publication.destroy unless @publication.nil?
-    redirect_to '/'
+    respond_to do |format|
+      if @publication.creator == current_user
+        @publication.destroy
+        format.html { redirect_to '/', notice: 'The publication was deleted successfully!' }
+        format.js   {}
+      else
+        return head :forbidden
+      end
+    end
   end
 
   def load

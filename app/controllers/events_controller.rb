@@ -20,16 +20,16 @@ class EventsController < ApplicationController
 
   def create
     @new_event = Event.new(event_params)
-    if params[:event][:tags].nil?
-      @new_event.tags = [Tag.first]
-    else
-      @new_event.tags = Tag.find(params[:event][:tags])
-    end
+    @new_event.tags = Tag.find(params[:event][:tags]) unless params[:event][:tags].nil?
     @new_event.creator = current_user
+
     if @new_event.save
-      redirect_to timeline_index_path
+      redirect_to timeline_index_path, notice: "Event successfully created."
     else
       @publications=Publication.paginate(page: params[:publications_page],per_page: 100).order('created_at DESC')
+      @publications.each do |p|
+        p.paginated_comments = p.comments.includes(:creator).paginate(page: 1, per_page: 10).order('updated_at DESC')
+      end
       @events=Event.paginate(page: params[:events_page],per_page: 100).order('date_start DESC')
       @new_publication = Publication.new  
       render '/timeline/index'
@@ -55,12 +55,12 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
     return head :forbidden unless @event.creator.id == current_user.id
     @event.destroy
-    redirect_to '/'
+    redirect_to authenticated_root_path
   end
   
   private 
   
   def event_params
-    params.require(:event).permit(:title,:description,:date_start,:date_limit,:tags)
+    params.require(:event).permit(:title,:description,:date_start,:max_attendees,:date_limit,:tags, :date_end)
   end
 end

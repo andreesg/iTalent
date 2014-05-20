@@ -9,12 +9,12 @@
 				  <h2 class="modal-title">Create Event</h2>
 				</div>
 				<div class="modal-body form-bg-body">
-					<%= render 'events/fields', e: e %>
+					<%= render partial: 'events/fields', locals: { e: e } %>
 					  	
 				</div>
 				<div class="modal-footer form-bg-body">
 				  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-				  <%= e.submit "Create", class: "btn btn-primary" %>
+				  <%= e.submit "Create", class: "btn btn-primary", id: "create-event-btn" %>
 				</div>
 			<% end %>
 	    </div><!-- /.modal-content -->

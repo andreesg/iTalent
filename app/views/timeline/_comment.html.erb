@@ -1,16 +1,15 @@
 
-<%= content_tag :div, id: "publication-#{comment.publication.id}-comment-#{comment.id}", data: { comment_id: comment.id } do -%>
-  <span><%= comment.creator.email %></span>
-  <p><%= comment.text %></p>
-  <%= comment.updated_at %>
+<%= content_tag :div, id: "publication-#{comment.publication.id}-comment-#{comment.id}", class: "comment-display" data: { comment_id: comment.id } do -%>
+  <h5><%= comment.creator.email %></h5><br>
+  <p><%= comment.text %></p><br>
+  <h6><%= comment.updated_at %></h6>
   <% if comment.creator == current_user %>
     <p>
       <%= link_to 'Delete', [comment.publication, comment],
                    method: :delete,
                    remote: true,
+                   class:"btn-delete",
                    data: { confirm: 'Are you sure?' } %>
     </p>
   <% end %>
-  <br>
 <% end -%>
-
