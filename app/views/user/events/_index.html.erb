@@ -1,29 +1,39 @@
 <div>
-  <h2 style="text-decoration: underline;"> Eventos criados por mim: </h2>
   <% current_user.created_events.each do |event| %>
   <div class="well">
     <div>
-      <p>título: <%= event.title %></p>
-      <p>data: <%= event.date_start %></p>
+      <h4>Title <%= event.title %></h4>
+      <p><%= event.date_start %></p>
+      <ul>
+        <% event.tags.each do |tag| %>
+          <li class="tag"><%= tag.name %></li>
+        <% end %>
+      </ul>
+
     </div>
     <div class="btn-group">
-      <%= link_to "eliminar", user_event_path(event), class: "btn btn-primary", method: :delete, remote: true %>
-      <%= link_to "editar", edit_user_event_path(event), class: "btn btn-primary", remote: true %>
+      <%= link_to "eliminar", user_event_path(event), class: "btn btn-default", method: :delete, remote: true %>
+      <%= link_to "editar", edit_user_event_path(event), class: "btn btn-default", remote: true %>
     </div>
   </div>
-  </br>
+
   <% end %>
-  <h2 style="text-decoration: underline;"> Eventos em que vou participar: </h2>
+  <h3> Attending Events </h3>
   <% current_user.event_attendees.each do |event_attendee| %>
   <div class="well">
     <div>
-      <p>título: <%= event_attendee.event.title %></p>
-      <p>data: <%= event_attendee.event.date_start %></p>
+      <h4><%= event_attendee.event.title %></h4>
+      <p><%= event_attendee.event.date_start %></p>
+      <ul>
+        <% event_attendee.event.tags.each do |tag| %>
+          <li class="tag"><%= tag.name %></li>
+        <% end %>
+      </ul>
     </div>
     <div class="btn-group" id="attends-or-not-<%=event_attendee.event.id%>">
-      <%= link_to "Do not attend", user_event_attendee_path(event_attendee) , class: "btn btn-primary", method: :delete, remote: true %>
+      <%= link_to "Cancel", user_event_attendee_path(event_attendee) , class: "btn btn-default", method: :delete, remote: true %>
     </div>
   </div>
   <% end %>
-  </br>
+
 </div>

@@ -1,10 +1,6 @@
 source 'https://rubygems.org'
 ruby '2.0.0'
 
-#Livereload
-gem 'rb-fsevent'
-gem 'guard-livereload'
-
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.4'
 
@@ -71,6 +67,9 @@ group :development, :test do
   gem 'spork-rails', '~> 4.0.0'
   gem 'guard-spork', '~> 1.5.1'
   gem 'childprocess', '~> 0.5.2'
+  #Livereload
+  gem 'rb-fsevent'
+  gem 'guard-livereload'
 end
 
 group :test do
