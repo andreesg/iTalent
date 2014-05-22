@@ -1,26 +1,41 @@
-<div class="container">
-  <div class="row clearfix">
-    <div class="col-md-12 column">
-      <div class="row clearfix">
-        <div class="col-md-3 column">
-          <h3 class="well">
-            Email: <%= current_user.email %>
-          </h3>
-          </br>
-          <h3 class="well">
-            Organização: <%= current_user.organization unless !User.method_defined?(:organization) %>
-          </h3>
-          </br>
-          <%= render partial: 'user/tags/index' %>
-        </div>
-        <div id="publication-index" class="col-md-6 column">
-          <%= render partial: 'user/publications/index' %>
-        </div>
-        <div id="event-index" class="col-md-3 column">
-          <%= render partial: 'user/events/index' %>
-        </div>
-      </div>
+<div class="container" id="dashboard-container">
+<div class="row clearfix">
+    <div class="col-md-4">
+      <h3 class="italent-title">Email</h3>
+      <%= current_user.email %>
     </div>
+      <% unless !User.method_defined?(:organization) %>
+      <div class="col-md-4">
+        <h3 class="italent-title">Organization</h3>
+        <%= current_user.organization %>
+      </div>
+      <% end %>
+</div>
+</br>
+
+<div class="row clearfix">
+ <div class="col-md-4">
+  <h3 class="italent-title">
+    My Interests
+  </h3>
+      <%= render partial: 'user/tags/index' %>
+  </div>
+ </div>
+</br>
+
+<div class="row clearfix">
+  <div id="publication-index" class="col-md-6 column">
+  <h3> My Publications </h3>
+          <%= render partial: 'user/publications/index' %>
+  </div>
+  <div id="event-index" class="col-md-6 column">
+  <h3> My Events </h3>
+  <%= render partial: 'user/events/index' %>
+  </div>
+</div>
+
+      
+
 
     <div class="modal fade" id="new-publication-modal">
     <div class="modal-dialog">
@@ -48,5 +63,5 @@
     </div><!-- /.modal-dialog -->
   </div><!-- /.modal -->
   
-  </div>
+
 </div>

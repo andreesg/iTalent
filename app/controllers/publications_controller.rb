@@ -4,12 +4,17 @@ class PublicationsController < ApplicationController
   respond_to :html, :js
   
   def index
+
+    # @all_publications = Publication.all
+    # gon.watch.rabl "app/views/timeline/index.json.rabl", as: 'publications'
+
     @publications = nil
     unless params[:tags_ids].nil?
       @publications = Publication.includes(:tags).where({'tags.id' => params[:tags_ids]})
     else
       @publications = Publication.all
     end
+
   end
 
   def show
@@ -65,6 +70,10 @@ class PublicationsController < ApplicationController
         return head :forbidden
       end
     end
+  end
+
+  def load
+
   end
 
   private 

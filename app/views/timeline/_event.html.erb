@@ -1,10 +1,13 @@
+<div >
+  <h1><%=event.title%></h1>
+  <%=event.date_limit%>
 
+  <% event.tags.each do |tag| %>
+    <%= tag.name %>
+  <% end %>
 
-  <div >
-    <h1><%=event.title%></h1>
-    
-    <% event.tags.each do |tag| %>
-      <%= tag.name %>
-    <% end %>
+  <div id="attends-or-not-<%=event.id%>" class="btn-group">
+    <%= render 'event_attendees/show', :event => event %>
   </div>
-
+  
+</div>

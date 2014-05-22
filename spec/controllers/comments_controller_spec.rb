@@ -91,11 +91,6 @@ describe CommentsController do
               xhr :post, :create, comment: attributes_for(:invalid_comment), publication_id: @publication
             }.to_not change(Comment, :count)
           end
-
-          it "redirects the timeline index" do
-            xhr :post, :create, comment: attributes_for(:invalid_comment), publication_id: @publication
-            response.should redirect_to timeline_index_path
-          end
         end
       end # describe "when authenticated"
 
