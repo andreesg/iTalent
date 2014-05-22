@@ -1,0 +1,9 @@
+$("ul.errors").html("")
+<% if @publication.errors.any? %>
+  <% @publication.errors.full_messages.each do |message| %>
+    $("ul.errors").append($("<li />").html("<%= message.html_safe %>"))
+  <% end %>
+<% else %>
+  $("#publication-index").html("<%= escape_javascript(render 'index') %>")
+  $("#new-publication-modal").modal("hide")
+<% end %>

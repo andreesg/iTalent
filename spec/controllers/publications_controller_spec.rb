@@ -114,14 +114,14 @@ describe PublicationsController do
 					}.to change(Publication, :count).by(1)
 				end
 
-				it "redirects to the new publication" do
+				it "redirects to the timeline" do
 					post :create, publication: attributes_for(:publication)
-					response.should redirect_to Publication.last
+					response.should redirect_to timeline_index_path
 				end
 
 				it "the signed in user is used as the publication creator" do
 					post :create, publication: attributes_for(:publication)
-					assigns(:publication).creator.should eq @user
+					assigns(:new_publication).creator.should eq @user
 				end
 			end
 
@@ -132,9 +132,9 @@ describe PublicationsController do
 					}.to_not change(Publication, :count)
 				end
 
-				it "re-renders the :new template" do
+				it "re-renders the timeline index template" do
 					post :create, publication: attributes_for(:invalid_publication)
-					response.should render_template :new
+					response.should render_template 'timeline/index'
 				end
 			end
 		end
@@ -250,6 +250,8 @@ describe PublicationsController do
 	describe "DELETE #destroy" do
 		before :each do
 			@publication = create(:publication, creator: @user)
+			#create a single comment for the publication
+			create(:comment,publication:@publication,creator: @user)
 		end
 
 		describe "when authenticated" do
@@ -261,6 +263,18 @@ describe PublicationsController do
 				expect{
 					delete :destroy, id: @publication
 				}.to change(Publication, :count).by(-1)
+			end
+			
+			it "deletes the requested publication and also the comments" do
+				expect{
+					delete :destroy, id: @publication
+				}.to change(Publication, :count).by(-1) && change(Comment,:count).by(-@publication.comments.count)
+			end
+
+			it "deletes the requested publication with ajax" do
+				expect{
+					xhr :delete, :destroy, id: @publication
+				}.to change(Publication,:count).by(-1)
 			end
 
 			it "redirects to the '/' page" do

@@ -1,0 +1,67 @@
+<div class="container" id="dashboard-container">
+<div class="row clearfix">
+    <div class="col-md-4">
+      <h3 class="italent-title">Email</h3>
+      <%= current_user.email %>
+    </div>
+      <% unless !User.method_defined?(:organization) %>
+      <div class="col-md-4">
+        <h3 class="italent-title">Organization</h3>
+        <%= current_user.organization %>
+      </div>
+      <% end %>
+</div>
+</br>
+
+<div class="row clearfix">
+ <div class="col-md-4">
+  <h3 class="italent-title">
+    My Interests
+  </h3>
+      <%= render partial: 'user/tags/index' %>
+  </div>
+ </div>
+</br>
+
+<div class="row clearfix">
+  <div id="publication-index" class="col-md-6 column">
+  <h3> My Publications </h3>
+          <%= render partial: 'user/publications/index' %>
+  </div>
+  <div id="event-index" class="col-md-6 column">
+  <h3> My Events </h3>
+  <%= render partial: 'user/events/index' %>
+  </div>
+</div>
+
+      
+
+
+    <div class="modal fade" id="new-publication-modal">
+    <div class="modal-dialog">
+      <div class="modal-content form-bg">
+      
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+
+
+  <div class="modal fade" id="new-event-modal">
+    <div class="modal-dialog">
+      <div class="modal-content form-bg">
+      
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+
+
+  <div class="modal fade" id="user-edit-tags-modal">
+    <div class="modal-dialog">
+      <div class="modal-content form-bg">
+      
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+  
+
+</div>

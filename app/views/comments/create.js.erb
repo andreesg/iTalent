@@ -1,0 +1,16 @@
+
+<% if success %>
+  $("<%= escape_javascript( render 'timeline/comment', comment: @comment) %>")
+    .appendTo("#publication-<%= @publication.id %>-comments");
+
+  $("#publication-<%= @publication.id %>-new-comment input").val('')
+<% else %>
+  <% unless notice.nil? %>
+    $("#publication-<%= @publication.id %> > div.comment-errors").empty()
+    $("#publication-<%= @publication.id %> > div.comment-errors").append(
+      '<div  class="alert alert-danger  alert-dismissable">'+
+        '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>'+     
+        '<%= notice.full_messages.to_sentence %>'+
+      '</div>')
+  <% end %>
+<% end %>

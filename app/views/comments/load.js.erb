@@ -1,0 +1,3 @@
+
+$("<% @comments.each do |comment| %><%= escape_javascript( render 'timeline/comment', comment: comment) %><% end %>")
+    .prependTo("#publication-<%= @publication.id %>-comments");

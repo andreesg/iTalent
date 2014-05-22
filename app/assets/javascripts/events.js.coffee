@@ -3,5 +3,6 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 $(document).on 'ready page:load', ->
 	$('.datetimepicker').datetimepicker({
-	    format: 'hh:ii dd-mm-yyyy'
+      format: 'hh:ii dd-mm-yyyy',
+      autoclose: true
 	});

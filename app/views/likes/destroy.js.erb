@@ -1,0 +1,10 @@
+
+$("#publication-<%= @publication.id %>-like").empty()
+$("#publication-<%= @publication.id %>-like").append(
+	'<%= link_to publication_like_path(@publication), class: "btn-like", remote: true, method: :post do %>'+
+	'<% end %>')
+
+$("#publication-<%= @publication.id %>-likes-count").empty()
+if ( <%=@publication.likes.count%> > 0) {
+	$("#publication-<%= @publication.id %>-likes-count").append('<p><%= pluralize(@publication.likes.count, "person") %> <%= "like".pluralize(@publication.likes.count) %> this publication!</p>')
+}

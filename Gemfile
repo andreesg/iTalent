@@ -48,13 +48,17 @@ gem 'devise', '~> 3.2.4'
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
+gem 'will_paginate', '~> 3.0.5'
 gem 'bootstrap-sass', '~> 3.1.1.0'
+gem 'bootstrap-modal-rails', '~> 2.2.5'
 gem 'smalot-bootstrap-datetimepicker-rails'
 gem 'bootstrap-will_paginate', '0.0.9'
-gem 'date_validator', '~> 0.7.0'
+gem 'bootstrap-multiselect-rails', '~> 0.0.4'
 gem 'sprockets', '~> 2.11.0'
 
 group :development, :test do
+  gem "better_errors"
+  gem 'binding_of_caller'
   gem 'rspec-rails', '~> 2.14.2'
   # easy creation of the models. for testing purposes
   gem 'factory_girl_rails', '~> 4.4.1'
@@ -64,6 +68,9 @@ group :development, :test do
   gem 'spork-rails', '~> 4.0.0'
   gem 'guard-spork', '~> 1.5.1'
   gem 'childprocess', '~> 0.5.2'
+  #Livereload
+  gem 'rb-fsevent'
+  gem 'guard-livereload'
 end
 
 group :test do
@@ -71,6 +78,7 @@ group :test do
 	gem 'selenium-webdriver', '~> 2.41.0'
 	# simulates real user interactions with the app
 	gem 'capybara', '~> 2.2.1'
+  gem 'database_cleaner', '~> 1.2.0'
 
 end
 

@@ -4,8 +4,9 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
     :recoverable, :rememberable, :trackable, :validatable
 
-  has_many :created_publications
-  has_many :created_events
+	has_many :created_publications, class_name: "Publication", foreign_key: "creator_id"
+	has_many :created_events, class_name: "Event", foreign_key: "creator_id"
+	has_many :created_comments
 
   has_many :subscriptions, dependent: :destroy
   has_many :subscribed_tags, through: :subscriptions, source: :subscribed_tag
@@ -19,6 +20,8 @@ class User < ActiveRecord::Base
   has_one :user_statistic,:dependent => :destroy
   before_create :build_default_user_statistic
 
+  has_many :likes, dependent: :destroy
+  has_many :liked_publications, through: :like, source: :publication
 
   def subscribe(tag)
     subscriptions.create(tag_id: tag.id)
@@ -33,19 +36,26 @@ class User < ActiveRecord::Base
   end
 
   def attend(event)
-    update_attendee_stats() unless attending?(event)
-    event_attendees.create(event: event)
+    if event.max_attendees.nil? || event.max_attendees == 0 || event.num_attendings < event.max_attendees
+      update_attendee_stats() unless attending?(event)
+      event_attendees.find_or_create_by(event: event)
+    end
   end
+
   def attending?(event)
     event_attendees.find_by(event: event)
   end
+
 private
+
   def build_default_user_statistic
     build_user_statistic
     user_statistic.valid?
   end
+
   def update_attendee_stats
     user_statistic.change_events_attended_by(1)
     user_statistic.save!
   end
+
 end

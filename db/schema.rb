@@ -11,10 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140430080417) do
+ActiveRecord::Schema.define(version: 20140514160051) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "comments", force: true do |t|
+    t.string   "text",           limit: 500
+    t.integer  "publication_id"
+    t.integer  "creator_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "event_attendees", force: true do |t|
     t.integer  "attendee_id"
@@ -51,6 +59,8 @@ ActiveRecord::Schema.define(version: 20140430080417) do
     t.datetime "updated_at"
     t.datetime "date_start"
     t.integer  "creator_id"
+    t.datetime "date_end"
+    t.integer  "max_attendees"
   end
 
   add_index "events", ["creator_id"], name: "index_events_on_creator_id", using: :btree
@@ -62,6 +72,17 @@ ActiveRecord::Schema.define(version: 20140430080417) do
 
   add_index "events_tags", ["event_id"], name: "index_events_tags_on_event_id", using: :btree
   add_index "events_tags", ["tag_id"], name: "index_events_tags_on_tag_id", using: :btree
+
+  create_table "likes", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "publication_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "likes", ["publication_id"], name: "index_likes_on_publication_id", using: :btree
+  add_index "likes", ["user_id", "publication_id"], name: "index_likes_on_user_id_and_publication_id", unique: true, using: :btree
+  add_index "likes", ["user_id"], name: "index_likes_on_user_id", using: :btree
 
   create_table "publications", force: true do |t|
     t.text     "text"

@@ -1,3 +1,223 @@
-// Place all the styles related to the Timeline controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+.timeline
+{
+  list-style: none;
+  padding: 0;
+}
+.container{
+  width: 100% !important;
+  padding-right:0px; 
+  padding-left: 0px;
+}
+.posts
+{
+  overflow: hidden;
+  text-align: center;
+  background-color: #e8e4e1;
+  /*margin: 10px 1% 10px 1%;*/
+  /*margin: 10px 1% 10px 1%;*/
+  margin-left: auto; 
+  margin-right: auto;
+  position: relative;  
+   -webkit-box-shadow:0 2px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+       -moz-box-shadow:0 2px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+            box-shadow:0 2px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+
+    margin-top: 10px;
+    width: 80%;
+}
+
+.posts-title
+{
+  border: 1px solid #d6cfbf;
+  word-wrap: break-word;
+  padding: 10px;
+  color: #f7f7f7;
+  background-color: #424242;
+}
+
+.posts-title hr
+{
+  margin: 1px;
+}
+
+.posts-title h4
+{
+  text-align: left;
+  font-size: 16px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+
+.posts-title h5
+{
+  text-align: left;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  font-weight:500;
+  color: #ed9121;
+  font-family: "Roboto"
+}
+
+.posts-title h5:nth-child(2)
+{
+  text-align: left;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;  
+  font-size: 12px;
+  font-weight: normal;
+  font-style: italic;
+}
+
+.posts-title h5:nth-child(5)
+{
+  text-align: left;
+  padding-left: 10px;
+  padding-right: 10px;
+  font-size: 14px;
+  font-weight: normal;
+}
+
+.posts-title h5:nth-child(6)
+{
+  text-align: right;
+  padding-left: 10px;
+  padding-right: 10px;
+  font-size: 14px;
+  font-weight: 500;
+}
+.posts-title h6
+{
+  text-align: left;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 5px;
+  font-size: 10px;
+}
+.posts-title input
+{
+  width: 97%;
+  margin-bottom: 10px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.posts-title p
+{
+  font-size: 14px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 10px;
+  padding-bottom: 5px;
+}
+
+.posts-comments
+{
+  border: 1px solid #d6cfbf;
+  padding-left: 10px;
+  padding-right: 10px;
+  text-align: left;
+  width: 97%;
+  word-wrap: break-word;
+  max-height: 300px;
+  overflow-y: auto;
+  margin: auto;
+  color: #424242;
+  background-color: #ffffff;
+  -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+      border-radius: 5px; /* future proofing */
+
+}
+
+.posts-comments h5
+{
+  font-weight:bold;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 5px;
+  color: #424242; /*#517699*/
+}
+
+.posts-comments p
+{
+  margin-bottom: 10px;
+  padding-left: 10px;
+}
+
+.posts-comments h6
+{
+  text-align: right;
+  font-size: 10px;
+}
+
+.posts-comments hr
+{
+  margin: 2px;
+}
+.events{
+  margin-right: 0px;
+  padding-right:0px !important; 
+}
+.events-content 
+{
+  font-family: "Roboto",Frutiger, "Frutiger Linotype", Univers, Calibri, "Gill Sans", "Gill Sans MT", "Myriad Pro", Myriad, "DejaVu Sans Condensed", "Liberation Sans", "Nimbus Sans L", Tahoma, Geneva, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  color: #f7f7f7;
+  /*background-color:#EDEDED;*/
+  background-color: #4f5d73;
+  /*border:2px solid #666666;*/
+  line-height:1.3em;
+  margin-bottom: 20px ;
+  padding:10px;
+  text-align:center;
+  float: right;
+  -webkit-box-shadow: 0 7px 6px -6px #777;
+     -moz-box-shadow: 0 7px 6px -6px #777;
+          box-shadow: 0 7px 6px -6px #777;
+}
+
+.content-list
+ {
+  display: block;
+ }
+
+.content-buttons{
+  margin-left: 0px;
+  padding-left:0px !important;
+}
+
+.create-content 
+{
+  font-family: "Roboto",Frutiger, "Frutiger Linotype", Univers, Calibri, "Gill Sans", "Gill Sans MT", "Myriad Pro", Myriad, "DejaVu Sans Condensed", "Liberation Sans", "Nimbus Sans L", Tahoma, Geneva, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  color: #f7f7f7;
+  font-weight: 400;
+  cursor: hand;
+  cursor: pointer;
+  /*background-color:#EDEDED;*/
+  background-color: #424242;
+  line-height:1.3em;
+  margin-bottom: 20px ;
+  padding:10px;
+  text-align:center;
+  margin-left: 0px;
+  width: 60%;
+  -webkit-box-shadow: 0 7px 6px -6px #777;
+     -moz-box-shadow: 0 7px 6px -6px #777;
+          box-shadow: 0 7px 6px -6px #777;
+}
+
+.color-event{
+  background-color: #4f5d73;
+}
+.create-content:hover{
+  opacity: 0.9;
+}

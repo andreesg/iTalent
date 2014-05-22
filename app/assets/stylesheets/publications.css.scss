@@ -1,3 +1,39 @@
 // Place all the styles related to the Publications controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.btn-unlike{
+	background:url(/assets/unlikeW.png)no-repeat;
+	display: center;
+	margin: 10px;
+	margin-top: 0px;
+	margin-bottom: 0px;
+
+}
+.btn-like{
+	background:url(/assets/likeW.png)no-repeat;
+	display: center;
+	margin: 10px;
+	margin-top: 0px;
+	margin-bottom: 0px;
+}
+.btn-delete{
+	background:url(/assets/delete.png)no-repeat;
+	width: 18px;
+	height: 18px;
+	position: absolute;
+	top: 0px;
+	right: 0px;
+}
+.btn-delete-white{
+	background:url(/assets/deleteW.png)no-repeat;
+	width: 18px;
+	height: 18px;
+	position: absolute;
+	top: 0px;
+	right: 0px;
+}
+.inline-likes{
+	display: flex;
+	margin-top: 5px;
+}
