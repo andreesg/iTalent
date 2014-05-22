@@ -1,10 +1,22 @@
 
-
-  <div >
+<div class="post">
+  <div class="event-bubble">
     <%=event.title%>
-	
+    <%=event.date_limit%>
+    <%=event.date_start%>
+    <%=event.date_end%>
+    <div>
+      <%=event.max_attendees%>
+    </div>
+
     <% event.tags.each do |tag| %>
       <%= tag.name %>
     <% end %>
-  </div>
 
+    <div id="attends-or-not-<%=event.id%>" class="btn-group">
+    	<%= render 'event_attendees/show', :event => event %>
+    </div>
+
+
+  </div>
+</div>
