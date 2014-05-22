@@ -8,16 +8,16 @@
       <% end %>
       <h4><%= publication.text %></h4>
       <h6><%= publication.created_at %></h6>
-      <div id="publication-<%= publication.id %>-likes-count" class="inline-likes">
-        <% if publication.likes.count > 0 %>
-          <p><%= pluralize(publication.likes.count, 'person') %> <%= 'like'.pluralize(publication.likes.count) %> this publication!</p>
-        <% end %>
-      </div>
       <div id="publication-<%= publication.id %>-like" class="inline-likes">
         <% if liked_publication?(publication.id) %>
           <%= link_to '', publication_like_path(publication), class: "btn-unlike", remote: true, method: :delete %>
         <% else %>
           <%= link_to '', publication_like_path(publication), class: "btn-like", remote: true, method: :post %>
+        <% end %>
+      </div>
+      <div id="publication-<%= publication.id %>-likes-count" class="inline-likes">
+        <% if publication.likes.count > 0 %>
+          <p><%= pluralize(publication.likes.count, 'person') %> <%= 'like'.pluralize(publication.likes.count) %> this publication!</p>
         <% end %>
       </div>
       <div class="comment-errors"></div>
