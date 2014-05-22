@@ -1,8 +1,9 @@
 
 $("#publication-<%= @publication.id %>-like").empty()
 $("#publication-<%= @publication.id %>-like").append(
-	'<%= link_to publication_like_path(@publication), class: "btn-like", remote: true, method: :post do %>'+
-	'<% end %>')
+	'<%= link_to publication_like_path(@publication), class: "btn btn-default btn-likes", remote: true, method: :post do %>'+
+	"<span>Nice!</span>"
+	+'<% end %>')
 
 $("#publication-<%= @publication.id %>-likes-count").empty()
 if ( <%=@publication.likes.count%> > 0) {

@@ -31,8 +31,8 @@
   border: 1px solid #d6cfbf;
   word-wrap: break-word;
   padding: 10px;
-  color: #f7f7f7;
-  background-color: #424242;
+  color: #424242;
+  background-color: #ffffff;
 }
 
 .posts-title hr
@@ -129,7 +129,7 @@
   overflow-y: auto;
   margin: auto;
   color: #424242;
-  background-color: #ffffff;
+  background-color: #f7f7f7;
   -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
       border-radius: 5px; /* future proofing */
@@ -164,26 +164,39 @@
 .events{
   margin-right: 0px;
   padding-right:0px !important; 
+  
+  
+} 
+
+.events h1{
+  font-size: 16px;
 }
+
+
 .events-content 
 {
+  width: 70%;
+  float: right;
+  text-align: center;
   font-family: "Roboto",Frutiger, "Frutiger Linotype", Univers, Calibri, "Gill Sans", "Gill Sans MT", "Myriad Pro", Myriad, "DejaVu Sans Condensed", "Liberation Sans", "Nimbus Sans L", Tahoma, Geneva, "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 14px;
   font-weight: 400;
-  color: #f7f7f7;
+  color: #f7f7f7;  
+  cursor: hand;
+  cursor: pointer;
   /*background-color:#EDEDED;*/
   background-color: #4f5d73;
   /*border:2px solid #666666;*/
   line-height:1.3em;
   margin-bottom: 20px ;
   padding:10px;
-  text-align:center;
-  float: right;
   -webkit-box-shadow: 0 7px 6px -6px #777;
      -moz-box-shadow: 0 7px 6px -6px #777;
           box-shadow: 0 7px 6px -6px #777;
 }
-
+.events-content:hover{
+  opacity: 0.9;
+}
 .content-list
  {
   display: block;
