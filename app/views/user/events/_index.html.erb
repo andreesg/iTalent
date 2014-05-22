@@ -2,7 +2,7 @@
   <% current_user.created_events.each do |event| %>
   <div class="well">
     <div>
-      <h4>Title <%= event.title %></h4>
+      <h4><%= event.title %></h4>
       <p><%= event.date_start %></p>
       <ul>
         <% event.tags.each do |tag| %>
