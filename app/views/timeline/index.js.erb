@@ -1,0 +1,7 @@
+$('#publications').append('<%= j render partial: "publication", collection: @publications %>');
+<% if @publications.next_page %>
+  $('.pagination').replaceWith('<%= j will_paginate @publications %>');
+<% else %>
+  $(window).off('scroll');
+  $('.pagination').remove();
+<% end %>

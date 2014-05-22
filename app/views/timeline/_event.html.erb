@@ -6,9 +6,9 @@
     <%=event.date_start%>
     <%=event.date_end%>
     <div>
-    <%=event.max_attendees%>
+      <%=event.max_attendees%>
     </div>
-    
+
     <% event.tags.each do |tag| %>
       <%= tag.name %>
     <% end %>

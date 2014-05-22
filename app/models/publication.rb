@@ -1,5 +1,7 @@
 class Publication < ActiveRecord::Base
 
+	self.per_page = 5
+
 	# attribute to hold the comments
 	# this is a workaround for the pagination problem when loading 
 	# the comments for the paginated publications in the timeline

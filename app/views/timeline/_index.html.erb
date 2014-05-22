@@ -1,4 +1,5 @@
-<div class="container">
+<div class="row">
+  <div class="col-md-offset-3 col-md-6">
   <% if @new_publication.errors.any? %>
     <div class="alert alert-danger" id="error_explanation">
       <h2><%= pluralize(@new_publication.errors.count, "error") %> prohibited
@@ -21,35 +22,33 @@
       </ul>
     </div>
   <% end %>
-  <div class="col-md-3 column content-buttons">
-    <%= render '/publications/new_modal', publication: @new_publication %>
-    <%= render '/events/new_modal', event: @new_event %>
-    <ul class="content-list">
-      <li id="new-publication-btn" class="create-content ">
-        <div >New Publication</div>
-      </li>
-      <li id="new-event-btn" class="create-content color-event">
-        <div>New Event</div>
-      </li>
-    </ul>
   </div>
-  <div  class="col-md-6 column">
-    <ul class="timeline publication-timeline">
-      <div id="publications">
-        <% @publications.each do |publication| %>
-          <%= render partial: 'timeline/publication', locals: { publication: publication } %>
-        <% end %>
-      </div>
-      <% if @publications.next_page %>
-        <div id="publication-infinite-scrolling">
-          <%= will_paginate @publications %>
-        </div>
-      <% end %> 
-    </ul> 
+</div>
+
+<%= render '/publications/new_modal', publication: @new_publication %>
+<%= render '/events/new_modal', event: @new_event %>
+
+<div class="row">
+  <div class="col-sm-4 col-md-4 col-md-offset-4  timeline">
+    <div id="new-publication-btn"><%= image_tag( asset_path("add.png"), alt: "New publication", title: "Create new publication")%>
+    </div>
+    <br>
+
+    <% @publications.each do |publication| %>
+      <%= render partial: 'timeline/publication', locals: { publication: publication } %>
+    <% end %>
+
   </div>
-  <div class="col-md-3 col-ms-offset-2 events">
-    <ul>
-      <li >
+
+  <div class="col-sm-2 col-md-2 col-md-offset-1 timeline">
+  
+    <div id="new-event-btn"><%= image_tag( asset_path("add.png"), alt: "New event", title: "Create new event") %>
+    </div>
+    <br>
+    
+    <ul class="timeline-section">
+
+      <li class="timeline-title">
         <span class="fa-stack fa-lg hidden-xs">
           <i class="fa fa-circle fa-stack-2x"></i>
           <i class="fa fa-users fa-stack-1x fa-inverse"></i>
@@ -57,10 +56,11 @@
       </li>
 
       <% @events.each do |event| %>       
-        <li class="events-content">
+        <li>
           <%= render partial: 'timeline/event', locals: { event: event } %>
         </li>
       <% end %>     
     </ul>
-  </div> 
+  </div>
+
 </div>

@@ -1,5 +1,7 @@
 class Comment < ActiveRecord::Base
 
+	self.per_page = 5
+
 	belongs_to :creator, foreign_key: "creator_id", class_name: "User"
 	belongs_to :publication
 
