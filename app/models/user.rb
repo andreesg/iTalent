@@ -20,6 +20,14 @@ class User < ActiveRecord::Base
   has_many :likes, dependent: :destroy
   has_many :liked_publications, through: :like, source: :publication
 
+
+  validates :role, inclusion: { in: %w(basic admin),
+    message: "%{value} is not a role" }
+  
+  def role?(r)
+    role.include? r.to_s
+  end
+
   def subscribe(tag)
     subscriptions.create(tag_id: tag.id)
   end

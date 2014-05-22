@@ -37,6 +37,10 @@ Italentapp::Application.routes.draw do
         root to: 'dashboard#index', as: :user_root
       end
 
+      namespace :admin do
+        get '/dashboard', to: 'dashboard#index'
+      end
+
       root 'timeline#index', as: :authenticated_root
     end
 
