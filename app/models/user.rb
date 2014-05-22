@@ -17,6 +17,9 @@ class User < ActiveRecord::Base
   has_many :event_attendees, dependent: :destroy, foreign_key: "attendee_id"
   has_many :attending_events, through: :event_attendee, source: :event
 
+  has_one :user_statistic,:dependent => :destroy
+  before_create :build_default_user_statistic
+
   has_many :likes, dependent: :destroy
   has_many :liked_publications, through: :like, source: :publication
 
@@ -33,13 +36,26 @@ class User < ActiveRecord::Base
   end
 
   def attend(event)
-    if event.max_attendees==0 || event.num_attendings < event.max_attendees
+    if event.max_attendees.nil? || event.max_attendees == 0 || event.num_attendings < event.max_attendees
+      update_attendee_stats() unless attending?(event)
       event_attendees.find_or_create_by(event: event)
     end
   end
 
   def attending?(event)
     event_attendees.find_by(event: event)
+  end
+
+private
+
+  def build_default_user_statistic
+    build_user_statistic
+    user_statistic.valid?
+  end
+
+  def update_attendee_stats
+    user_statistic.change_events_attended_by(1)
+    user_statistic.save!
   end
 
 end

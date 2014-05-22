@@ -1,64 +1,66 @@
 <div class="container">
-        <% if @new_publication.errors.any? %>
-          <div class="alert alert-danger" id="error_explanation">
-            <h2><%= pluralize(@new_publication.errors.count, "error") %> prohibited
-              this publication from being saved:</h2>
-            <ul>
-              <% @new_publication.errors.full_messages.each do |msg| %>
-                <li><%= msg %></li>
-              <% end %>
-            </ul>
-          </div>
+  <% if @new_publication.errors.any? %>
+    <div class="alert alert-danger" id="error_explanation">
+      <h2><%= pluralize(@new_publication.errors.count, "error") %> prohibited
+        this publication from being saved:</h2>
+      <ul>
+        <% @new_publication.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
         <% end %>
-        <% if @new_event.errors.any? %>
-          <div class="alert alert-danger" id="error_explanation">
-            <h2><%= pluralize(@new_event.errors.count, "error") %> prohibited
-              this event from being saved:</h2>
-            <ul>
-              <% @new_event.errors.full_messages.each do |msg| %>
-                <li><%= msg %></li>
-              <% end %>
-            </ul>
-          </div>
+      </ul>
+    </div>
+  <% end %>
+  <% if @new_event.errors.any? %>
+    <div class="alert alert-danger" id="error_explanation">
+      <h2><%= pluralize(@new_event.errors.count, "error") %> prohibited
+        this event from being saved:</h2>
+      <ul>
+        <% @new_event.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
         <% end %>
-        <div class="col-md-3 column content-buttons">
-          <%= render '/publications/new_modal', publication: @new_publication %>
-          <%= render '/events/new_modal', event: @new_event %>
-          <ul class="content-list">
-            <li id="new-publication-btn" class="create-content ">
-              <div >New Publication</div>
-            </li>
-            <li id="new-event-btn" class="create-content color-event">
-              <div >New Event</div>
-            </li>
-          </ul>
+      </ul>
+    </div>
+  <% end %>
+  <div class="col-md-3 column content-buttons">
+    <%= render '/publications/new_modal', publication: @new_publication %>
+    <%= render '/events/new_modal', event: @new_event %>
+    <ul class="content-list">
+      <li id="new-publication-btn" class="create-content ">
+        <div >New Publication</div>
+      </li>
+      <li id="new-event-btn" class="create-content color-event">
+        <div>New Event</div>
+      </li>
+    </ul>
+  </div>
+  <div  class="col-md-6 column">
+    <ul class="timeline publication-timeline">
+      <div id="publications">
+        <% @publications.each do |publication| %>
+          <%= render partial: 'timeline/publication', locals: { publication: publication } %>
+        <% end %>
+      </div>
+      <% if @publications.next_page %>
+        <div id="publication-infinite-scrolling">
+          <%= will_paginate @publications %>
         </div>
-        <div  class="col-md-6 column">
-          <ul class="timeline">
-            <% @new_event.errors.full_messages.each do |msg| %>
-              <li ><%= msg %></li>
-            <% end %>
-            <% @publications.each do |publication| %>
-              <%= render partial: 'timeline/publication', locals: { publication: publication } %>
-            <% end %>   
-                    
-        </div>
-        <div class="col-md-3 col-ms-offset-2 events">
-          <ul>
-            <li >
-              <span class="fa-stack fa-lg hidden-xs">
-                <i class="fa fa-circle fa-stack-2x"></i>
-                <i class="fa fa-users fa-stack-1x fa-inverse"></i>
-              </span>
-            </li>
+      <% end %> 
+    </ul> 
+  </div>
+  <div class="col-md-3 col-ms-offset-2 events">
+    <ul>
+      <li >
+        <span class="fa-stack fa-lg hidden-xs">
+          <i class="fa fa-circle fa-stack-2x"></i>
+          <i class="fa fa-users fa-stack-1x fa-inverse"></i>
+        </span>
+      </li>
 
-            <% @events.each do |event| %>       
-              <li class="events-content ">
-                <%= render partial: 'timeline/event', locals: { event: event } %>
-              </li>
-            <% end %>     
-          </ul>
+      <% @events.each do |event| %>       
+        <li class="events-content">
+          <%= render partial: 'timeline/event', locals: { event: event } %>
+        </li>
+      <% end %>     
+    </ul>
   </div> 
 </div>
-
-

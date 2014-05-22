@@ -5,7 +5,10 @@ Italentapp::Application.routes.draw do
   
   resources :publications do
     resource :like, only: [:create, :destroy] # singular resource. the user always likes from his account
-    resources :comments
+    resources :comments do
+      post 'load', on: :collection
+    end
+    post 'load', on: :collection
   end
 
   resources :subscriptions, only: [:create, :destroy]
