@@ -10,6 +10,7 @@ FactoryGirl.define do
     email
     password "123456789"
     role "basic"
+    association :organization
 
     #used for authentication in tests
     factory :regular_user do
@@ -17,6 +18,8 @@ FactoryGirl.define do
       email "user@italent.com"
       password "i"*8
       password_confirmation "i"*8
+      role "basic"
+      association :organization
     end
 
     factory :invalid_user do
