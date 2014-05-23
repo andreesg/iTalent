@@ -1,0 +1,26 @@
+<%= form_for([:admin, @user], method: :patch) do |u| %>
+
+  <div class="form-group">
+    <%= u.label :name %>
+    <p><%= u.text_field :name, class: "form-control"%></p>
+  </div>
+  <div class="form-group">
+    <%= u.label :email %>
+    <p><%= u.email_field :email, class: "form-control"%></p>
+  </div>
+  <div class="form-group">
+    <%= u.label :password %>
+    <p><%= u.password_field :password, class: "form-control" %></p>
+  </div>
+  <div class="form-group">
+    <%= u.label :password_confirmation %>
+    <p><%= u.text_field :password_confirmation, class: "form-control" %></p>
+  </div>
+  <div class="form-group">
+    <%= u.label :organization %>
+    <%= collection_select :user, :organization_id, Organization.all, :id, :name, {:include_hidden => false} %>
+  </div>
+  </div>
+
+  <%= u.submit "Update", class: "btn btn-primary", id: "update-admin-user-btn" %>
+<% end %>

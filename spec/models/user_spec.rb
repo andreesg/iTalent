@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe User do
 
-  before do
+  before :each do
     @user = create(:user)
   end
 
@@ -60,7 +60,8 @@ describe User do
 
   describe "destroying user" do
     it "should destroy his subscriptions" do
-      expect { @user.destroy }.to change(Subscription,:count).by(@user.subscriptions.count)
+      num_subscriptions = @user.subscriptions.count
+      expect { @user.destroy }.to change(Subscription,:count).by(num_subscriptions)
     end
   end
 
@@ -93,6 +94,10 @@ describe User do
         @user.attending?(event).should_not eq nil
       end
     end
+  end
+
+  after :each do
+    @user.destroy
   end
 
 

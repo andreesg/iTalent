@@ -6,10 +6,14 @@
 		</div>
 	<% end %>
 	<div class="chat-bubble">
-		<%= image_tag asset_path("logo2.png"), alt: "iTalent" %>		
+		<%= image_tag asset_path("logo2.png"), alt: "iTalent" %>
 
 		<div class= "input-boxes">
-		<%= f.email_field :email, autofocus: true, placeholder:'email'%>
+			<%= f.text_field :name, autofocus: true, placeholder:'name'%>
+		</div>		
+
+		<div class= "input-boxes">
+			<%= f.email_field :email, autofocus: true, placeholder:'email'%>
 		</div>
 
 		<div  class= "input-boxes">
@@ -19,6 +23,10 @@
 		<div  class= "input-boxes" >
 			<%= f.password_field :password_confirmation, autocomplete: "off", placeholder:'password confirmation' %>
 		</div>
+
+		<div  class= "input-boxes" >
+			<%= collection_select resource_name, :organization_id, Organization.all, :id, :name, {:include_hidden => false} %>
+		</div>
 		<br>
 
 		 <div  class= "input-boxes">
@@ -27,7 +35,6 @@
 	 	<div  class= "input-boxes">
 	 		<%=link_to "Back", new_user_session_path %>	
 		</div>
-	<!--<%= render "devise/shared/links" %>-->
 		<div class="chat-bubble-arrow-border">
 		</div>
 		<div class="chat-bubble-arrow">

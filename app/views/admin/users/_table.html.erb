@@ -1,0 +1,67 @@
+<div class="well">
+    <div class="page-header">
+      <h1 class="text-center">Users</h1>
+    </div>
+    <div class="page-header">
+      <h3 class="text-center">
+        <% if false %>
+          <%= link_to 'Add new', new_admin_user_path, :class => "btn-success" %>
+        <% end %>
+      </h3>
+    </div>
+    <table id="admin-users-table" class="table table-striped">
+      <thead>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Publications</th>
+        <th>Comments</th>
+        <th>Likes</th>
+        <th>Events created</th>
+        <th>Events attended</th>
+        <th>Interests</th>
+        <th></th>
+      </thead>
+      <tbody>
+        <% @users.each do |user| %>
+          <tr>
+            <td><%= user.id %></td>
+            <td><%= user.name %></td>
+            <td><%= user.created_publications.count %></td>
+            <td><%= user.created_comments.count %></td>
+            <td><%= user.likes.count %></td>
+            <td><%= user.created_events.count %></td>
+            <td><%= user.attending_events.count %></td>
+            <td><%= user.subscriptions.count %></td>
+            <td>
+              <div class="btn-toolbar">
+                <div class="btn-group">
+                  <%= link_to admin_user_path(user), :class => "btn"  do %>
+                    <%= content_tag :span, "", :class => "glyphicon glyphicon-eye-open" %>
+                  <% end %>
+                  <% if false %>
+                    <%= link_to edit_admin_user_path(user), :class => "btn"  do %>
+                      <%= content_tag :span, "", :class => "glyphicon glyphicon-pencil" %>
+                    <% end %>
+                  <% end %>
+                  <%= link_to admin_user_path(user), :class => "btn", :data => { :confirm => 'Are you sure?' }, method: :delete  do %>
+                      <%= content_tag :span, "", :class => "glyphicon glyphicon-remove" %>
+                  <% end %>
+                </div>
+              </div>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+</div>
+
+
+<%= javascript_tag do %>
+
+  $(document).ready(function() {
+    $("#admin-users-table").dataTable({
+      "sPaginationType": "bootstrap",
+    });
+  });
+
+<% end %>
