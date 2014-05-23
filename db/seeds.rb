@@ -14,32 +14,57 @@
 #   )
 # end
 
+org1 = Organization.create!(
+    name: "iTGrow"
+)
+
+org2 = Organization.create!(
+    name: "Critical Software"
+)
+
 User.create!(
+    name: "Gonçalo Pereira",
     email: "pereira@itgrow.com",
     password: "12345678",
     password_confirmation: "12345678",
-    role: "admin"
+    role: "admin",
+    organization_id: org1.id
 )
 
 User.create!(
+    name: "Gonçalo Palaio",
     email: "palaio@itgrow.com",
     password: "12345678",
     password_confirmation: "12345678",
-    role: "admin"
+    role: "admin",
+    organization_id: org1.id
 )
 
 User.create!(
+    name: "Ana Laranjeira",
     email: "laranjeira@itgrow.com",
     password: "12345678",
     password_confirmation: "12345678",
-    role: "admin"
+    role: "admin",
+    organization_id: org2.id
 )
 
 User.create!(
+    name: "Miguel Bernardes",
     email: "bernardes@itgrow.com",
     password: "12345678",
     password_confirmation: "12345678",
-    role: "admin"
+    role: "admin",
+    organization_id: org2.id
+)
+
+User.create!(
+    name: "João Costa",
+    email: "costa@itgrow.com",
+    password: "12345678",
+    password_confirmation: "12345678",
+    role: "admin",
+    organization_id: org2.id
 )
 
 # 10.times do |i|

@@ -22,28 +22,35 @@ class User < ActiveRecord::Base
   has_many :attending_events, through: :event_attendees, source: :event
 
   has_one :user_statistic,:dependent => :destroy
-  before_create :build_default_user_statistic
 
   has_many :likes, dependent: :destroy
   has_many :liked_publications, through: :like, source: :publication
 
-  has_many :access_logs
+  has_many :access_logs, dependent: :destroy
 
   belongs_to :organization
 
-
+  before_validation :ensure_role
+  before_create :build_default_user_statistic
   before_create :ensure_name
 
-
+  validates :name, presence: true
   validates :role, inclusion: { in: %w(basic admin),
     message: "%{value} is not a role" }
+  validates :organization_id, presence: true
+
+
   
   def role?(r)
     role.include? r.to_s
   end
 
   def ensure_name
-    self.name = email.split("@")[0]
+    self.name = email.split("@")[0] if name.nil?
+  end
+
+  def ensure_role
+    self.role = "basic" if role.nil?
   end
 
   def subscribe(tag)
