@@ -8,6 +8,7 @@ FactoryGirl.define do
   factory :user, aliases: [:creator] do
     email
     password "123456789"
+    role "basic"
 
     #used for authentication in tests
     factory :regular_user do

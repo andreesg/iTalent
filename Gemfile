@@ -54,6 +54,9 @@ gem 'smalot-bootstrap-datetimepicker-rails'
 gem 'bootstrap-will_paginate', '0.0.9'
 gem 'bootstrap-multiselect-rails', '~> 0.0.4'
 gem 'sprockets', '~> 2.11.0'
+gem 'chartkick', '~> 1.2.4'
+gem 'groupdate', '~> 2.1.1'
+gem 'jquery-datatables-rails', '~> 1.12.2'
 
 group :development, :test do
   gem "better_errors"

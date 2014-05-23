@@ -1,0 +1,13 @@
+<%= form_for([:admin, @tag]) do |t| %>
+
+  <div class="row">
+    <div class="col-md-6">
+      <div class="form-group">
+        <%= t.label :name %>
+        <p><%= t.text_field :name, class: "form-control"%></p>
+      </div>
+    </div>
+  </div>
+
+  <%= t.submit "Create", class: "btn btn-primary", id: "create-admin-user-btn" %>
+<% end %>

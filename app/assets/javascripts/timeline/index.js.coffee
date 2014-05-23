@@ -10,9 +10,3 @@ showPublicationModal = () ->
 
 showEventModal = () -> 
 	$('#new-event-modal').modal('show')
-
-$(document).on "page:change", ->
-  $("a[data-publication-id data-comment-id]").click ->
-  	publication_id = $(this).data("publication-id")
-  	comment_id = $(this).data("comment-id")
-  	

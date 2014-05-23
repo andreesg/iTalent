@@ -17,5 +17,7 @@
 //= require bootstrap/modal
 //= require bootstrap-datetimepicker
 //= require bootstrap-multiselect
+//= require dataTables/jquery.dataTables
+//= require dataTables/jquery.dataTables.bootstrap3
 //= require_tree .
 

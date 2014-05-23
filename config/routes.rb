@@ -38,7 +38,9 @@ Italentapp::Application.routes.draw do
       end
 
       namespace :admin do
-        get '/dashboard', to: 'dashboard#index'
+        resources :tags
+        resources :users
+        root 'users#index', as: :admin_root
       end
 
       root 'timeline#index', as: :authenticated_root
