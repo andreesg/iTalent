@@ -9,7 +9,8 @@ class User < ActiveRecord::Base
                                   dependent: :destroy
 	has_many :created_events, class_name: "Event", foreign_key: "creator_id",
                             dependent: :destroy
-	has_many :created_comments, dependent: :destroy
+	has_many :created_comments, class_name: "Event", foreign_key: "creator_id",
+                            dependent: :destroy
 
   has_many :subscriptions, dependent: :destroy
   has_many :subscribed_tags, through: :subscriptions, source: :subscribed_tag
