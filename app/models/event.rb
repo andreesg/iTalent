@@ -1,7 +1,7 @@
 class Event < ActiveRecord::Base
 
 	has_many :event_attendees, dependent: :destroy, foreign_key: "event_id"
-	has_many :attendees, through: :event_attendee, source: :attendee
+	has_many :attendees, through: :event_attendees, source: :attendee
 
 	before_validation :default_values
 	
@@ -20,10 +20,8 @@ class Event < ActiveRecord::Base
 	validates :tags, presence: true
 	validates :creator, presence: true
 
-
-
 	has_many :event_invitations, dependent: :destroy, foreign_key: "event_id"
-	has_many :invitees, through: :event_invitation, source: :invitee
+	has_many :invitees, through: :event_invitations, source: :invitee
 
 	def invite(user)
 		self.event_invitations.create(invitee: user)

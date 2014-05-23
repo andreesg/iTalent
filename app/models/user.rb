@@ -6,19 +6,26 @@ class User < ActiveRecord::Base
 
 	has_many :created_publications, class_name: "Publication", foreign_key: "creator_id"
 	has_many :created_events, class_name: "Event", foreign_key: "creator_id"
-	has_many :created_comments
+	has_many :created_comments, class_name: "Comment", foreign_key: "creator_id"
 
   has_many :subscriptions, dependent: :destroy
   has_many :subscribed_tags, through: :subscriptions, source: :subscribed_tag
 
   has_many :event_invitations, dependent: :destroy, foreign_key: "invitee_id"
-  has_many :events_invited, through: :event_invitation, source: :event
+  has_many :events_invited, through: :event_invitations, source: :event
 
   has_many :event_attendees, dependent: :destroy, foreign_key: "attendee_id"
-  has_many :attending_events, through: :event_attendee, source: :event
+  has_many :attending_events, through: :event_attendees, source: :event
 
   has_many :likes, dependent: :destroy
   has_many :liked_publications, through: :like, source: :publication
+
+  has_many :access_logs
+
+  belongs_to :organization
+
+
+  before_create :ensure_name
 
 
   validates :role, inclusion: { in: %w(basic admin),
@@ -26,6 +33,10 @@ class User < ActiveRecord::Base
   
   def role?(r)
     role.include? r.to_s
+  end
+
+  def ensure_name
+    self.name = email.split("@")[0]
   end
 
   def subscribe(tag)
