@@ -1,0 +1,60 @@
+<div class="well" id="admin-user-show-partial">
+  <div class="page-header">
+    <h1 class="text-center"><%= @user.name %></h1>
+  </div>
+  <table class="table table-striped">
+    <thead>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Organization</th>
+      <th>Publications</th>
+      <th>Comments</th>
+      <th>Likes</th>
+      <th>Events created</th>
+      <th>Events attended</th>
+      <th>Interests</th>
+      <th></th>
+    </thead>
+    <tbody>
+      <tr>
+        <td><%= @user.id %></td>
+        <td><%= @user.name %></td>
+        <td><%= @user.organization.name %></td>
+        <td><%= @user.created_publications.count %></td>
+        <td><%= @user.created_comments.count %></td>
+        <td><%= @user.likes.count %></td>
+        <td><%= @user.created_events.count %></td>
+        <td><%= @user.attending_events.count %></td>
+        <td><%= @user.subscriptions.count %></td>
+        <td>
+          <div class="btn-toolbar">
+            <div class="btn-group">
+              <%= link_to admin_user_path(@user), :class => "btn"  do %>
+                <%= content_tag :span, "", :class => "glyphicon glyphicon-eye-open" %>
+              <% end %>
+              <%= link_to edit_admin_user_path(@user), :class => "btn"  do %>
+                <%= content_tag :span, "", :class => "glyphicon glyphicon-pencil" %>
+              <% end %>
+              <%= link_to admin_user_path(@user), :class => "btn", :data => { :confirm => 'Are you sure?' }, method: :delete  do %>
+                <%= content_tag :span, "", :class => "glyphicon glyphicon-remove" %>
+              <% end %>
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div>
+<h1>Interests:</h1>
+<% @user.subscribed_tags.each do |tag| %>
+  <%= tag.name %>
+<% end %>
+</div>
+</br>
+</br>
+</br>
+</br>
+<h1>Activity of last month:</h1>
+  <%= line_chart @user.access_logs.group_by_day(:created_at, range: 1.month.ago.midnight..Time.now).count %>
+</div>

@@ -1,0 +1,9 @@
+<%= form_for([:admin, @tag], method: :patch) do |t| %>
+
+  <div class="form-group">
+    <%= t.label :name %>
+    <p><%= t.text_field :name, class: "form-control"%></p>
+  </div>
+
+  <%= t.submit "Update", class: "btn btn-primary", id: "update-admin-tag-btn" %>
+<% end %>
