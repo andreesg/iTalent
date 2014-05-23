@@ -11,6 +11,7 @@
 		<% if user_signed_in? %>
 		<p ><%= current_user.email %> 
 			<%= link_to "Sign out", destroy_user_session_path, method: :delete %>
+			<%= link_to "Personal Area", user_dashboard_path %>
 			<%= link_to "Administration", admin_users_path if current_user.role?(:admin) %></p>
 
 		
