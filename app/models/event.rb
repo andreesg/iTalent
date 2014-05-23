@@ -4,6 +4,7 @@ class Event < ActiveRecord::Base
 	has_many :attendees, through: :event_attendees, source: :attendee
 
 	before_validation :default_values
+  after_create :update_event_stats
 	
 	has_and_belongs_to_many :tags
 	belongs_to :creator, foreign_key: "creator_id", class_name: "User"
