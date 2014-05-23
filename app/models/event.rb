@@ -27,19 +27,23 @@ class Event < ActiveRecord::Base
 		self.event_invitations.create(invitee: user)
 	end
 
-	def invited?(user)
-		self.event_invitations.find_by(invitee: user)
-	end
+  def invited?(user)
+    self.event_invitations.find_by(invitee: user)
+  end
 
-	private
-		def default_values
-			self.num_attendings = 0 if self.num_attendings.nil?
-			self.num_invitations = 0 if self.num_invitations.nil?
-			self.max_attendees = 0 if self.max_attendees.nil?
-		end
+private
+  def default_values
+    self.num_attendings = 0 if self.num_attendings.nil?
+    self.num_invitations = 0 if self.num_invitations.nil?
+    self.max_attendees = 0 if self.max_attendees.nil?
+  end
 
+  def update_event_stats
+    creator.user_statistic.change_events_created_by(1)
+    creator.user_statistic.save!
+  end
 
-	def date_end_after_date_start
+  def date_end_after_date_start
     return if date_end.blank? || date_start.blank? || date_limit.blank?
    
     if date_end < date_start

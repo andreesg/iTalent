@@ -129,7 +129,7 @@ e.save!
 #   e.save!
 # end
 
-
+# - 1
 e = Publication.new(
     text: "Nova versao de Rails!",
   )
@@ -143,6 +143,7 @@ c.creator = User.order("random()").limit(1).to_a.first
 c.publication = e
 c.save!
 
+# - 2
 e = Publication.new(
     text: "Parabens a todos! Ganhamos o prémio de melhor empresa do ano!",
   )
@@ -156,6 +157,7 @@ c.creator = User.order("random()").limit(1).to_a.first
 c.publication = e
 c.save!
 
+# - 3
 e = Publication.new(
     text: "Quem é que sabe programar em RubyOnRails?",
   )
@@ -169,6 +171,7 @@ c.creator = User.order("random()").limit(1).to_a.first
 c.publication = e
 c.save!
 
+# - 4
 e = Publication.new(
     text: "Publiquei um artigo científico. Vejam o link...",
   )
@@ -177,7 +180,49 @@ e.creator = User.order("random()").limit(1).to_a.first
 e.tags << Tag.order("random()").limit(2)
 e.save!
 
-c = Comment.new(text: "cena")
+c = Comment.new(text: "Bela merda...")
+c.creator = User.order("random()").limit(1).to_a.first
+c.publication = e
+c.save!
+
+# - 5
+e = Publication.new(
+    text: "Oh pra min já sei programar...",
+  )
+
+e.creator = User.order("random()").limit(1).to_a.first
+e.tags << Tag.order("random()").limit(2)
+e.save!
+
+c = Comment.new(text: "Ai sim??")
+c.creator = User.order("random()").limit(1).to_a.first
+c.publication = e
+c.save!
+
+# - 6
+e = Publication.new(
+    text: "Ole ole.",
+  )
+
+e.creator = User.order("random()").limit(1).to_a.first
+e.tags << Tag.order("random()").limit(2)
+e.save!
+
+c = Comment.new(text: "Coisito")
+c.creator = User.order("random()").limit(1).to_a.first
+c.publication = e
+c.save!
+
+# - 6
+e = Publication.new(
+    text: "Hoje fui a vila e vi...",
+  )
+
+e.creator = User.order("random()").limit(1).to_a.first
+e.tags << Tag.order("random()").limit(2)
+e.save!
+
+c = Comment.new(text: "Viste o que?")
 c.creator = User.order("random()").limit(1).to_a.first
 c.publication = e
 c.save!

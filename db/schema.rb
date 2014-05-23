@@ -134,6 +134,15 @@ ActiveRecord::Schema.define(version: 20140522232656) do
 
   add_index "tags", ["name"], name: "index_tags_on_name", unique: true, using: :btree
 
+  create_table "user_statistics", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "number_events_created",       default: 0
+    t.integer  "number_events_attended",      default: 0
+    t.integer  "number_publications_created", default: 0
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false

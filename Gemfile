@@ -48,6 +48,7 @@ gem 'devise', '~> 3.2.4'
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
+gem 'will_paginate', '~> 3.0.5'
 gem 'bootstrap-sass', '~> 3.1.1.0'
 gem 'bootstrap-modal-rails', '~> 2.2.5'
 gem 'smalot-bootstrap-datetimepicker-rails'
@@ -70,6 +71,9 @@ group :development, :test do
   gem 'spork-rails', '~> 4.0.0'
   gem 'guard-spork', '~> 1.5.1'
   gem 'childprocess', '~> 0.5.2'
+  #Livereload
+  gem 'rb-fsevent'
+  gem 'guard-livereload'
 end
 
 group :test do

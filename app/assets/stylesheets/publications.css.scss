@@ -2,20 +2,14 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.btn-unlike{
-	background:url(/assets/unlikeW.png)no-repeat;
-	display: center;
-	margin: 10px;
-	margin-top: 0px;
-	margin-bottom: 0px;
-
+.btn-likes {
+	margin-left: 9px;
+	font-family: "Roboto",Frutiger, "Frutiger Linotype", Univers, Calibri, "Gill Sans", "Gill Sans MT", "Myriad Pro", Myriad, "DejaVu Sans Condensed", "Liberation Sans", "Nimbus Sans L", Tahoma, Geneva, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  
 }
-.btn-like{
-	background:url(/assets/likeW.png)no-repeat;
-	display: center;
-	margin: 10px;
-	margin-top: 0px;
-	margin-bottom: 0px;
+.btn-likes span{
+	vertical-align: center;
+	display: block;
 }
 .btn-delete{
 	background:url(/assets/delete.png)no-repeat;
@@ -26,7 +20,7 @@
 	right: 0px;
 }
 .btn-delete-white{
-	background:url(/assets/deleteW.png)no-repeat;
+	background:url(/assets/delete.png)no-repeat;
 	width: 18px;
 	height: 18px;
 	position: absolute;
@@ -35,5 +29,5 @@
 }
 .inline-likes{
 	display: flex;
-	margin-top: 5px;
+	margin-bottom: 5px;
 }

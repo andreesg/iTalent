@@ -8,8 +8,11 @@ class EventAttendeesController < ApplicationController
 			return
 		end
 		@event = Event.find(params[:event_id])
-		current_user.attend(@event)
-		redirect_to authenticated_root_path
+		respond_to do |format|
+			current_user.attend(@event)
+			format.html { redirect_to authenticated_root_path, notice: 'Marked as attending' }
+			format.js   {}
+		end
 	end
 
 	def destroy
@@ -17,9 +20,17 @@ class EventAttendeesController < ApplicationController
 			redirect_to authenticated_root_path
 			return
 		end
-		@event_attendee = EventAttendee.find(params[:id])
-		@event_attendee.destroy unless @event_attendee.nil? or @event_attendee.attendee != current_user
-		redirect_to authenticated_root_path
+		@event_attendee = EventAttendee.find(params[:id])	
+		respond_to do |format|
+			if not @event_attendee.nil? && @event_attendee.attendee == current_user
+				@event_attendee.destroy
+				@event=@event_attendee.event
+				format.html { redirect_to authenticated_root_path, notice: 'Marked as not attending' }
+				format.js   {}
+			else
+				redirect_to authenticated_root_path				
+			end
+		end
 	end
 
 end
