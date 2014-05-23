@@ -17,25 +17,29 @@
 User.create!(
     email: "pereira@itgrow.com",
     password: "12345678",
-    password_confirmation: "12345678"
+    password_confirmation: "12345678",
+    role: "admin"
 )
 
 User.create!(
     email: "palaio@itgrow.com",
     password: "12345678",
-    password_confirmation: "12345678"
+    password_confirmation: "12345678",
+    role: "admin"
 )
 
 User.create!(
     email: "laranjeira@itgrow.com",
     password: "12345678",
-    password_confirmation: "12345678"
+    password_confirmation: "12345678",
+    role: "admin"
 )
 
 User.create!(
     email: "bernardes@itgrow.com",
     password: "12345678",
-    password_confirmation: "12345678"
+    password_confirmation: "12345678",
+    role: "admin"
 )
 
 # 10.times do |i|
