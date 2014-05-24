@@ -55,11 +55,12 @@
           <i class="fa fa-users fa-stack-1x fa-inverse"></i>
         </span>
       </li>
-
-      <% @events.each do |event| %>       
+      <% @events.each do |event| %>      
         <li class="events-content">
-          <%= render partial: 'timeline/event', locals: { event: event } %>
-        </li>
+          <%= link_to event_path(event) do %> 
+            <%= render partial: 'timeline/event', locals: { event: event } %>
+          <% end %>
+        </li>    
       <% end %>     
     </ul>
   </div> 
