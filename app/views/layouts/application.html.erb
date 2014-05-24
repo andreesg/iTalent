@@ -10,7 +10,9 @@
 	<link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
 </head>
 <body class="<%= params[:controller] %>">
-	<%= render partial: 'layouts/header' if user_signed_in? %>
+	<div class="container header">
+		<%= render partial: 'layouts/header' if user_signed_in? %>
+	</div>
 
 	<div class="container">
 		<% unless notice.nil? %>
