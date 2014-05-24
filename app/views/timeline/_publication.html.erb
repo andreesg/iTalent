@@ -2,11 +2,13 @@
   <li class="posts" >
       <div class="posts-title">
         <h5><%= publication.creator.email %></h5>
-        <% publication.tags.each do |tag| %>
-          <h5><%= tag.name %></h5>
-        <% end %>
-        <h4><%= publication.text %></h4>
         <h6><%= publication.created_at %></h6>
+        <h4><%= publication.text %></h4>
+        <ul class="tag-container">
+          <% publication.tags.each do |tag| %>
+          <li><%= tag.name %></li>
+        <% end %>
+        </ul>
         <div id="publication-<%= publication.id %>-like" class="inline-likes">
           <% if liked_publication?(publication.id) %>
             <%= link_to 'Not nice!', publication_like_path(publication), class: "btn btn-default btn-likes",remote: true, method: :delete %>
@@ -19,6 +21,7 @@
             <p><%= pluralize(publication.likes.count, 'person') %> <%= 'like'.pluralize(publication.likes.count) %> this publication!</p>
           <% end %>
         </div>
+        
         <% if publication.creator == current_user %>
           <div>
             <%= link_to '', [publication],
