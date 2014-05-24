@@ -1,8 +1,9 @@
-
-<%= f.text_field :text, class: 'form-control ' %>
-
+<%= f.label 'Content' %>
+<%= f.text_field :text, class: 'form-control ',placeholder:'Type your content here...' %>
+<br>
+<%= f.label 'Tags' %>
+<br>
 <%= collection_select :publication, :tags, Tag.all, :id, :name, {:include_hidden => false}, {class: "multiselect-publications",:multiple => true} %>
-
 
 <script type="text/javascript">
   $(document).ready(function() {

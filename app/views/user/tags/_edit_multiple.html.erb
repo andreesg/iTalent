@@ -1,21 +1,25 @@
 <%= form_tag update_multiple_user_tags_path, remote: true, method: :put do %>
-  
-  <%= select_tag('tag_ids[]', options_from_collection_for_select(Tag.all, :id, :name),:multiple => true, class: "multiselect-tags") %>
+			      <div class="modal-header ">
+			        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+			        <h4 class="modal-title">Edit Tags/Interests</h4>
+			      </div>
+			      <div class="modal-body form-bg-body">
+					<%= select_tag('tag_ids[]', options_from_collection_for_select(Tag.all, :id, :name),:multiple => true, class: "multiselect-tags") %>
+			      </div>
+			      <div class="modal-footer form-bg-body">
+			        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+  						<%= submit_tag "Update", class: "btn btn-primary", id: "update-tags-btn" %>
+			      </div>
+	      <% end %>
 
-  <%= submit_tag "Update", class: "btn btn-primary", id: "update-tags-btn" %>
-<% end %>
 
 
 
 <%= javascript_tag do %>
-
   $(document).ready(function() {
-
     $('.multiselect-tags').multiselect();
-
     <% @tags.each do |tag| %>
       $(".multiselect-tags").multiselect('select', <%= tag.id %>);
     <% end %>
   });
-
 <% end %>

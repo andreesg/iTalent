@@ -14,14 +14,27 @@
  *= require_tree .
  */
 
-input{
-  color:#424242;
+#error_explanation h2
+{
+ font-size:20px;
+}
+ .logo-big
+ {
+ 	margin-top:10px;
+ }
+.modal-header
+{
+	background-color: #424242;
+	color:#ffffff;
+}
+.multiselect-container>li
+{
+	padding-left: 10px;
 }
 
-.container
-{
-  margin-top: 115px;
-  z-index: -1;
+
+input{
+  color:#424242;
 }
 
 .header
@@ -48,4 +61,5 @@ input{
 	text-align: center;
 	background-color: #9CAFC2;
 	border-radius: 10px;
+	margin: 3px;
   }

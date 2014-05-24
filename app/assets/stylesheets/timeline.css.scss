@@ -1,4 +1,23 @@
+.container-timeline
+{
+  margin-top:30px; 
+}
+.posts input{
+  border-radius: 0;
+  width: 95%;
+  margin: 10px auto;
+}
 
+.events-content .tag-container
+{
+  margin-top: 5px;
+}
+
+.event-button
+{
+  margin-top: 15px;
+  margin-bottom: 5px;
+}
 .timeline
 {
   list-style: none;
@@ -14,11 +33,19 @@
        -moz-box-shadow:0 2px 4px rgba(0, 0, 0, 0.3), 0 0 1px rgba(0, 0, 0, 0.1) inset;
             box-shadow:0 2px 4px rgba(0, 0, 0, 0.3), 0 0 1px rgba(0, 0, 0, 0.1) inset;
 
-  margin-top: 10px;
+  margin-bottom: 20px;
   background-color:#F9FBFF;
 }
-
 .posts-title
+{
+  padding-left:10px;
+  padding-right:10px;
+  padding-top:2px;
+  padding-bottom:2px;
+  background-color: #424242;
+  color: #ffffff;
+}
+.posts-content
 {
   border-bottom: 1px solid #d6cfbf;
   word-wrap: break-word;
@@ -26,58 +53,7 @@
   color: #424242;
 }
 
-.posts-title hr
-{
-  margin: 1px;
-}
 
-.posts-title h5
-{
-  color: #ed9121;
-  font-family: "Roboto";
-  margin-bottom: 0;
-}
-.posts-title h6
-{
-  margin-top:0;
-}
-
-.posts-title h5:nth-child(2)
-{
-  text-align: left;
-  padding-left: 10px;
-  padding-right: 10px;
-  padding-top: 5px;
-  padding-bottom: 5px;  
-  font-size: 12px;
-  font-weight: normal;
-  font-style: italic;
-}
-
-.posts-title h5:nth-child(5)
-{
-  text-align: left;
-  padding-left: 10px;
-  padding-right: 10px;
-  font-size: 14px;
-  font-weight: normal;
-}
-
-.posts-title h5:nth-child(6)
-{
-  text-align: right;
-  padding-left: 10px;
-  padding-right: 10px;
-  font-size: 14px;
-  font-weight: 500;
-}
-.posts-title input
-{
-  width: 97%;
-  margin-bottom: 10px;
-  margin-left: auto;
-  margin-right: auto;
-}
 
 .posts-comments
 {
@@ -113,8 +89,7 @@
 
 .posts-comments h6
 {
-  text-align: right;
-  font-size: 10px;
+color: #999999;
 }
 
 .posts-comments hr
@@ -132,15 +107,14 @@
 
 .events-content 
 {
+  width:100%;
   float: right;
   text-align: center;
   font-family: "Roboto",Frutiger, "Frutiger Linotype", Univers, Calibri, "Gill Sans", "Gill Sans MT", "Myriad Pro", Myriad, "DejaVu Sans Condensed", "Liberation Sans", "Nimbus Sans L", Tahoma, Geneva, "Helvetica Neue", Helvetica, Arial, sans-serif;
   color: #f7f7f7;  
   cursor: hand;
   cursor: pointer;
-  /*background-color:#EDEDED;*/
   background-color: #4f5d73;
-  /*border:2px solid #666666;*/
   line-height:1.3em;
   margin-bottom: 20px ;
   padding:10px;
@@ -489,11 +463,6 @@
   -webkit-border-radius: 50%;
   -moz-border-radius: 50%;
   border-radius: 50%;
-}
-.container
-{
-  margin-top: 115px;
-  z-index: -1;
 }
 
 .break
