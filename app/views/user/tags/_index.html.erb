@@ -1,7 +1,7 @@
 <div id="tags-index">
-		<ul >
+		<ul class="tag-container">
 	    	<% current_user.subscribed_tags.each do |tag| %>
-	    	<li class="tag">
+	    	<li>
 	    	<%= tag.name %>
 	    	</li>
 	    	<% end %>

@@ -4,16 +4,16 @@
     <div>
       <h4><%= event.title %></h4>
       <p><%= event.date_start %></p>
-      <ul>
+      <ul class="tag-container">
         <% event.tags.each do |tag| %>
-          <li class="tag"><%= tag.name %></li>
+          <li><%= tag.name %></li>
         <% end %>
       </ul>
 
     </div>
     <div class="btn-group">
-      <%= link_to "eliminar", user_event_path(event), class: "btn btn-default", method: :delete, remote: true %>
-      <%= link_to "editar", edit_user_event_path(event), class: "btn btn-default", remote: true %>
+      <%= link_to "Delete", user_event_path(event), class: "btn btn-default", method: :delete, remote: true %>
+      <%= link_to "Edit", edit_user_event_path(event), class: "btn btn-default", remote: true %>
     </div>
   </div>
 
@@ -24,9 +24,9 @@
     <div>
       <h4><%= event_attendee.event.title %></h4>
       <p><%= event_attendee.event.date_start %></p>
-      <ul>
+      <ul class="tag-container">
         <% event_attendee.event.tags.each do |tag| %>
-          <li class="tag"><%= tag.name %></li>
+          <li><%= tag.name %></li>
         <% end %>
       </ul>
     </div>

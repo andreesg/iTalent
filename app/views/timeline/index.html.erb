@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container-timeline">
   <% if @new_publication.errors.any? %>
     <div class="alert alert-danger" id="error_explanation">
       <h2><%= pluralize(@new_publication.errors.count, "error") %> prohibited
@@ -21,7 +21,7 @@
       </ul>
     </div>
   <% end %>
-  <div class="col-md-3 column content-buttons">
+  <div class="col-md-2 column content-buttons">
     <%= render '/publications/new_modal', publication: @new_publication %>
     <%= render '/events/new_modal', event: @new_event %>
     <ul class="content-list">
@@ -33,7 +33,7 @@
       </li>
     </ul>
   </div>
-  <div  class="col-md-6 column">
+  <div  class="col-md-7 column">
     <ul class="timeline publication-timeline">
       <div id="publications">
         <% @publications.each do |publication| %>
@@ -55,7 +55,7 @@
           <i class="fa fa-users fa-stack-1x fa-inverse"></i>
         </span>
       </li>
-      <% @events.each do |event| %>      
+      <% @events.each do |event| %>
         <li class="events-content">
           <%= link_to event_path(event) do %> 
             <%= render partial: 'timeline/event', locals: { event: event } %>

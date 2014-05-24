@@ -1,13 +1,12 @@
 <%= form_for([:admin, @tag]) do |t| %>
-
   <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-6 col-md-offset-3">
+	  <h2>New Tag or Interest</h2>
       <div class="form-group">
         <%= t.label :name %>
-        <p><%= t.text_field :name, class: "form-control"%></p>
+        <p><%= t.text_field :name, class: "form-control", autofocus: true%></p>
       </div>
+	<%= t.submit "Create", class: "btn btn-primary", id: "create-admin-user-btn" %>
     </div>
   </div>
-
-  <%= t.submit "Create", class: "btn btn-primary", id: "create-admin-user-btn" %>
 <% end %>

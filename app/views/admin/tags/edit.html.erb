@@ -1,5 +1,7 @@
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+	<h2>Edit Tag or Interest</h2>
 <%= form_for([:admin, @tag], method: :patch) do |t| %>
-
   <div class="form-group">
     <%= t.label :name %>
     <p><%= t.text_field :name, class: "form-control"%></p>
@@ -7,3 +9,6 @@
 
   <%= t.submit "Update", class: "btn btn-primary", id: "update-admin-tag-btn" %>
 <% end %>
+
+</div>
+</div>
