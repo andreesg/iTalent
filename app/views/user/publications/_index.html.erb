@@ -4,18 +4,20 @@
       <h4><%= publication.text %></h4>
       <p>published <%= publication.updated_at %></p>
     </div>
-    <ul>
+    <ul class="tag-container">
       <% publication.tags.each do |tag| %>
-        <li class="tag"><%= tag.name %></li>
+        <li><%= tag.name %></li>
       <% end %>
     </ul>
     <div>
       <% unless publication.comments.blank? %>
         <h5> Comentários: </h5>
+        <dl>
         <% publication.comments.each do |comment| %>
-          <p>email: <%= comment.creator.email %></p>
-          <p>texto: <%= comment.text %></p>
+          <dt><%= comment.creator.email %></dt>
+          <dd><%= comment.text %></dd>
         <% end %>
+        </dl>
       <% end %>
       </br>
       <div class="btn-group">
