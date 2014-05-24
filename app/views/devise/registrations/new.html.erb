@@ -1,44 +1,56 @@
+<div class="landing-container">
+  <div class="row">
+      <div class="col-md-4 col-md-offset-4 panel panel-default">
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-	<% unless devise_error_messages!.blank? %>
-		<div class="alert alert-danger">
-			<%= devise_error_messages! %> 
-		</div>
-	<% end %>
-	<div class="chat-bubble">
-		<%= image_tag asset_path("logo2.png"), alt: "iTalent" %>
+          <h1 class="margin-base-vertical text-center">iTalent</h1>
 
-		<div class= "input-boxes">
-			<%= f.text_field :name, autofocus: true, placeholder:'name'%>
-		</div>		
+          <br/>
+          <br/>
 
-		<div class= "input-boxes">
-			<%= f.email_field :email, autofocus: true, placeholder:'email'%>
-		</div>
+          <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+	          <% unless devise_error_messages!.blank? %>
+							<div class="alert alert-danger">
+								<%= devise_error_messages! %> 
+							</div>
+						<% end %>
 
-		<div  class= "input-boxes">
-			<%= f.password_field :password, autocomplete: "off", placeholder:'password'%>
-		</div>
+						<p class="input-group">
+              <span class="input-group-addon"><span class="icon-envelope"></span></span>
+              <%= f.text_field :name, autofocus: true, class: "form-control input-lg", placeholder: "Nome"  %>
+            </p>
 
-		<div  class= "input-boxes" >
-			<%= f.password_field :password_confirmation, autocomplete: "off", placeholder:'password confirmation' %>
-		</div>
+            <p class="input-group">
+              <span class="input-group-addon"><span class="icon-envelope"></span></span>
+              <%= f.email_field :email, autofocus: true, class: "form-control input-lg", placeholder: "nome@email.com"  %>
+            </p>
 
-		<div  class= "input-boxes" >
-			<%= collection_select resource_name, :organization_id, Organization.all, :id, :name, {:include_hidden => false} %>
-		</div>
-		<br>
+            <p class="input-group">
+              <span class="input-group-addon"><span class="icon-envelope"></span></span>
+              <%= f.password_field :password, autocomplete: "off", class: "form-control input-lg", placeholder: "Password" %>
+            </p>
 
-		 <div  class= "input-boxes">
-		 	<%= f.submit "Sign up" %>
-		 </div>
-	 	<div  class= "input-boxes">
-	 		<%=link_to "Back", new_user_session_path %>	
-		</div>
-		<div class="chat-bubble-arrow-border">
-		</div>
-		<div class="chat-bubble-arrow">
-		</div>
-	</div>
-<% end %>
+            <p class="input-group">
+              <span class="input-group-addon"><span class="icon-envelope"></span></span>
+              <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control input-lg", placeholder:'password confirmation' %>
+            </p>
 
+            <p class="input-group">
+            <span class="input-group-addon"><span class="icon-envelope"></span></span>
+            	<%= collection_select resource_name, :organization_id, Organization.all, :id, :name, {:include_hidden => false}, class: "form-control input-lg" %>
+            </p>
+            
+            <% if devise_mapping.rememberable? -%>
+                <p class="help-block text-center" ><%= f.check_box :remember_me %> <%= f.label :remember_me%></p>
+              <% end -%>
+            <br/>
+            <p class="text-center">
+                <%= f.submit "Sign up", class: "btn btn-success btn-lg", id: "btn-sign-in" %>
+            </p>
+            </span>
+          <% end %>
+
+          <%= render "devise/shared/links" %>
+
+      </div>
+  </div>
+</div>
