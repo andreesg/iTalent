@@ -14,9 +14,10 @@
  *= require_tree .
  */
 
- input{
+input{
   color:#424242;
 }
+
 .container
 {
   margin-top: 115px;

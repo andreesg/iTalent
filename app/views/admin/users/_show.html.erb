@@ -1,11 +1,7 @@
 <div class="well" id="admin-user-show-partial">
-  <div class="page-header">
-    <h1 class="text-center"><%= @user.name %></h1>
-  </div>
+    <h1 class="text-left"><%= @user.name %></h1>
   <table class="table table-striped">
     <thead>
-      <th>ID</th>
-      <th>Name</th>
       <th>Organization</th>
       <th>Publications</th>
       <th>Comments</th>
@@ -17,8 +13,6 @@
     </thead>
     <tbody>
       <tr>
-        <td><%= @user.id %></td>
-        <td><%= @user.name %></td>
         <td><%= @user.organization.name %></td>
         <td><%= @user.created_publications.count %></td>
         <td><%= @user.created_comments.count %></td>
@@ -29,9 +23,6 @@
         <td>
           <div class="btn-toolbar">
             <div class="btn-group">
-              <%= link_to admin_user_path(@user), :class => "btn"  do %>
-                <%= content_tag :span, "", :class => "glyphicon glyphicon-eye-open" %>
-              <% end %>
               <%= link_to edit_admin_user_path(@user), :class => "btn"  do %>
                 <%= content_tag :span, "", :class => "glyphicon glyphicon-pencil" %>
               <% end %>
@@ -44,17 +35,15 @@
       </tr>
     </tbody>
   </table>
-</div>
-<div>
-<h1>Interests:</h1>
+<h2>Interests</h2>
+<ul class="tag-container">
 <% @user.subscribed_tags.each do |tag| %>
-  <%= tag.name %>
+  <li>
+    <%= tag.name %>
+  </li>
 <% end %>
-</div>
-</br>
-</br>
-</br>
-</br>
-<h1>Activity of last month:</h1>
+
+</ul>
+<h2>Activity of last month:</h2>
   <%= line_chart @user.access_logs.group_by_day(:created_at, range: 1.month.ago.midnight..Time.now).count %>
 </div>
