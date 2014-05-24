@@ -1,31 +1,41 @@
+<% if user_signed_in? %>
+<nav class="navbar navbar-inverse" role="navigation">
+	<div class="container header">
+				<div class="navbar-header">
+					 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+					 <span class="sr-only">Toggle navigation</span>
+					 <span class="icon-bar"></span>
+					 <span class="icon-bar"></span><span class="icon-bar"></span>
+					 </button>
+					 <%= link_to image_tag( asset_path("logo2.png"), alt: "iTalent", title: "Home" ), timeline_index_path, method: :get %>
+				</div>
 
-<!--header -->
-<header id="top-content" >
-	<div class= "logo" >
-		<%= link_to image_tag( asset_path("logo2.png"), alt: "iTalent", title: "Home" ), timeline_index_path, method: :get %> 
-	</div>
-	<div id= "avatar" >
-		<%= image_tag( asset_path("profile.png"), alt: "Profile", title: "Profile", width: "45px", height: "45px")%>
-	</div>
-	<div>
-		<% if user_signed_in? %>
-		<p ><%= current_user.email %> 
-			<%= link_to "Sign out", destroy_user_session_path, method: :delete %>
-			<%= link_to "Personal Area", user_dashboard_path %>
-			<%= link_to "Administration", admin_users_path if current_user.role?(:admin) %></p>
-
-		
-		<% else %>
-			<%= link_to "Sign up", new_user_registration_path %> or 
-			<%= link_to "Sign in", new_user_session_path %>
-		<% end %>
-	</div>
-
-		<div id="top-icons" >					
-			<ul>
-				<li><%= image_tag( asset_path("search.png"), class: "icon", alt: "Search", title: "Search", width: "35px", height: "35px" ) %></li>
-				<li><%= image_tag( asset_path("i.png"), class: "icon", alt: "Statistics", title: "Statistics", width: "35px", height: "35px" ) %></li>
-				<li><%= image_tag( asset_path("settings.png"), class: "icon", alt: "Settings", title: "Settings", width: "35px", height: "35px" ) %></li>
-			</ul>
-	</div>
-</header>
+				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+					<!-- <form class="navbar-form navbar-left" role="search">
+						<div class="form-group">
+							<input type="text" class="form-control" />
+						</div> <button type="submit" class="btn btn-default">Submit</button>
+					</form> -->
+					<ul class="nav navbar-nav navbar-right">
+						<li>
+							<%= link_to "Timeline", timeline_index_path %>
+						</li>
+						<li>
+							<%= link_to "Administration", admin_users_path if current_user.role?(:admin) %>
+						</li>
+						<li>
+							<%= link_to "Personal Area", user_dashboard_path %>
+						</li>
+						<li class="dropdown">
+							 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= current_user.email %><strong class="caret"></strong></a>
+							<ul class="dropdown-menu">
+                <li>
+                  <%= link_to "Sign out", destroy_user_session_path, class: "text-right", method: :delete %></p>
+                </li>
+							</ul>
+						</li>
+					</ul>
+				</div>
+				</div>
+			</nav>
+<% end %>
