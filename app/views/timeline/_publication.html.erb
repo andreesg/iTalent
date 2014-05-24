@@ -1,7 +1,7 @@
 <ul id="publication-<%= publication.id %>"  >  
   <li class="posts" >
       <div class="posts-title">
-        <h5><%= publication.creator.email %></h5>
+        <h5><strong><%= publication.creator.name %></strong> // <%= publication.creator.email %></h5>
         <h6><%= publication.created_at %></h6>
         <h4><%= publication.text %></h4>
         <ul class="tag-container">
