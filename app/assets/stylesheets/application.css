@@ -17,6 +17,10 @@
 {
   margin-top:60px; 
 }
+.timeline > nav
+{
+	border-radius: 0;
+}
 #error_explanation h2
 {
  font-size:15px;
