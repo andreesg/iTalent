@@ -18,9 +18,6 @@
 					</form> -->
 					<ul class="nav navbar-nav navbar-right">
 						<li>
-							<%= link_to "Timeline", timeline_index_path %>
-						</li>
-						<li>
 							<%= link_to "Administration", admin_users_path if current_user.role?(:admin) %>
 						</li>
 						<li>
