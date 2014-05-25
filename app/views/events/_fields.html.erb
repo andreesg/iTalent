@@ -15,14 +15,32 @@
   <%= e.label :location %>
   <p><%= e.text_field :location, class: "form-control"%></p>
 </div>
-<div class="form-group">
-  <%= e.label "Limit max_attendees" %>
-  <%= check_box_tag 'max-attendees-checkbox', 0,false %>
-</div>
-<div id="max-attendees-optional" class="form-group hidden">
-  <%= e.label :max_attendees %>
-  <p><%= e.number_field :max_attendees, min:0, value: 0, class: "form-control"%></p>
-</div>
+
+<% if e.object.max_attendees > 0 %>
+  <div class="form-group">
+    <%= e.label "Limit max_attendees" %>
+    <%= check_box_tag 'max-attendees-checkbox', 0, true %>
+    <% if e.object.attendees.count > 0 %>
+      <small><%= e.object.attendees.count %> attending the event</small>
+    <% end %>
+  </div>
+  <div id="max-attendees-optional" class="form-group">
+    <%= e.label :max_attendees %>
+    <p><%= e.number_field :max_attendees, min: e.object.attendees.count, value: e.object.max_attendees, class: "form-control"%></p>
+  </div>
+<% else %>
+  <div class="form-group">
+    <%= e.label "Limit max_attendees" %>
+    <%= check_box_tag 'max-attendees-checkbox', 0, false %>
+    <% if e.object.attendees.count > 0 %>
+      <small><%= e.object.attendees.count %> attending the event</small>
+    <% end %>
+  </div>
+  <div id="max-attendees-optional" class="form-group hidden">
+    <%= e.label :max_attendees %>
+    <p><%= e.number_field :max_attendees, min: 0, value: 0, class: "form-control"%></p>
+  </div>
+<% end %>
 
 <div class="row">
   <div class="col-md-6">
@@ -44,20 +62,32 @@
     </div>
   </div>
 </div>
-
-<%= collection_select :event, :tags, Tag.all, :id, :name, {:include_hidden => false}, {class: "multiselect-events",:multiple => true} %>
-
+<div class="row">
+  <div class="col-md-12">
+    <div class="form-group">
+      <%= e.label :tags %>
+      <p><%= collection_select :event, :tag_ids, Tag.all, :id, :name, {:include_hidden => false}, {class: "multiselect-events",:multiple => true} %></p>
+    </div>
+  </div>
+</div>
 
 <script type="text/javascript">
   $(document).ready(function() {
     $('#max-attendees-checkbox').click(function () {
-      max_attendees_form=$('#max-attendees-optional');
-      //reset it to zero when it hides
+      max_attendees_form = $('#max-attendees-optional');
+      //reset it to zero when it hides, put back the value when it shows
       if(!max_attendees_form.hasClass('hidden')){
         $('#max-attendees-optional input').val(0);
+        $('#max-attendees-optional input').attr('min', 0);
+      } else {
+        $('#max-attendees-optional input').val(<%= e.object.max_attendees %>);
+        $('#max-attendees-optional input').attr('min', <%= e.object.attendees.count %>);
       }
       max_attendees_form.toggleClass("hidden");
     });
     $('.multiselect-events').multiselect();
+    <% e.object.tags.each do |tag| %>
+      $(".multiselect-events").multiselect('select', <%= tag.id %>);
+    <% end %>
   });
 </script>

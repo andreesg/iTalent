@@ -6,6 +6,7 @@
       </div>
       <%= form_for( @event, method: :patch ) do |event| %>
 
+        <%= render "shared/error_messages", target: @event %>
         <%= render partial: 'events/fields', locals: { e: event } %>
 
         <div class="row">

@@ -23,7 +23,7 @@
       </div>
       <div class="row">
         <div class="col-md-4">
-          <% if @event.num_attendings < @event.max_attendees %>
+          <% if @event.max_attendees == 0 or @event.num_attendings < @event.max_attendees %>
             <h4 class"text-right"><span class="label label-success">Free slots available!</span></h4>
           <% else %>
             <h4 class"text-center"><span class="label label-warning">Ops! No more slots available!</span></h4>
@@ -66,8 +66,12 @@
                 <div class="col-md-6">
                   <h4 class="list-group-item-heading">Attendings</h4>
                   <p class="list-group-item-text">
-                    <span class="badge"><%= @event.attendees.count %></span> attending of 
-                    <span class="badge"><%= @event.max_attendees %></span> max
+                    <% if @event.max_attendees == 0 # the event does not have a maximum %>
+                      <span class="badge"><%= @event.attendees.count %></span> attending
+                    <% else %>
+                      <span class="badge"><%= @event.attendees.count %></span> attending of 
+                      <span class="badge"><%= @event.max_attendees %></span> max
+                    <% end %>
                   </p>
                 </div>
               </div><!-- row -->
@@ -81,6 +85,12 @@
           </div>
         </div><!-- col-md-6 -->
       </div>
+      <ul class="tag-container">
+        <%= label_tag 'Tags' %>
+        <% @event.tags.each do |tag| %>
+          <li><%= tag.name %></li>
+        <% end %>
+      </ul>
       <p class="text-right">Last update at <%= @event.updated_at %></p>
     </div><!-- well -->
     <% unless @event_attendees.empty? %>
