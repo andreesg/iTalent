@@ -40,7 +40,11 @@
 	</div>
 </div>
 
+
+<%= e.label 'Tags' %>
+<br>
 <%= collection_select :event, :tags, Tag.all, :id, :name, {:include_hidden => false}, {class: "multiselect-events",:multiple => true} %>
+
 
 
 <script type="text/javascript">

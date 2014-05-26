@@ -12,8 +12,8 @@
 
     </div>
     <div class="btn-group">
-      <%= link_to "Delete", user_event_path(event), class: "btn btn-default", method: :delete, remote: true %>
-      <%= link_to "Edit", edit_user_event_path(event), class: "btn btn-default", remote: true %>
+      <%= link_to "Delete", user_event_path(event),confirm: "Are you sure?", class: "btn btn-danger", method: :delete, remote: true %>
+      <%= link_to "Edit", edit_user_event_path(event), class: "btn btn-warning", remote: true %>
     </div>
   </div>
 
@@ -31,7 +31,7 @@
       </ul>
     </div>
     <div class="btn-group" id="attends-or-not-<%=event_attendee.event.id%>">
-      <%= link_to "Cancel", user_event_attendee_path(event_attendee) , class: "btn btn-default", method: :delete, remote: true %>
+      <%= link_to "Do not attend", user_event_attendee_path(event_attendee) ,confirm: "Are you sure?", class: "btn btn-warning", method: :delete, remote: true %>
     </div>
   </div>
   <% end %>

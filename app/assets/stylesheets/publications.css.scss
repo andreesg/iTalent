@@ -10,21 +10,23 @@
 	vertical-align: center;
 	display: block;
 }
-.btn-delete{
-	background:url(/assets/delete.png)no-repeat;
-	width: 18px;
-	height: 18px;
-	position: absolute;
-	top: 0px;
-	right: 0px;
-}
 .btn-delete-white{
-	background:url(/assets/delete.png)no-repeat;
 	width: 18px;
 	height: 18px;
 	position: absolute;
+	margin:5px;
 	top: 0px;
 	right: 0px;
+	color:#ffffff;
+}
+.btn-delete{
+	width: 18px;
+	height: 18px;
+	position: absolute;
+	margin:5px;
+	top: 0px;
+	right: 0px;
+	color:#4f5d73;
 }
 .inline-likes{
 	display: flex;

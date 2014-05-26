@@ -1,5 +1,5 @@
 <div >
-  <h1><%=event.title%></h1>
+  <h1><strong><%=event.title%></strong></h1>
   <%=event.date_limit%>
 
   <ul class="tag-container">
@@ -7,9 +7,10 @@
   	<li><%= tag.name %></li>
   <% end %>
   </ul>
-
-  <div id="attends-or-not-<%=event.id%>" class="btn-group">
-    <%= render 'event_attendees/show', :event => event %>
+  <div class="event-button">
+    <div id="attends-or-not-<%=event.id%>" class="btn-group">
+      <%= render 'event_attendees/show', :event => event %>
+    </div>  
   </div>
   
 </div>
