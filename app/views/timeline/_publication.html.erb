@@ -15,7 +15,9 @@
           <% if liked_publication?(publication.id) %>
             <%= link_to 'Not nice!', publication_like_path(publication), class: "btn btn-default btn-likes",remote: true, method: :delete %>
           <% else %>
-            <%= link_to 'Nice!', publication_like_path(publication), class: "btn btn-default btn-likes", remote: true, method: :post %>
+            <% link_to 'Nice!', publication_like_path(publication), class: "btn btn-default btn-likes", remote: true, method: :post do %> 
+              <span class="glyphicon glyphicon-check"></span>
+            <% end %>
           <% end %>
         </div>
         <div id="publication-<%= publication.id %>-likes-count" class="inline-likes">
@@ -29,7 +31,7 @@
             <%= link_to '', [publication],
                        method: :delete,
                        remote: true,
-                       class:"btn-delete-white glyphicon glyphicon-remove",
+                       class:"btn-delete glyphicon glyphicon-remove",
                        data: { confirm: 'Are you sure?' } %>
 
 

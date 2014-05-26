@@ -17,6 +17,10 @@
 {
   margin-top:60px; 
 }
+.timeline
+{
+	background: url('/assets/pixel_weave.png');
+}
 .timeline > nav
 {
 	border-radius: 0;
@@ -43,7 +47,10 @@
 	padding-left: 10px;
 }
 
-
+.light-gray
+{
+	color: #C2C2C2
+}
 input{
   color:#424242;
 }
@@ -70,7 +77,6 @@ input{
 	vertical-align: baseline;
 	white-space: nowrap;
 	text-align: center;
-	background-color: #9CAFC2;
-	border-radius: 10px;
+	background-color: #FFB800;
 	margin: 3px;
   }
