@@ -28,7 +28,7 @@ $ ->
 page_regexp = /\d+$/
  
 pushPage = (page) ->
-    History.pushState null, "InfiniteScrolling | Page " + page, "?page=" + page
+    #History.pushState null, "InfiniteScrolling | Page " + page, "?page=" + page
     return
 
 hash = window.location.hash
