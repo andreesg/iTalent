@@ -2,15 +2,13 @@
   <div class="row">
       <div class="col-md-4 col-md-offset-4 panel panel-default">
 
-          <h1 class="margin-base-vertical text-center">iTalent</h1>
-
-          <br/>
-          <br/>
+          <%= image_tag(asset_path("logo.png"), alt: "iTalent", class:'center-block logo-big')%>
+          <br>
 
           <%= form_for(resource, as: resource_name, url: session_path(resource_name), class: "margin-base-vertical") do |f| %>
             <p class="input-group">
               <span class="input-group-addon"><span class="icon-envelope"></span></span>
-              <%= f.email_field :email, autofocus: true, class: "form-control input-lg", placeholder: "nome@email.com"  %>
+              <%= f.email_field :email, autofocus: true, class: "form-control input-lg", placeholder: "name@email.com"  %>
             </p>
 
             <p class="input-group">
@@ -22,7 +20,7 @@
               <% end -%>
             <br/>
             <p class="text-center">
-                <%= f.submit "Entrar", class: "btn btn-success btn-lg", id: "btn-sign-in" %>
+                <%= f.submit "Login", class: "btn btn-warning btn-lg", id: "btn-sign-in" %>
             </p>
             </span>
           <% end %>

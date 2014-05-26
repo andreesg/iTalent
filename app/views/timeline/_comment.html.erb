@@ -1,15 +1,14 @@
 
 <%= content_tag :div, id: "publication-#{comment.publication.id}-comment-#{comment.id}", class: "comment-display", data: { comment_id: comment.id } do -%>
-  <h5><%= comment.creator.email %></h5><br>
-  <p><%= comment.text %></p><br>
-  <h6><%= comment.updated_at %></h6>
+  <%= comment.text %>
+  <h6> <strong><%= comment.creator.name %></strong>  <%= comment.updated_at %></h6>
   <% if comment.creator == current_user %>
     <p>
       <%= link_to '', [comment.publication, comment],
                    title: "Delete",
                    method: :delete,
                    remote: true,
-                   class: "btn-delete",
+                   class: "btn-delete glyphicon glyphicon-remove",
                    data: { confirm: 'Are you sure?' } %>
     </p>
   <% end %>

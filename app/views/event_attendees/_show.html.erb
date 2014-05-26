@@ -1,5 +1,5 @@
 <% if attending=current_user.attending?(event) %>
-	<%= link_to "Attending", url_for(attending) , class: "btn btn-success", method: :delete, remote: true %>
+	<%= link_to "Don't attend", url_for(attending) , class: "btn btn-primary", method: :delete, remote: true %>
 <% else %>
 	<%= link_to "Attend", event_attendees_path(event_id: event), class: "btn btn-primary", method: :post, remote: true %>
 <% end %>
