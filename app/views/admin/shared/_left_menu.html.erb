@@ -1,7 +1,11 @@
-<nav class="well">
-	<h1>Manage</h1>
-    <ul class="nav nav-pills nav-stacked span2">
-        <li><%= link_to "Tags/Interests", admin_tags_path %></li>
-        <li><%= link_to "Users", admin_users_path %></li>
-    </ul>
-  </nav>
+<nav class="nav nav-tabs">
+  <h1 class="text-center">Manage</h1>
+
+  <% if active_link.downcase.eql? "tags" %>
+    <li><%= link_to "Users", admin_users_path %></li>
+    <li class="active"><%= link_to "Tags/Interests", admin_tags_path %></li>
+  <% else %>
+    <li class="active"><%= link_to "Users", admin_users_path %></li>
+    <li><%= link_to "Tags/Interests", admin_tags_path %></li>
+  <% end %>
+</nav>
