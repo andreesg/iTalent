@@ -1,39 +1,40 @@
 <div>
   <% current_user.created_events.each do |event| %>
-  <div class="well">
-    <div>
-      <h4><%= event.title %></h4>
-      <p><%= event.date_start %></p>
-      <ul class="tag-container">
-        <% event.tags.each do |tag| %>
-          <li><%= tag.name %></li>
-        <% end %>
-      </ul>
+    <div class="well">
+      <div>
+        <h4><%= event.title %></h4>
+        <p><%= event.date_start %></p>
+        <ul class="tag-container">
+          <% event.tags.each do |tag| %>
+            <li><%= tag.name %></li>
+          <% end %>
+        </ul>
 
+      </div>
+      <div class="btn-group">
+        <%= link_to "Details", event_path(event), class: "btn btn-primary" %>
+        <%= link_to "Edit", edit_event_path(event), class: "btn btn-warning" %>
+        <%= link_to "Delete", event_path(event), confirm: "Are you sure?", class: "btn btn-danger", method: :delete %>
+      </div>
     </div>
-    <div class="btn-group">
-      <%= link_to "Delete", user_event_path(event),confirm: "Are you sure?", class: "btn btn-danger", method: :delete, remote: true %>
-      <%= link_to "Edit", edit_user_event_path(event), class: "btn btn-warning", remote: true %>
-    </div>
-  </div>
-
   <% end %>
+
   <h3> Attending Events </h3>
   <% current_user.event_attendees.each do |event_attendee| %>
-  <div class="well">
-    <div>
-      <h4><%= event_attendee.event.title %></h4>
-      <p><%= event_attendee.event.date_start %></p>
-      <ul class="tag-container">
-        <% event_attendee.event.tags.each do |tag| %>
-          <li><%= tag.name %></li>
-        <% end %>
-      </ul>
+    <div class="well">
+      <div>
+        <h4><%= event_attendee.event.title %></h4>
+        <p><%= event_attendee.event.date_start %></p>
+        <ul class="tag-container">
+          <% event_attendee.event.tags.each do |tag| %>
+            <li><%= tag.name %></li>
+          <% end %>
+        </ul>
+      </div>
+      <div class="btn-group" id="attends-or-not-<%=event_attendee.event.id%>">
+        <%= link_to "Do not attend", user_event_attendee_path(event_attendee) ,confirm: "Are you sure?", class: "btn btn-warning", method: :delete, remote: true %>
+      </div>
     </div>
-    <div class="btn-group" id="attends-or-not-<%=event_attendee.event.id%>">
-      <%= link_to "Do not attend", user_event_attendee_path(event_attendee) ,confirm: "Are you sure?", class: "btn btn-warning", method: :delete, remote: true %>
-    </div>
-  </div>
   <% end %>
 
 </div>
