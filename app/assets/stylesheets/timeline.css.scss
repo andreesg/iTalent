@@ -8,7 +8,18 @@
 {
   margin-top: 5px;
 }
-
+a.btn-attend
+{
+  color: white;
+  background-color: #4f5d73;
+  border-color: #4f5d73;
+  border-radius: 0;
+}
+a:link.btn-attend
+{
+  color: white;
+ 
+}
 .event-button
 {
   margin-top: 15px;
@@ -110,10 +121,9 @@ color: #999999;
   float: right;
   text-align: center;
   font-family: "Roboto",Frutiger, "Frutiger Linotype", Univers, Calibri, "Gill Sans", "Gill Sans MT", "Myriad Pro", Myriad, "DejaVu Sans Condensed", "Liberation Sans", "Nimbus Sans L", Tahoma, Geneva, "Helvetica Neue", Helvetica, Arial, sans-serif;
-  color: #f7f7f7;  
   cursor: hand;
   cursor: pointer;
-  background-color: #4f5d73;
+  background-color: #f3f3f3;
   line-height:1.3em;
   margin-bottom: 20px ;
   padding:10px;
@@ -149,7 +159,6 @@ color: #999999;
   padding:10px;
   text-align:center;
   margin-left: 0px;
-  width: 60%;
   -webkit-box-shadow: 0 7px 6px -6px #777;
      -moz-box-shadow: 0 7px 6px -6px #777;
           box-shadow: 0 7px 6px -6px #777;

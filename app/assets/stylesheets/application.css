@@ -13,6 +13,7 @@
  *= require_self
  *= require_tree .
  */
+
 .container
 {
   margin-top:60px; 
@@ -21,9 +22,15 @@
 {
 	background: url('/assets/pixel_weave.png');
 }
-.timeline > nav
+.navbar
 {
-	border-radius: 0;
+	border-radius: 0 !important;
+	background-color: #424242  !important;
+	border-color: #424242  !important;
+	
+	-webkit-box-shadow: 0 3px 3px -3px #777;
+	-moz-box-shadow: 0 3px 3px -3px #777;
+	box-shadow: 0 3px 3px -3px #777;
 }
 #error_explanation h2
 {
@@ -77,6 +84,6 @@ input{
 	vertical-align: baseline;
 	white-space: nowrap;
 	text-align: center;
-	background-color: #FFB800;
+	background-color:#F59959;
 	margin: 3px;
   }
