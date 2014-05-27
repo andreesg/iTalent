@@ -1,3 +1,4 @@
+<% provide(:title, "Timeline") %>
 <div class="container-timeline">
   <% if @new_publication.errors.any? %>
     <div class="alert alert-danger alert-dismissable" id="error_explanation">
@@ -43,7 +44,7 @@
         <% end %>
       </div>
       <% if @publications.next_page %>
-        <div id="publication-infinite-scrolling">
+        <div id="publication-infinite-scrolling" style="display:none;">
           <%= will_paginate @publications %>
         </div>
       <% end %> 
