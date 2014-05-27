@@ -6,7 +6,8 @@ class TimelineController < ApplicationController
 
     @publications = Publication.includes(:creator).paginate(page: params[:page], per_page:5).order('created_at DESC')
     @publications.each do |p|
-      p.paginated_comments = p.comments.includes(:creator).paginate(page: 1).order('updated_at ASC')
+      p.paginated_comments = p.comments.includes(:creator).paginate(page: 1).order('updated_at DESC')
+      p.paginated_comments = p.paginated_comments.reverse
     end
 
     @events = Event.includes(:creator).paginate(page: params[:events_page],per_page:10).order('date_start DESC')

@@ -39,7 +39,7 @@ class CommentsController < ApplicationController
       @publication = Publication.find(params[:publication_id])
       comment = @publication.comments.find(params[:last_comment_id])
       puts comment
-      @comments = @publication.comments.where("updated_at < '#{comment.updated_at}'").order("updated_at DESC").limit(10)
+      @comments = @publication.comments.where("updated_at < ?", comment.updated_at).order("updated_at DESC").limit(10)
       @comments.reverse! # to put the array of comments at "updated_at ASC" order
     end
 
