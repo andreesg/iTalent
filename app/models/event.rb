@@ -33,6 +33,21 @@ class Event < ActiveRecord::Base
     self.event_invitations.find_by(invitee: user)
   end
 
+  def accepting_attendees?
+    return true if self.date_limit >= Time.now
+    return false
+  end
+
+  def has_already_occurred?
+    if self.date_end.blank?
+      end_date = self.date_start
+    else
+      end_date = self.date_end
+    end
+    return true if end_date < Time.now
+    return false
+  end
+
 private
   def max_attendees_cannot_be_less_than_num_attendings
     num_people_attending = attendees.count

@@ -59,11 +59,7 @@
         </span>
       </li>
       <% @events.each do |event| %>
-        <li class="events-content">
-          <%= link_to event_path(event) do %> 
-            <%= render partial: 'timeline/event', locals: { event: event } %>
-          <% end %>
-        </li>    
+        <%= render partial: 'timeline/event', locals: { event: event } %> 
       <% end %>     
     </ul>
   </div> 
