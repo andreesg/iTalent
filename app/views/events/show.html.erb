@@ -5,7 +5,7 @@
       <div class="row">
         <div class="col-md-9">
           <h2><%= @event.title %></h2>
-          <small>Created by <%= @event.creator.name %>, updated at <%= @event.updated_at %></small>
+          <small>Created by <%= @event.creator.name %>, updated at <%= format_date @event.updated_at %></small>
           <% if @event.accepting_attendees? %>
             <% if @event.max_attendees == 0 or @event.num_attendings < @event.max_attendees %>
               <h4><span class="label label-success">Slots available!</span></h4>
@@ -42,11 +42,11 @@
             <div class="row">
               <div class="col-md-6">
                 <h4 class="list-group-item-heading">Start Date</h4>
-                <p class="list-group-item-text"><%= @event.date_start %></p>
+                <p class="list-group-item-text"><%= format_date @event.date_start %></p>
               </div>
               <div class="col-md-6">
                 <h4 class="list-group-item-heading">End Date</h4>
-                <p class="list-group-item-text"><%= @event.date_end.nil? ? 'Not defined' : @event.date_end.nil? %></p>
+                <p class="list-group-item-text"><%= @event.date_end.nil? ? 'Not defined' : format_date(@event.date_end) %></p>
               </div>
             </div><!-- row -->
           </div><!-- list-group-item -->
@@ -55,9 +55,9 @@
               <div class="col-md-6">
                 <h4 class="list-group-item-heading">Registrations till</h4>
                 <% if @event.accepting_attendees? %>
-                  <p class="list-group-item-text"><%= @event.date_limit %></p>
+                  <p class="list-group-item-text"><%= format_date @event.date_limit %></p>
                 <% else %>
-                  <p class="list-group-item-text disabled-text"><%= @event.date_limit %></p>
+                  <p class="list-group-item-text disabled-text"><%= format_date @event.date_limit %></p>
                 <% end %>
               </div>
               <div class="col-md-6">

@@ -1,7 +1,7 @@
 <li class="events-content">
   <%= link_to event_path(event) do %> 
     <h1><strong><%=event.title%></strong></h1>
-    <%= event.date_start %>
+    <%= format_date event.date_start %>
     <ul class="tag-container">
       <% event.tags.each do |tag| %>
       	<li><%= tag.name %></li>
@@ -12,7 +12,7 @@
         <%= render 'event_attendees/show', :event => event %>
       </div>
       <% if event.accepting_attendees? %>
-        <small>Limit: <%= event.date_limit %></small>
+        <small>Limit: <%= format_date event.date_limit %></small>
       <% end %>
     </div>
   <% end %>

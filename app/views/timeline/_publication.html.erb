@@ -2,7 +2,7 @@
   <li class="posts" >
     <div class="posts-title">
       <h5><strong><%= publication.creator.name %></strong> // <%= publication.creator.email %></h5>
-      <h6><%= publication.created_at %></h6>
+      <h6><%= format_date publication.created_at %></h6>
     </div>
     <div class="posts-content">
       <h4><%= publication.text %></h4>
