@@ -1,10 +1,15 @@
-<div id="tags-index">
-		<ul class="tag-container">
-	    	<% current_user.subscribed_tags.each do |tag| %>
-	    	<li>
-	    	<%= tag.name %>
-	    	</li>
-	    	<% end %>
-	    </ul>
-		<%= link_to "Change", edit_multiple_user_tags_path, class: "btn btn-primary left", remote: true, method: :post %>
-</div>
+<% if current_user.subscribed_tags.blank? %>
+<div>No tags/interests subscribed</div>
+<%= link_to "Change", edit_multiple_user_tags_path, class: "btn btn-primary left", remote: true, method: :post %>
+<% else %>
+	<div id="tags-index">
+			<ul class="tag-container">
+		    	<% current_user.subscribed_tags.each do |tag| %>
+		    	<li>
+		    	<%= tag.name %>
+		    	</li>
+		    	<% end %>
+		    </ul>
+			<%= link_to "Change", edit_multiple_user_tags_path, class: "btn btn-primary left", remote: true, method: :post %>
+	</div>
+<% end %>

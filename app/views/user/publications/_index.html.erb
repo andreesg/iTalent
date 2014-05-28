@@ -1,31 +1,36 @@
-<% current_user.created_publications.each do |publication| %>
-  <div class="well">
-    <div>
-      <h4><%= publication.text %></h4>
-      <p>published <%= publication.updated_at %></p>
-    </div>
-    <ul class="tag-container">
-      <% publication.tags.each do |tag| %>
-        <li><%= tag.name %></li>
-      <% end %>
-    </ul>
-    <div>
-      <% unless publication.comments.blank? %>
-        <h5> Comentários: </h5>
-        <dl>
-        <% publication.comments.each do |comment| %>
-          <dt><%= comment.creator.email %></dt>
-          <dd><%= comment.text %></dd>
+<% if current_user.created_publications.blank? %>
+  <div>No publications created</div>
+<% else %>
+  <% current_user.created_publications.each do |publication| %>
+    <div class="well">
+      <div>
+        <h4><%= publication.text %></h4>
+        <p>published <%= publication.updated_at %></p>
+      </div>
+      <ul class="tag-container">
+        <% publication.tags.each do |tag| %>
+          <li><%= tag.name %></li>
         <% end %>
-        </dl>
-      <% end %>
-      </br>
-      <div class="btn-group">
-      <%= link_to "Delete", user_publication_path(publication),confirm: "Are you sure?", class: "btn btn-danger", method: :delete, remote: true %>
-      <%= link_to "Edit", edit_user_publication_path(publication), class: "btn btn-warning", remote: true %>
+      </ul>
+      <div>
+        <% unless publication.comments.blank? %>
+          <h5> Comentários: </h5>
+          <dl>
+          <% publication.comments.each do |comment| %>
+            <dt><%= comment.creator.name %> // <%= comment.creator.email %></dt>
+            <dd><%= comment.text %></dd>
+          <% end %>
+          </dl>
+        <% end %>
+        </br>
+        <div class="btn-group">
+        <%= link_to "Delete", user_publication_path(publication),confirm: "Are you sure?", class: "btn btn-danger", method: :delete, remote: true %>
+        <%= link_to "Edit", edit_user_publication_path(publication), class: "btn btn-warning", remote: true %>
+        </div>
       </div>
     </div>
-  </div>
-  </br>
+    </br>
+  <% end %>
 <% end %>
+
         
