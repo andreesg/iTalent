@@ -1,7 +1,7 @@
 
 <%= content_tag :div, id: "publication-#{comment.publication.id}-comment-#{comment.id}", class: "comment-display", data: { comment_id: comment.id } do -%>
-  <%= comment.text %>
   <h6> <strong><%= comment.creator.name %></strong>  <%= comment.updated_at %></h6>
+  <%= comment.text %>
   <% if comment.creator == current_user %>
     <p>
       <%= link_to '', [comment.publication, comment],

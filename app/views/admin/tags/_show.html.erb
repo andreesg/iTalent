@@ -1,7 +1,7 @@
 <%= javascript_include_tag "//www.google.com/jsapi", "chartkick" %>
 
 <div class="well">
-      <h1><%= @tag.name %></h1>
+    <h3 class="text-center">Tag - <%= @tag.name %></h3>
     <table id="admin-@tags-table" class="table table-striped">
       <thead>
         <th>Subscribers</th>
@@ -30,12 +30,12 @@
       </tbody>
     </table>
 
-<h2>Users</h2>
+<h3>Users</h3>
 <% @tag.subscribers.each do |user| %>
   <%= link_to user.name, admin_user_path %>
 <% end %>
 
-<h2>Popularity Last Month</h2>
+<h3>Popularity Last Month</h3>
   <%= line_chart @tag.subscriptions.group_by_day(:created_at, range: 1.month.ago.midnight..Time.now).count %>
 </div>
 

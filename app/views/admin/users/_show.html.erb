@@ -1,5 +1,5 @@
 <div class="well" id="admin-user-show-partial">
-    <h1 class="text-left"><%= @user.name %></h1>
+  <h3 class="text-center">User - <%= @user.name %></h3>
   <table class="table table-striped">
     <thead>
       <th>Organization</th>
@@ -35,7 +35,7 @@
       </tr>
     </tbody>
   </table>
-<h2>Interests</h2>
+<h3>Interests</h3>
 <ul class="tag-container">
 <% @user.subscribed_tags.each do |tag| %>
   <li>
@@ -44,6 +44,6 @@
 <% end %>
 
 </ul>
-<h2>Activity of last month:</h2>
+<h3>Activity of last month:</h3>
   <%= line_chart @user.access_logs.group_by_day(:created_at, range: 1.month.ago.midnight..Time.now).count %>
 </div>
