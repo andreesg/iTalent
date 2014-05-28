@@ -1,7 +1,12 @@
-.timeline
+.timeline,.publications,.events
 {
   background-image: image-url('pixel_weave.png');
 }
+.timeline *,.publications * ,.events *
+{
+  list-style: none;
+}
+
 .posts input{
   border-radius: 0;
   width: 95%;
