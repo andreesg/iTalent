@@ -1,94 +1,95 @@
 <% provide(:title, "Event") %>
 <div class="row">
-  <div class="col-md-8">
-      <div class="page-header">
-        <h2><%= @event.title %></h2>
-              <p>Created by <%= @event.creator.name %>, updated at <%= @event.updated_at %></p>
-
+  <div class="col-md-8 col-md-offset-2">
+    <div class="page-header">
+      <div class="row">
+        <div class="col-md-9">
+          <h2><%= @event.title %></h2>
+          <small>Created by <%= @event.creator.name %>, updated at <%= @event.updated_at %></small>
           <% if @event.max_attendees == 0 or @event.num_attendings < @event.max_attendees %>
             <h4><span class="label label-success">Slots available!</span></h4>
           <% else %>
             <h4><span class="label label-warning">Oops! No more slots available!</span></h4>
           <% end %>
-      </div>
-      <div class="row">
-        <div class="col-md-6">
-          <div class="list-group">
-            <div class="list-group-item">
-              <h4 class="list-group-item-heading">Location</h4>
-              <p class="list-group-item-text"><%= @event.location %></p>
-            </div><!-- list-group-item -->
-            <div class="list-group-item">
-              <div class="row">
-                <div class="col-md-6">
-                  <h4 class="list-group-item-heading">Start Date</h4>
-                  <p class="list-group-item-text"><%= @event.date_start %></p>
-                </div>
-                <div class="col-md-6">
-                  <h4 class="list-group-item-heading">End Date</h4>
-                  <p class="list-group-item-text"><%= @event.date_end.nil? ? 'Not defined' : @event.date_end.nil? %></p>
-                </div>
-              </div><!-- row -->
-            </div><!-- list-group-item -->
-            <div class="list-group-item">
-              <div class="row">
-                <div class="col-md-6">
-                  <h4 class="list-group-item-heading">Registrations till</h4>
-                  <p class="list-group-item-text"><%= @event.date_limit %></p>
-                </div>
-                <div class="col-md-6">
-                  <h4 class="list-group-item-heading">Attendings</h4>
-                  <p class="list-group-item-text">
-                    <% if @event.max_attendees == 0 # the event does not have a maximum %>
-                      <span class="badge"><%= @event.attendees.count %></span> attending
-                    <% else %>
-                      <span class="badge"><%= @event.attendees.count %></span> attending of 
-                      <span class="badge"><%= @event.max_attendees %></span> max
-                    <% end %>
-                  </p>
-                </div>
-              </div><!-- row -->
-            </div><!-- list-group-item -->
-          </div><!-- list-group -->
-        </div><!-- col-md-6 -->
-        <div class="col-md-6">
-          <div class="list-group-item">
-            <h4 class="list-group-item-heading">Description</h4>
-            <p class="list-group-item-text"><%= @event.description %></p>
+        </div>
+        <div class="col-md-3">
+          <div id="attends-or-not-<%=@event.id%>" class="btn-group-right btn-group-justified">
+            <%= render 'event_attendees/show', :event => @event %>
           </div>
+          <% if @event.creator == current_user %>
+            <div class="btn-group btn-group-right btn-group-justified">
+              <%= link_to 'Edit Event', edit_event_path(@event), class: "btn btn-warning" %>
+            </div>
+            <div class="btn-group btn-group-right btn-group-justified">
+              <%= link_to 'Delete Event', event_path(@event), class: "btn btn-danger",data: { confirm: 'Are you sure?' }, method: :delete %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+      
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="list-group">
           <div class="list-group-item">
+            <h4 class="list-group-item-heading">Location</h4>
+            <p class="list-group-item-text"><%= @event.location %></p>
+          </div><!-- list-group-item -->
+          <div class="list-group-item">
+            <div class="row">
+              <div class="col-md-6">
+                <h4 class="list-group-item-heading">Start Date</h4>
+                <p class="list-group-item-text"><%= @event.date_start %></p>
+              </div>
+              <div class="col-md-6">
+                <h4 class="list-group-item-heading">End Date</h4>
+                <p class="list-group-item-text"><%= @event.date_end.nil? ? 'Not defined' : @event.date_end.nil? %></p>
+              </div>
+            </div><!-- row -->
+          </div><!-- list-group-item -->
+          <div class="list-group-item">
+            <div class="row">
+              <div class="col-md-6">
+                <h4 class="list-group-item-heading">Registrations till</h4>
+                <p class="list-group-item-text"><%= @event.date_limit %></p>
+              </div>
+              <div class="col-md-6">
+                <h4 class="list-group-item-heading">Attendings</h4>
+                <p class="list-group-item-text">
+                  <% if @event.max_attendees == 0 # the event does not have a maximum %>
+                    <span class="badge"><%= @event.attendees.count %></span> attending
+                  <% else %>
+                    <span class="badge"><%= @event.attendees.count %></span> attending of 
+                    <span class="badge"><%= @event.max_attendees %></span> max
+                  <% end %>
+                </p>
+              </div>
+            </div><!-- row -->
+          </div><!-- list-group-item -->
+        </div><!-- list-group -->
+      </div><!-- col-md-6 -->
+      <div class="col-md-6">
+        <div class="list-group-item">
+          <h4 class="list-group-item-heading">Description</h4>
+          <p class="list-group-item-text"><%= @event.description %></p>
+        </div>
+        <div class="list-group-item">
           <h4 class="list-group-item-heading">Tags</h4>
           <ul class="tag-container list-group-item-text">
-          <% @event.tags.each do |tag| %>
-          <li><%= tag.name %></li>
-          <% end %>
+            <% @event.tags.each do |tag| %>
+              <li><%= tag.name %></li>
+            <% end %>
           </ul>
-          
-          </div>
-        </div><!-- col-md-6 -->
-      </div>
-      <div class="row">
-      <div class="col-md-6">
-       <% if @event.creator == current_user %>
-       <div class="text-center">
-          <div class="btn-group">
-          <%= link_to 'Edit Event', edit_event_path(@event), class: "btn btn-warning" %>
-          <%= link_to 'Delete Event', event_path(@event), class: "btn btn-danger",data: { confirm: 'Are you sure?' }, method: :delete %>
-          </div>
-       </div>
-        <% end %>
-        <br>
-        <div id="attends-or-not-<%=@event.id%>" class="text-center">
-            <%= render 'event_attendees/show', :event => @event %>
         </div>
-        </div>
-      </div>
-
+      </div><!-- col-md-6 -->
+    </div>
     <% unless @event_attendees.empty? %>
       <div id="event-attendees-list text-center">
         <h3>Attending</h3>
         <% @event_attendees.each do |attendee| %>
-          <span class="badge light-gray-badge" data-attendee-id="<%= attendee.id %>"><%= attendee.name %><br><%= attendee.email %></span>
+          <span class="badge light-gray-badge" data-attendee-id="<%= attendee.id %>">
+            <%= attendee.name %><br/><%= attendee.email %>
+          </span>
         <% end %>
       </div>
     <% end %>
