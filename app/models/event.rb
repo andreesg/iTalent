@@ -1,5 +1,7 @@
 class Event < ActiveRecord::Base
 
+  self.per_page = 10
+
 	has_many :event_attendees, dependent: :destroy, foreign_key: "event_id"
 	has_many :attendees, through: :event_attendees, source: :attendee
 

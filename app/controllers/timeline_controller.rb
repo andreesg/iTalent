@@ -12,7 +12,7 @@ class TimelineController < ApplicationController
       p.has_a_next_page_of_comments = false if p.comments.includes(:creator).paginate(page: 1).order('updated_at DESC').next_page.nil?
     end
 
-    @events = Event.includes(:creator).paginate(page: params[:events_page],per_page:10).order('date_start DESC')
+    @events = Event.includes(:creator).where('date_start >= ?', Time.now).paginate(page: params[:events_page]).order('date_start ASC')
     @new_publication = Publication.new
     @new_event = Event.new
     @comment = Comment.new
