@@ -1,8 +1,4 @@
-<% if event.has_already_occurred? %>
-  <li class="events-content past-event">
-<% else %>
-  <li class="events-content">
-<% end %>
+<li class="events-content">
   <%= link_to event_path(event) do %> 
     <h1><strong><%=event.title%></strong></h1>
     <%= event.date_start %>
