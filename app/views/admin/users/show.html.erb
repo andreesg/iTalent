@@ -1,13 +1,9 @@
-<div class="container">
-  <div class="row clearfix">
-    <div class="col-md-12 column">
-      <div class="row clearfix">
-        <div class="col-md-3 column">
-          <%= render partial: 'admin/shared/left_menu' %>
-        </div>
-        <div id="admin-user-show" class="col-md-9 column">
-          <%= render partial: 'admin/users/show' %>
-        </div>
+<div class="row clearfix">
+  <div class="col-md-12 column">
+    <%= render partial: 'admin/shared/left_menu', locals: {active_link: "Users"} %>
+    <div class="row clearfix">
+      <div id="admin-user-show" class="col-md-12 column">
+        <%= render partial: 'admin/users/show' %>
       </div>
     </div>
   </div>

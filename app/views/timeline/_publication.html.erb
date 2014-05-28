@@ -1,60 +1,58 @@
 <ul id="publication-<%= publication.id %>"  >  
   <li class="posts" >
-        <div class="posts-title">
-          <h5><strong><%= publication.creator.name %></strong> // <%= publication.creator.email %></h5>
-          <h6><%= publication.created_at %></h6>
-        </div>
-      <div class="posts-content">
-          <h4><%= publication.text %></h4>
-        <ul class="tag-container">
-          <% publication.tags.each do |tag| %>
+    <div class="posts-title">
+      <h5><strong><%= publication.creator.name %></strong> // <%= publication.creator.email %></h5>
+      <h6><%= publication.created_at %></h6>
+    </div>
+    <div class="posts-content">
+      <h4><%= publication.text %></h4>
+      <ul class="tag-container">
+        <% publication.tags.each do |tag| %>
           <li><%= tag.name %></li>
         <% end %>
-        </ul>
-        <div id="publication-<%= publication.id %>-like" class="inline-likes">
-          <% if liked_publication?(publication.id) %>
-            <%= link_to 'Not nice!', publication_like_path(publication), class: "btn btn-default btn-likes",remote: true, method: :delete %>
-          <% else %>
-            <%= link_to 'Nice!', publication_like_path(publication), class: "btn btn-default btn-likes", remote: true, method: :post%>
-          <% end %>
-        </div>
-        <div id="publication-<%= publication.id %>-likes-count" class="inline-likes">
-          <% if publication.likes.count > 0 %>
-            <p><%= pluralize(publication.likes.count, 'person') %> <%= 'like'.pluralize(publication.likes.count) %> this publication!</p>
-          <% end %>
-        </div>
-        
-        <% if publication.creator == current_user %>
-          <div>
-            <%= link_to '', [publication],
+      </ul>
+      <div id="publication-<%= publication.id %>-like" class="inline-likes">
+        <% if liked_publication?(publication.id) %>
+          <%= link_to 'Not nice!', publication_like_path(publication), class: "btn btn-default btn-likes",remote: true, method: :delete %>
+        <% else %>
+          <%= link_to 'Nice!', publication_like_path(publication), class: "btn btn-default btn-likes", remote: true, method: :post %>
+        <% end %>
+      </div>
+      <div id="publication-<%= publication.id %>-likes-count" class="inline-likes">
+        <% if publication.likes.count > 0 %>
+          <p><%= pluralize(publication.likes.count, 'person') %> <%= 'like'.pluralize(publication.likes.count) %> this publication!</p>
+        <% end %>
+      </div>
+      <% if publication.creator == current_user %>
+        <div>
+          <%= link_to '', [publication],
                        method: :delete,
                        remote: true,
                        class:"btn-delete glyphicon glyphicon-remove",
                        data: { confirm: 'Are you sure?' } %>
-
-
-          </div>
-        <% end %>
-      </div>
-      <div class="posts-comments">
-         <div class="load-comments">
-        <%= content_tag :a , data: { publication_id: publication.id } do -%>
-          Load more comments
-        <% end %>
-        <br/>
-      </div>
+        </div>
+      <% end %>
+    </div>
+    <div class="posts-comments">
+      <% if publication.has_a_next_page_of_comments %>
+        <div class="load-comments">
+          <%= content_tag :a , data: { publication_id: publication.id } do -%>
+            Load more comments
+          <% end %>
+        </div>
+      <% end %>
       <div id="publication-<%= publication.id %>-comments" >
         <% publication.paginated_comments.each do |comment| %>
         <%= render partial: 'timeline/comment', locals: { comment: comment } %>
         <hr>
         <% end %>
       </div>
-      </div>
-      <div class="comment-errors"></div>
-      <div id="publication-<%= publication.id %>-new-comment">
-        <%= form_for([publication, publication.comments.build], remote: true, class: "input-group") do |f| %>
-          <%= render partial: 'comments/fields', locals: { f: f } %>
-        <% end %>
-      </div>
+    </div>
+    <div class="comment-errors"></div>
+    <div id="publication-<%= publication.id %>-new-comment">
+      <%= form_for([publication, publication.comments.build], remote: true, class: "input-group") do |f| %>
+        <%= render partial: 'comments/fields', locals: { f: f } %>
+      <% end %>
+    </div>
   </li>
 </ul>

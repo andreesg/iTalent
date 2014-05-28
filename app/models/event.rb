@@ -20,6 +20,7 @@ class Event < ActiveRecord::Base
 	validate :date_limit_before_date_start
 	validates :tags, presence: true
 	validates :creator, presence: true
+  validate :max_attendees_cannot_be_less_than_num_attendings, on: :update
 
 	has_many :event_invitations, dependent: :destroy, foreign_key: "event_id"
 	has_many :invitees, through: :event_invitations, source: :invitee
@@ -33,6 +34,13 @@ class Event < ActiveRecord::Base
   end
 
 private
+  def max_attendees_cannot_be_less_than_num_attendings
+    num_people_attending = attendees.count
+    if max_attendees != 0 and max_attendees < num_people_attending
+      errors.add(:max_attendees, "can't be set to less than #{num_people_attending}, since there is already people attending the event!")
+    end
+  end
+
   def default_values
     self.num_attendings = 0 if self.num_attendings.nil?
     self.num_invitations = 0 if self.num_invitations.nil?
@@ -58,5 +66,10 @@ private
     if date_limit > date_start
       errors.add(:date_limit, "must be before the start date") 
     end 
+  end
+
+  def initialize(attributes = {})
+    super
+    self.max_attendees ||= 0
   end
 end

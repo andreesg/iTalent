@@ -43,7 +43,7 @@ describe "Event pages" do
         fill_in 'event_date_end', with: '07:35 01-05-2014'
         fill_in 'event_date_limit', with: '06:35 01-05-2014'
 
-        select(@tag.name, :from => 'event_tags')
+        select(@tag.name, :from => 'event_tag_ids')
 
         within('#new-event-modal') do
           expect { page.find('#create-event-btn').click }.to change(Event, :count)

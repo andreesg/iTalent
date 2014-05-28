@@ -1,11 +1,10 @@
+<% provide(:title, "Tags administration") %>
 <div class="container-admin-tags">
   <div class="row clearfix">
     <div class="col-md-12 column">
+      <%= render partial: 'admin/shared/left_menu', locals: {active_link: "Tags"} %>
       <div class="row clearfix">
-        <div class="col-md-3 column">
-          <%= render partial: 'admin/shared/left_menu' %>
-        </div>
-        <div id="admin-tags-index" class="col-md-9 column">
+        <div id="admin-tags-index" class="col-md-12 column">
           <%= render partial: 'admin/tags/table' %>
         </div>
       </div>
