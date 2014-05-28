@@ -1,5 +1,7 @@
 class Event < ActiveRecord::Base
 
+  self.per_page = 10
+
 	has_many :event_attendees, dependent: :destroy, foreign_key: "event_id"
 	has_many :attendees, through: :event_attendees, source: :attendee
 
@@ -31,6 +33,21 @@ class Event < ActiveRecord::Base
 
   def invited?(user)
     self.event_invitations.find_by(invitee: user)
+  end
+
+  def accepting_attendees?
+    return true if self.date_limit >= Time.now
+    return false
+  end
+
+  def has_already_occurred?
+    if self.date_end.blank?
+      end_date = self.date_start
+    else
+      end_date = self.date_end
+    end
+    return true if end_date < Time.now
+    return false
   end
 
 private

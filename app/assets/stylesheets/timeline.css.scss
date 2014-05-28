@@ -134,6 +134,21 @@ color: #999999;
 .events-content:hover{
   opacity: 0.9;
 }
+
+.events-content.past-event {
+  background: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 10px,
+    #e3e3e3 10px,
+    #e3e3e3 20px
+  ), linear-gradient(
+    to bottom,
+    #d3d3d3,
+    #c3c3c3
+  );
+}
+
 .content-list
  {
   display: block;
