@@ -23,13 +23,12 @@
           <p><%= pluralize(publication.likes.count, 'person') %> <%= 'like'.pluralize(publication.likes.count) %> this publication!</p>
         <% end %>
       </div>
-        
       <% if publication.creator == current_user %>
         <div>
           <%= link_to '', [publication],
                        method: :delete,
                        remote: true,
-                       class:"btn-delete-white glyphicon glyphicon-remove",
+                       class:"btn-delete glyphicon glyphicon-remove",
                        data: { confirm: 'Are you sure?' } %>
         </div>
       <% end %>

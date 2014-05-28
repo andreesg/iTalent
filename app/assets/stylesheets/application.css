@@ -13,13 +13,24 @@
  *= require_self
  *= require_tree .
  */
+
 .container
 {
   margin-top:60px; 
 }
-.timeline > nav
+.timeline
 {
-	border-radius: 0;
+	background: url('/assets/pixel_weave.png');
+}
+.navbar
+{
+	border-radius: 0 !important;
+	background-color: #424242  !important;
+	border-color: #424242  !important;
+	
+	-webkit-box-shadow: 0 3px 3px -3px #777;
+	-moz-box-shadow: 0 3px 3px -3px #777;
+	box-shadow: 0 3px 3px -3px #777;
 }
 #error_explanation h2
 {
@@ -43,7 +54,10 @@
 	padding-left: 10px;
 }
 
-
+.light-gray
+{
+	color: #C2C2C2
+}
 input{
   color:#424242;
 }
@@ -70,7 +84,6 @@ input{
 	vertical-align: baseline;
 	white-space: nowrap;
 	text-align: center;
-	background-color: #9CAFC2;
-	border-radius: 10px;
+	background-color:#F59959;
 	margin: 3px;
   }
