@@ -66,7 +66,7 @@ class User < ActiveRecord::Base
   end
 
   def attend(event)
-    if event.max_attendees.nil? || event.max_attendees == 0 || event.num_attendings < event.max_attendees
+    if event.max_attendees.nil? || event.max_attendees == 0 || (event.max_attendees > 0 and event.num_attendings < event.max_attendees)
       update_attendee_stats() unless attending?(event)
       event_attendees.find_or_create_by(event: event)
     end

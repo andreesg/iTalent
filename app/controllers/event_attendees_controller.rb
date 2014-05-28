@@ -8,10 +8,14 @@ class EventAttendeesController < ApplicationController
 			return
 		end
 		@event = Event.find(params[:event_id])
-		respond_to do |format|
+		if @event.accepting_attendees?
 			current_user.attend(@event)
-			format.html { redirect_to authenticated_root_path, notice: 'Marked as attending' }
-			format.js   {}
+			respond_to do |format|
+				format.html { redirect_to authenticated_root_path, notice: 'Marked as attending' }
+				format.js   {}
+			end
+		else
+			redirect_to authenticated_root_path, notice: 'The event is not accepting registrations!' }
 		end
 	end
 
@@ -22,7 +26,7 @@ class EventAttendeesController < ApplicationController
 		end
 		@event_attendee = EventAttendee.find(params[:id])	
 		respond_to do |format|
-			if not @event_attendee.nil? && @event_attendee.attendee == current_user
+			if not @event_attendee.nil? && @event_attendee.attendee == current_user && @event.accepting_attendees?
 				@event_attendee.destroy
 				@event=@event_attendee.event
 				format.html { redirect_to authenticated_root_path, notice: 'Marked as not attending' }
