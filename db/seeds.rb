@@ -125,8 +125,8 @@ e.save!
 
 e = Event.new(
     title: "Acampamento de Informaticos",
-    description: "asdasda",
-    location: "asdasda",
+    description: "Levem tenda propria!",
+    location: "Inatel camp for seniors",
     date_limit: Time.now + 7.to_i.days,
     date_start: Time.now + 10.to_i.days,
     num_attendings: 0,
@@ -139,8 +139,8 @@ e.save!
 
 e = Event.new(
     title: "Paintball",
-    description: "asdasda",
-    location: "asdasda",
+    description: "Pew, pew, pew...",
+    location: "Mata do Rei",
     date_limit: Time.now + 3.to_i.days,
     date_start: Time.now + 8.to_i.days,
     num_attendings: 0,
@@ -213,7 +213,7 @@ e.creator = User.order("random()").limit(1).to_a.first
 e.tags << Tag.order("random()").limit(2)
 e.save!
 
-c = Comment.new(text: "Bela merda...")
+c = Comment.new(text: "Bela coisa que foste fazer...")
 c.creator = User.order("random()").limit(1).to_a.first
 c.publication = e
 c.save!
@@ -234,14 +234,14 @@ c.save!
 
 # - 6
 e = Publication.new(
-    text: "Ole ole.",
+    text: "Ole ole amanha ja faz sol! :)",
   )
 
 e.creator = User.order("random()").limit(1).to_a.first
 e.tags << Tag.order("random()").limit(2)
 e.save!
 
-c = Comment.new(text: "Coisito")
+c = Comment.new(text: "Já não era sem tempo! XD")
 c.creator = User.order("random()").limit(1).to_a.first
 c.publication = e
 c.save!
