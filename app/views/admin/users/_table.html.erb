@@ -17,6 +17,7 @@
         <th>Events attended</th>
         <th>Interests</th>
         <th></th>
+        <th style="display:none;"></th>
       </thead>
       <tbody>
         <% @users.each do |user| %>
@@ -29,6 +30,11 @@
             <td><%= user.created_events.count %></td>
             <td><%= user.attending_events.count %></td>
             <td><%= user.subscriptions.count %></td>
+            <td style="display:none;">
+              <% user.subscriptions.each do |subscription| %>
+                <%= Tag.find(subscription.tag_id).name %>
+              <% end %>
+            </td>
             <td>
               <div class="btn-toolbar">
                 <div class="btn-group">
