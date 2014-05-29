@@ -9,7 +9,7 @@
       <h6><%= format_date publication.created_at %></h6>
     </div>
     <div class="posts-content">
-      <h4><%= publication.text %></h4>
+      <h4><%= auto_link(publication.text, :html => { :target => '_blank' }) %></h4>
       <ul class="tag-container">
         <% publication.tags.each do |tag| %>
           <li><%= tag.name %></li>
