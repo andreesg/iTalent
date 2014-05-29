@@ -12,15 +12,21 @@
         <th>Events</th>
         <th>Publications</th>
         <th></th>
+        <th></th>
       </thead>
       <tbody>
         <% @tags.each do |tag| %>
           <tr>
             <td><%= tag.id %></td>
             <td><%= tag.name %></td>
-            <td><%= tag.num_subscribers %></td>
+            <td><%= tag.subscribers.count %></td>
             <td><%= tag.publications.count %></td>
             <td><%= tag.events.count %></td>
+            <td style="display:none;">
+              <% tag.subscribers.each do |subscriber| %>
+                <%= subscriber.name %>
+              <% end %>
+            </td>
             <td>
               <div class="btn-toolbar">
                 <div class="btn-group">
