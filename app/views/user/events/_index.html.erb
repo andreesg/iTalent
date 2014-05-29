@@ -45,7 +45,7 @@
           </ul>
         </div>
         <div class="btn-group" id="attends-or-not-<%=event_attendee.event.id%>">
-          <%= link_to "Do not attend", user_event_attendee_path(event_attendee) ,confirm: "Are you sure?", class: "btn btn-warning", method: :delete, remote: true %>
+          <%= render 'event_attendees/show', :event => event_attendee.event %>
         </div>
       </div>
     <% end %>
