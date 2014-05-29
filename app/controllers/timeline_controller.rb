@@ -4,7 +4,7 @@ class TimelineController < ApplicationController
 
   def index
 
-    @publications = Publication.includes(:creator).paginate(page: params[:page], per_page:5).order('created_at DESC')
+    @publications = Publication.includes(:creator).where("organization_id is NULL or organization_id = ?",current_user.organization_id).paginate(page: params[:page], per_page:5).order('created_at DESC')
     @publications.each do |p|
       p.paginated_comments = p.comments.includes(:creator).paginate(page: 1).order('updated_at DESC')
       p.paginated_comments = p.paginated_comments.reverse
@@ -12,7 +12,7 @@ class TimelineController < ApplicationController
       p.has_a_next_page_of_comments = false if p.comments.includes(:creator).paginate(page: 1).order('updated_at DESC').next_page.nil?
     end
 
-    @events = Event.includes(:creator).where('date_start >= ?', Time.now).paginate(page: params[:events_page]).order('date_start ASC')
+    @events = Event.includes(:creator).where("organization_id is NULL or organization_id = ?",current_user.organization_id).where('date_start >= ?', Time.now).paginate(page: params[:events_page]).order('date_start ASC')
     @new_publication = Publication.new
     @new_event = Event.new
     @comment = Comment.new

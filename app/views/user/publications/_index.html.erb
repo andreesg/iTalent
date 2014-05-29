@@ -4,8 +4,12 @@
   <% current_user.created_publications.each do |publication| %>
     <div class="well">
       <div>
-        <h4><%= publication.text %></h4>
-        <p>published <%= publication.updated_at %></p>
+        <% if publication.organization.nil? %>
+          <h4>All: <%= publication.text %></h4>
+        <% else %>
+          <h4><%= publication.organization.name %>: <%= publication.text %></h4>
+        <% end %>
+        <p>published <%= format_date publication.updated_at %></p>
       </div>
       <ul class="tag-container">
         <% publication.tags.each do |tag| %>

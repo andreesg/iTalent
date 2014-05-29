@@ -1,8 +1,12 @@
 <ul id="publication-<%= publication.id %>"  >  
   <li class="posts" >
     <div class="posts-title">
-      <h5><strong><%= publication.creator.name %></strong> // <%= publication.creator.email %></h5>
-      <h6><%= publication.created_at %></h6>
+      <% if publication.organization.nil? %>
+        <h5>All: <strong><%= publication.creator.name %></strong> // <%= publication.creator.email %></h5>
+      <% else %>
+        <h5><%= publication.organization.name %>: <strong><%= publication.creator.name %></strong> // <%= publication.creator.email %></h5>
+      <% end %>
+      <h6><%= format_date publication.created_at %></h6>
     </div>
     <div class="posts-content">
       <h4><%= publication.text %></h4>

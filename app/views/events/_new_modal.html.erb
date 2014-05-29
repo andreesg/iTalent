@@ -1,24 +1,23 @@
 <div class="row">
-	<div class="modal fade" id="new-event-modal">
-	  <div class="modal-dialog">
-	    <div class="modal-content form-bg">
-			<%= form_for(event) do |e| %>
-				
-				<div class="modal-header ">
-				  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-				  <h4 class="modal-title">Create Event</h4>
-				</div>
-				<div class="modal-body form-bg-body">
-					<%= render partial: 'events/fields', locals: { e: e } %>
-					  	
-				</div>
-				<div class="modal-footer form-bg-body">
-				  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-				  <%= e.submit "Create", class: "btn btn-primary", id: "create-event-btn" %>
-				</div>
-			<% end %>
-	    </div><!-- /.modal-content -->
-	  </div><!-- /.modal-dialog -->
-	</div><!-- /.modal -->
+  <div class="modal fade" id="new-event-modal">
+    <div class="modal-dialog">
+      <div class="modal-content form-bg">
+        <%= form_for(event) do |e| %> 
+          <div class="modal-header ">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title">Create Event</h4>
+          </div>
+          <div class="modal-body form-bg-body">
+            <%= render partial: 'events/fields', locals: { e: e } %>
+            <%= render partial: 'shared/organization_field', locals: { f: e, resource_name: "event" } %>    
+          </div>
+          <div class="modal-footer form-bg-body">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <%= e.submit "Create", class: "btn btn-primary", id: "create-event-btn" %>
+          </div>
+        <% end %>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
 </div>
 

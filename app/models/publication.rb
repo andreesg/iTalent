@@ -14,6 +14,8 @@ class Publication < ActiveRecord::Base
 	has_many :likes, dependent: :destroy
 	has_many :users_that_liked, through: :likes, source: :user
 
+	belongs_to :organization
+
 	validates :text, presence: true, length: { maximum: 150 }
 	validates :tags, presence: true
 	validates :creator, presence: true
