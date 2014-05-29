@@ -23,6 +23,8 @@
 	border-radius: 0 !important;
 	background-color: #424242  !important;
 	border-color: #424242  !important;
+	padding-top: 5px;
+	padding-bottom: 2px;
 	
 	-webkit-box-shadow: 0 3px 3px -3px #777;
 	-moz-box-shadow: 0 3px 3px -3px #777;
@@ -36,10 +38,11 @@
 .landing-container{
 	margin-top:60px;
 }
- .logo-big
- {
- 	margin-top:10px;
- }
+
+.logo-big {
+ 	margin-top:30px;
+}
+
 .modal-header
 {
 	background-color: #424242;
@@ -82,4 +85,5 @@ input{
 	text-align: center;
 	background-color:#F59959;
 	margin: 3px;
+	border-radius: 2px;
   }

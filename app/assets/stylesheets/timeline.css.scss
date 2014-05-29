@@ -1,4 +1,5 @@
-.timeline,.publications,.events
+/*.timeline,.publications,.events*/
+body
 {
   background-image: image-url('pixel_weave.png');
 }
@@ -17,13 +18,14 @@
 {
   margin-top: 5px;
 }
-a.btn-attend
+
+.btn-attend
 {
   color: white;
   background-color: #4f5d73;
   border-color: #4f5d73;
-  border-radius: 0;
 }
+
 a:link.btn-attend
 {
   color: white;
@@ -48,7 +50,8 @@ a:link.btn-attend
   overflow: hidden;
   margin-left: auto; 
   margin-right: auto;
-  position: relative;  
+  position: relative;
+  border-radius: 10px;  
    -webkit-box-shadow:0 2px 4px rgba(0, 0, 0, 0.3), 0 0  1px rgba(0, 0, 0, 0.1) inset;
        -moz-box-shadow:0 2px 4px rgba(0, 0, 0, 0.3), 0 0 1px rgba(0, 0, 0, 0.1) inset;
             box-shadow:0 2px 4px rgba(0, 0, 0, 0.3), 0 0 1px rgba(0, 0, 0, 0.1) inset;
@@ -136,6 +139,7 @@ color: #999999;
   line-height:1.3em;
   margin-bottom: 20px ;
   padding:10px;
+  border-radius: 10px;
   -webkit-box-shadow: 0 7px 6px -6px #777;
      -moz-box-shadow: 0 7px 6px -6px #777;
           box-shadow: 0 7px 6px -6px #777;
@@ -170,6 +174,7 @@ color: #999999;
 
 .create-content 
 {
+  border-radius: 4px;
   font-family: "Roboto",Frutiger, "Frutiger Linotype", Univers, Calibri, "Gill Sans", "Gill Sans MT", "Myriad Pro", Myriad, "DejaVu Sans Condensed", "Liberation Sans", "Nimbus Sans L", Tahoma, Geneva, "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 14px;
   color: #f7f7f7;
