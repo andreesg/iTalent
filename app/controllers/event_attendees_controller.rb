@@ -15,7 +15,7 @@ class EventAttendeesController < ApplicationController
 				format.js   {}
 			end
 		else
-			redirect_to authenticated_root_path, notice: 'The event is not accepting registrations!' }
+			redirect_to authenticated_root_path, notice: 'The event is not accepting registrations!'
 		end
 	end
 
