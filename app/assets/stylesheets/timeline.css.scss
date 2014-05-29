@@ -17,13 +17,14 @@
 {
   margin-top: 5px;
 }
-a.btn-attend
+
+.btn-attend
 {
   color: white;
   background-color: #4f5d73;
   border-color: #4f5d73;
-  border-radius: 0;
 }
+
 a:link.btn-attend
 {
   color: white;
@@ -170,6 +171,7 @@ color: #999999;
 
 .create-content 
 {
+  border-radius: 4px;
   font-family: "Roboto",Frutiger, "Frutiger Linotype", Univers, Calibri, "Gill Sans", "Gill Sans MT", "Myriad Pro", Myriad, "DejaVu Sans Condensed", "Liberation Sans", "Nimbus Sans L", Tahoma, Geneva, "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 14px;
   color: #f7f7f7;
