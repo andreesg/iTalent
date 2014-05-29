@@ -5,7 +5,11 @@
     <% current_user.created_events.each do |event| %>
       <div class="well">
         <div>
-          <h4><%= event.title %></h4>
+          <% if event.organization.nil? %>
+            <h4>All: <%=event.title%></h4>
+          <% else %>
+            <h4><%= event.organization.name %>: <%=event.title%></h4>
+          <% end %>
           <p><%= format_date event.date_start %></p>
           <ul class="tag-container">
             <% event.tags.each do |tag| %>

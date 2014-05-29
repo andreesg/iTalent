@@ -11,6 +11,8 @@ class Event < ActiveRecord::Base
 	has_and_belongs_to_many :tags
 	belongs_to :creator, foreign_key: "creator_id", class_name: "User"
 
+  belongs_to :organization
+
 	validates :title,presence:true, length: { maximum:100 }
 	validates :num_attendings,presence:true, numericality:{ only_integer:true, greater_than_or_equal_to:0 }
 	validates :num_invitations,presence:true, numericality:{ only_integer:true, greater_than_or_equal_to:0 }

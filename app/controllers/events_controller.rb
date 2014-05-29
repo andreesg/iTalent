@@ -24,6 +24,12 @@ class EventsController < ApplicationController
     @new_event.tags = Tag.find(params[:event][:tags]) unless params[:event][:tags].nil?
     @new_event.creator = current_user
 
+    if params[:event][:organization_id].nil? or params[:event][:organization_id] == "0"
+      @new_event.organization = nil
+    else
+      @new_event.organization = Organization.find(params[:event][:organization_id])
+    end
+
     if @new_event.save
       redirect_to timeline_index_path, notice: "Event successfully created."
     else

@@ -1,6 +1,10 @@
 <li class="events-content">
-  <%= link_to event_path(event) do %> 
-    <h1><strong><%=event.title%></strong></h1>
+  <%= link_to event_path(event) do %>
+    <% if event.organization.nil? %>
+      <h1>All: <strong><%=event.title%></strong></h1>
+    <% else %>
+      <h1><%= event.organization.name %>: <strong><%=event.title%></strong></h1>
+    <% end %>
     <%= format_date event.date_start %>
     <ul class="tag-container">
       <% event.tags.each do |tag| %>

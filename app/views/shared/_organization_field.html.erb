@@ -1,0 +1,4 @@
+<div class="input-group">
+  <%= f.label 'Organization' %>
+  <%= collection_select resource_name, :organization_id, [Organization.new(id: 0, name: "All"),current_user.organization], :id, :name, {:include_hidden => false}, class: "form-control" %>
+</div>

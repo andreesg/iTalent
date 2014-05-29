@@ -4,7 +4,11 @@
     <div class="page-header">
       <div class="row">
         <div class="col-md-9">
-          <h2><%= @event.title %></h2>
+          <% if @event.organization.nil? %>
+            <h2>All: <%= @event.title %></h2>
+          <% else %>
+            <h2><%= @event.organization.name %>: <%= @event.title %></h2>
+          <% end %>
           <small>Created by <%= @event.creator.name %>, updated at <%= format_date @event.updated_at %></small>
           <% if @event.accepting_attendees? %>
             <% if @event.max_attendees == 0 or @event.num_attendings < @event.max_attendees %>
