@@ -45,5 +45,9 @@
 
 </ul>
 <h3>Activity of last month:</h3>
-  <%= line_chart @user.access_logs.group_by_day(:created_at, range: 1.month.ago.midnight..Time.now).count %>
+  <% values = @user.access_logs.group_by_day(:created_at, range: 1.month.ago.midnight..Time.now).count %>
+  <% values.each do |key, value| %>
+    <% values[key] = (value/144.0).round(2)*100 %>
+  <% end %>
+  <%= line_chart values %>
 </div>
