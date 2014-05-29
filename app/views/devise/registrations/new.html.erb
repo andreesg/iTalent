@@ -7,9 +7,9 @@
               </div>
             <% end %>
   <div class="row">
-      <div class="col-md-4 col-md-offset-4 panel panel-default">
+      <div class="col-md-4 col-md-offset-4 panel panel-default panel-dark">
 
-       <%= image_tag(asset_path("logo.png"), alt: "iTalent", class:'center-block logo-big')%>
+       <%= image_tag(asset_path("logo2.png"), alt: "iTalent", class:'center-block logo-big')%>
 
           <br>
               
@@ -31,7 +31,7 @@
                 <br>
                 <div class="input-group">
                 <span class="input-group-addon"></span>
-                <%= collection_select resource_name, :organization_id, Organization.all, :id, :name, {:include_hidden => false},class: "form-control" %>
+                <%= collection_select resource_name, :organization_id, Organization.all, :id, :name, {:include_hidden => false}, class: "form-control" %>
                 </div>
               
             <% if devise_mapping.rememberable? -%>
