@@ -26,3 +26,4 @@
 # secret token file. used to verify the integrity of the signed coockies.
 .secret
 
+/public/assets/
