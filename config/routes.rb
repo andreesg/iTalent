@@ -43,6 +43,7 @@ Italentapp::Application.routes.draw do
       namespace :admin do
         resources :tags
         resources :users
+        resources :organizations, except: [:show, :destroy]
         root 'users#index', as: :admin_root
       end
 
